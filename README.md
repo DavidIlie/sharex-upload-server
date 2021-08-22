@@ -18,4 +18,4 @@ backend:
 
 frontend:
 
--   actually create frontend lol
+-   actually create the frontend lol
