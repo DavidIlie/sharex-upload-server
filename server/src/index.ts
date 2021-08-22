@@ -19,7 +19,7 @@ const main = async () => {
         console.log(`app running on http://localhost:${port}`);
     });
 
-    app.use("/api", api);
+    app.use("/", api);
 
     app.use(middlewares.ErrorHandler);
     app.use(middlewares.NotFound);
