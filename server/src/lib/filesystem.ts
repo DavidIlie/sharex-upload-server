@@ -1,10 +1,31 @@
 import fs from "fs/promises";
 import path from "path";
+import { bytesToSize } from "./bytesToSize";
+import { md5 } from "./md5";
+import { sha1 } from "./sha1";
 
 export const uploadDir = path.join(__dirname, "../../uploads");
 
 export const findUploads = async () => {
     return await fs.readdir(uploadDir);
+};
+
+interface getFileStatsTypes {
+    size: string;
+    extension: string;
+    fileName: string;
+    md5: string;
+    sha1: string;
+}
+
+const getFileStats = (file: Buffer, path: string, fileName: string) => {
+    return {
+        size: bytesToSize(file.byteLength),
+        fileName,
+        extension: path.substring(path.indexOf(".") + 1),
+        md5: md5(file.toString()),
+        sha1: sha1(file.toString()),
+    };
 };
 
 export const findFullFileNameFromSlug = async (slug: string) => {
@@ -24,7 +45,7 @@ export const findFullFileNameFromSlug = async (slug: string) => {
 
 interface getFileTypes {
     file: Buffer;
-    extension: string;
+    stats: getFileStatsTypes;
 }
 
 export const getFileBySlug = async (slug: string) => {
@@ -34,9 +55,11 @@ export const getFileBySlug = async (slug: string) => {
 
         const file = await fs.readFile(fullPath);
 
+        const stats = getFileStats(file, fullPath, fileName);
+
         return {
             file,
-            extension: fullPath.substring(fullPath.indexOf(".") + 1),
+            stats,
         } as getFileTypes;
     } catch (error) {
         return undefined;

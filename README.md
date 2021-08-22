@@ -8,7 +8,6 @@ backend:
 
 -   add/fix the remaining functions
     -   text
-    -   file
 -   authentication system for user(s) with email/password auth (typeorm)
     -   ability create API keys for specific tasks (and then use that to authenticate when adding new images/etc)
         -   permissions system for api keys
@@ -16,4 +15,4 @@ backend:
 
 frontend:
 
--   actually create the frontend lol
+-   style frontend (make it nice)
