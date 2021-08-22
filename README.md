@@ -6,9 +6,7 @@ work in progress highly customizable sharex media server with a Express API and 
 
 backend:
 
--   make content actually viewable after its added
 -   add/fix the remaining functions
-    -   image
     -   text
     -   file
 -   authentication system for user(s) with email/password auth (typeorm)
