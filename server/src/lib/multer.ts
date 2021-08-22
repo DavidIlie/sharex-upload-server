@@ -1,9 +1,28 @@
 import * as express from "express";
 import multer from "multer";
-import multerMinIOStorage from "multer-minio-storage";
 import { nanoid } from "nanoid";
+import path from "path";
 
-import { minioClient } from "../providers/minio";
+declare module "express-serve-static-core" {
+    interface Request {
+        file: {
+            suffix?: string;
+        };
+    }
+}
+
+const storage = multer.diskStorage({
+    destination: function (_req, _file, cb) {
+        cb(null, __dirname + `../../../uploads`);
+    },
+    filename: function (_req, file, cb) {
+        const suffix = nanoid(5);
+
+        //@ts-ignore
+        file.suffix = suffix;
+        cb(null, `${suffix}${path.extname(file.originalname)}`);
+    },
+});
 
 export const uploadFile = async (
     name: string,
@@ -12,17 +31,7 @@ export const uploadFile = async (
 ) => {
     const upload = multer({
         dest: "./uploads",
-        storage: multerMinIOStorage({
-            minioClient: minioClient,
-            bucket: process.env.MINIO_BUCKET_NAME as any,
-            acl: "public-read",
-            metadata: function (_req, file, cb) {
-                cb(null, { fieldName: file.fieldname });
-            },
-            key: function (_req, _file, cb) {
-                cb(null, nanoid(7));
-            },
-        }),
+        storage: storage,
     }).single(name);
 
     return await new Promise((resolve, reject) => {
