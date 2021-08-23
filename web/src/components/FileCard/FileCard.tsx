@@ -1,3 +1,6 @@
+import { shimmer } from "@lib/shimmer";
+import Image from "next/image";
+
 export interface StatTypes {
     size: string;
     extension: string;
@@ -16,11 +19,14 @@ const FileCard = ({ stats, icon }: FileCardProps): JSX.Element => {
         <div className="flex flex-col border-2 bg-gray-800 border-gray-900 rounded-md shadow-lg overflow-hidden duration-200 hoverItem">
             <div className="flex relative">
                 <div className="ResponsiveFileCard sm:block sm:p-4">
-                    <img
+                    <Image
                         className="w-32 h-32"
-                        loading="lazy"
+                        width="120%"
+                        height="120%"
                         src={icon}
                         alt={stats.fileName}
+                        placeholder="blur"
+                        blurDataURL={shimmer(1920, 1080)}
                     />
                 </div>
                 <div className="pl-6 sm:pl-0 py-5 pr-6 justify-self-center">

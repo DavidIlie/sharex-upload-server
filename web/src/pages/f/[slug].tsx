@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 import NotFound from "@components/NotFound";
 import FileCard, { StatTypes } from "@components/FileCard/FileCard";
-import { getFileIconFromExtension } from "@lib/FileIcon";
+import { getFileIconFromExtension } from "@lib/IconUtils";
 
 interface Props {
     message?: string;
