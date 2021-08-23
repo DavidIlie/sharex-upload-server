@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 import { Fade } from "react-awesome-reveal";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import NotFound from "@components/NotFound";
 import FileCard, { StatTypes } from "@components/FileCard/FileCard";
@@ -16,9 +17,9 @@ const ViewFile = ({ message, stats }: Props): JSX.Element => {
     const router = useRouter();
     const { slug } = router.query;
 
-    const icon = getFileIconFromExtension(stats.fileName);
-
     if (message) return <NotFound />;
+
+    const icon = getFileIconFromExtension(stats.fileName);
 
     return (
         <>
@@ -62,12 +63,11 @@ const ViewFile = ({ message, stats }: Props): JSX.Element => {
                             </div>
                             {icon === "image" && (
                                 <div className="sm:pt-6 flex justify-center">
-                                    <a
-                                        href={`http://localhost:4000/image/${slug}`}
-                                        className="px-4 py-2 text-lg bg-gray-600 hover:bg-gray-700 duration-150 rounded shadow"
-                                    >
-                                        Preview
-                                    </a>
+                                    <Link href={`/f/${slug}/preview`}>
+                                        <a className="px-4 py-2 text-lg bg-gray-600 hover:bg-gray-700 duration-150 rounded shadow">
+                                            Preview
+                                        </a>
+                                    </Link>
                                 </div>
                             )}{" "}
                         </div>

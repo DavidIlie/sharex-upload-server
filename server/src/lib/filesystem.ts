@@ -1,5 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
+import sizeOf from "buffer-image-size";
+
 import { bytesToSize } from "./bytesToSize";
 import { md5 } from "./hash/md5";
 import { sha1 } from "./hash/sha1";
@@ -16,15 +18,31 @@ interface getFileStatsTypes {
     fileName: string;
     md5: string;
     sha1: string;
+    resolution?: {
+        width: number;
+        height: number;
+    };
 }
 
 const getFileStats = (file: Buffer, path: string, fileName: string) => {
+    const format = fileName.substring(fileName.indexOf(".") + 1);
+
+    let resolution = {};
+    if (format === "png" || format === "jpg" || format === "png") {
+        const dimensions = sizeOf(file);
+        resolution = {
+            width: dimensions.height,
+            height: dimensions.width,
+        };
+    }
+
     return {
         size: bytesToSize(file.byteLength),
         fileName,
         extension: path.substring(path.indexOf(".") + 1),
         md5: md5(file.toString()),
         sha1: sha1(file.toString()),
+        resolution: resolution,
     };
 };
 

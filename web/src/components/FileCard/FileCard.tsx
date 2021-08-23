@@ -7,6 +7,10 @@ export interface StatTypes {
     fileName: string;
     md5: string;
     sha1: string;
+    resolution?: {
+        width: number;
+        height: number;
+    };
 }
 
 interface FileCardProps {
