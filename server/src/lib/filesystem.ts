@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
 import { bytesToSize } from "./bytesToSize";
-import { md5 } from "./md5";
-import { sha1 } from "./sha1";
+import { md5 } from "./hash/md5";
+import { sha1 } from "./hash/sha1";
 
 export const uploadDir = path.join(__dirname, "../../uploads");
 

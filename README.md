@@ -15,4 +15,5 @@ backend:
 
 frontend:
 
--   style frontend (make it nice)
+-   login flow
+-   dashboard
