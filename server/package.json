@@ -1,5 +1,5 @@
 {
-    "name": "@davidilie/server",
+    "name": "@sharex-server/server",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
