@@ -7,6 +7,7 @@ import Link from "next/link";
 import NotFound from "@components/NotFound";
 import FileCard, { FileTypes } from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/IconUtils";
+import { SupportPreview } from "@lib/SupportPreview";
 
 interface Props {
     message?: string;
@@ -56,7 +57,7 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
                                     Download
                                 </a>
                             </div>
-                            {icon === "java" && (
+                            {SupportPreview(icon) && (
                                 <div className="sm:pt-6 flex justify-center">
                                     <Link
                                         href={`http://localhost:3000/f/${slug}/preview`}
