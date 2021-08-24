@@ -5,7 +5,7 @@ const router = express.Router();
 import upload from "./upload";
 import api from "./api";
 
-import { getFileBySlug } from "./../lib/filesystem";
+import { getFileBySlug, uploadDir } from "./../lib/filesystem";
 
 router.use("/", upload);
 router.use("/api", api);
@@ -33,20 +33,22 @@ router.get("/image/:slug", async (req, res, next) => {
     }
 });
 
-// router.get("/dl/:slug", async (req, res, next) => {
-//     try {
-//         const { slug } = req.params;
+router.get("/dl/:slug", async (req, res, next) => {
+    try {
+        const { slug } = req.params;
 
-//         const data = await getFileBySlug(slug);
+        const upload = await Uploads.findOne({ slug });
+        if (!upload) return res.status(404).json({ message: "file not found" });
 
-//         if (!data?.file)
-//             return res.status(404).json({ message: "file not found" });
+        if (upload.type === "image")
+            return res.status(422).json({
+                message: "images can't be downloaded from this route",
+            });
 
-//         //TODO: find a way to download the file (even if its image)
-//         res.sendStatus(200);
-//     } catch (error) {
-//         return next(error);
-//     }
-// });
+        res.download(`${uploadDir}/${upload.name}`, upload.name);
+    } catch (error) {
+        return next(error);
+    }
+});
 
 export default router;

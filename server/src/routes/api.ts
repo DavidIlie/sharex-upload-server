@@ -12,6 +12,9 @@ router.get("/file/:slug", async (req, res, next) => {
 
         if (!upload) return res.status(404).json({ message: "file not found" });
 
+        if (upload.type === "image")
+            return res.status(404).json({ message: "file not found" });
+
         return res.json(upload!);
     } catch (error) {
         return next(error);
@@ -27,7 +30,7 @@ router.get("/file/:slug/preview", async (req, res, next) => {
         if (!upload) return res.status(404).json({ message: "file not found" });
 
         if (SupportPreview(upload.stats.extension)) {
-            return res.send(upload);
+            return res.send("coming soon");
         } else {
             return res
                 .status(422)

@@ -14,19 +14,51 @@ declare module "express-serve-static-core" {
     }
 }
 
-const storage = multer.diskStorage({
+const imageStorage = multer.diskStorage({
     destination: function (_req, _file, cb) {
         cb(null, __dirname + `../../../uploads`);
     },
     filename: async function (_req, file, cb) {
-        const suffix = nanoid(5);
         const originalName = file.originalname;
+        const suffix = nanoid(5);
 
         //@ts-ignore
         file.suffix = suffix;
         cb(null, `${suffix}${path.extname(originalName)}`);
     },
 });
+
+const fileStorage = multer.diskStorage({
+    destination: function (_req, _file, cb) {
+        cb(null, __dirname + `../../../uploads`);
+    },
+    filename: async function (_req, file, cb) {
+        const originalName = file.originalname;
+        cb(null, originalName);
+    },
+});
+
+export const uploadImageToDisk = async (
+    name: string,
+    req: express.Request,
+    res: express.Response
+) => {
+    const upload = multer({
+        dest: "./uploads",
+        storage: imageStorage,
+    }).single(name);
+
+    return await new Promise((resolve, reject) => {
+        upload(req, res, (err) => {
+            if (err instanceof multer.MulterError) {
+                return reject(`${name} file not specified`);
+            } else if (err) {
+                return reject("internal server error");
+            }
+            return resolve(true);
+        });
+    });
+};
 
 export const uploadFileToDisk = async (
     name: string,
@@ -35,7 +67,7 @@ export const uploadFileToDisk = async (
 ) => {
     const upload = multer({
         dest: "./uploads",
-        storage: storage,
+        storage: fileStorage,
     }).single(name);
 
     return await new Promise((resolve, reject) => {

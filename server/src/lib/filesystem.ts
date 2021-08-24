@@ -24,10 +24,15 @@ export interface getFileStatsTypes {
     };
 }
 
-export const getFileStats = (file: Buffer, path: string, fileName: string) => {
-    const format = fileName.substring(fileName.indexOf(".") + 1);
+export const getFileStats = (
+    file: Buffer,
+    filePath: string,
+    fileName: string
+) => {
+    let format = path.extname(filePath);
+    format = format.substring(format.indexOf(".") + 1);
 
-    let resolution = {};
+    let resolution;
     if (format === "png" || format === "jpg" || format === "png") {
         const dimensions = sizeOf(file);
         resolution = {
@@ -36,14 +41,24 @@ export const getFileStats = (file: Buffer, path: string, fileName: string) => {
         };
     }
 
-    return {
-        size: bytesToSize(file.byteLength),
-        fileName,
-        extension: path.substring(path.indexOf(".") + 1),
-        md5: md5(file.toString()),
-        sha1: sha1(file.toString()),
-        resolution: resolution,
-    };
+    if (resolution) {
+        return {
+            size: bytesToSize(file.byteLength),
+            fileName,
+            extension: format,
+            md5: md5(file.toString()),
+            sha1: sha1(file.toString()),
+            resolution: resolution,
+        };
+    } else {
+        return {
+            size: bytesToSize(file.byteLength),
+            fileName,
+            extension: format,
+            md5: md5(file.toString()),
+            sha1: sha1(file.toString()),
+        };
+    }
 };
 
 export const findFullFileNameFromSlug = async (slug: string) => {
@@ -64,6 +79,18 @@ export const findFullFileNameFromSlug = async (slug: string) => {
 export const getFileBySlug = async (slug: string) => {
     try {
         const fileName = await findFullFileNameFromSlug(slug);
+        const fullPath = `${uploadDir}/${fileName}`;
+
+        const file = await fs.readFile(fullPath);
+
+        return file as Buffer;
+    } catch (error) {
+        return undefined;
+    }
+};
+
+export const getFileByName = async (fileName: string) => {
+    try {
         const fullPath = `${uploadDir}/${fileName}`;
 
         const file = await fs.readFile(fullPath);
