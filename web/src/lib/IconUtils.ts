@@ -9,9 +9,9 @@ const fileExtensoins = {
     react: ["jsx"],
     react_ts: ["tsx"],
     python: ["py"],
-    java: ["class", "java"],
+    java: ["class", "java", "jar"],
     git: ["git-commit", "git-rebase", "ignore"],
-    zip: ["zip", "ear", "war", "rar", "jar", "7z"],
+    zip: ["zip", "ear", "war", "rar", "7z"],
     image: ["png", "jpg", "jpeg"],
     video: [
         "mp4",

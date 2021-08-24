@@ -5,32 +5,31 @@ import { useRouter } from "next/router";
 // import Image from "next/image";
 
 import NotFound from "@components/NotFound";
-import { StatTypes } from "@components/FileCard/FileCard";
+import { FileTypes } from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/IconUtils";
 
 interface Props {
     message?: string;
-    stats: StatTypes;
+    file: FileTypes;
 }
 
-const ViewFile = ({ message, stats }: Props): JSX.Element => {
+const ViewFile = ({ message, file }: Props): JSX.Element => {
     const router = useRouter();
-    const { slug } = router.query;
 
     if (message) return <NotFound />;
 
-    const icon = getFileIconFromExtension(stats.fileName);
+    const icon = getFileIconFromExtension(file.stats.fileName);
 
     return (
         <>
             <NextSeo
-                title={stats.fileName}
+                title={file.name}
                 canonical={`http://localhost:3000/${router.asPath}`}
-                description={`${stats.fileName} - ${stats.size} - MD5: ${stats.md5}`}
+                description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
-                    title: stats.fileName,
+                    title: file.name,
                     site_name: "ShareX Media Server",
-                    description: `${stats.fileName} - ${stats.size} - MD5: ${stats.md5}`,
+                    description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
                     url: `http://localhost:3000/${router.asPath}`,
                     type: "website",
                     images: [
@@ -41,17 +40,7 @@ const ViewFile = ({ message, stats }: Props): JSX.Element => {
                 }}
             />
             <div className="h-screen flex items-center justify-center text-gray-50">
-                <Fade direction="down">
-                    <div className="border-2 bg-gray-800 border-gray-900 p-2 hoverItem duration-200">
-                        {
-                            //TODO switch to next/image without breaking resolution
-                        }
-                        <img
-                            className="sm:max-w-2xl max-w-md"
-                            src={`http://localhost:4000/image/${slug}`}
-                        />
-                    </div>
-                </Fade>
+                <Fade direction="down"></Fade>
             </div>
         </>
     );
@@ -67,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     } else {
         return {
             props: {
-                stats: response,
+                file: response,
             },
         };
     }

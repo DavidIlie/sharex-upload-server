@@ -2,11 +2,14 @@ require("dotenv").config();
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
+import { createConnection } from "typeorm";
 
 import * as middlewares from "./middleware";
 import api from "./routes";
 
 const main = async () => {
+    await createConnection();
+
     const app = express();
 
     app.use(express.json());

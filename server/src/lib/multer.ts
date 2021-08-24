@@ -6,7 +6,10 @@ import path from "path";
 declare module "express-serve-static-core" {
     interface Request {
         file: {
-            suffix?: string;
+            fieldname: string;
+            originalname: string;
+            path: string;
+            suffix: string;
         };
     }
 }
@@ -15,16 +18,17 @@ const storage = multer.diskStorage({
     destination: function (_req, _file, cb) {
         cb(null, __dirname + `../../../uploads`);
     },
-    filename: function (_req, file, cb) {
+    filename: async function (_req, file, cb) {
         const suffix = nanoid(5);
+        const originalName = file.originalname;
 
         //@ts-ignore
         file.suffix = suffix;
-        cb(null, `${suffix}${path.extname(file.originalname)}`);
+        cb(null, `${suffix}${path.extname(originalName)}`);
     },
 });
 
-export const uploadFile = async (
+export const uploadFileToDisk = async (
     name: string,
     req: express.Request,
     res: express.Response

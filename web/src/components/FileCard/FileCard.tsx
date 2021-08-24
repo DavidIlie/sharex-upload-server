@@ -1,24 +1,29 @@
 import { shimmer } from "@lib/shimmer";
 import Image from "next/image";
 
-export interface StatTypes {
-    size: string;
-    extension: string;
-    fileName: string;
-    md5: string;
-    sha1: string;
-    resolution?: {
-        width: number;
-        height: number;
+export interface FileTypes {
+    type: string;
+    name: string;
+    slug: string;
+    stats: {
+        size: string;
+        fileName: string;
+        extension: string;
+        md5: string;
+        sha1: string;
+        resolution?: {
+            height: number;
+            width: number;
+        };
     };
 }
 
 interface FileCardProps {
-    stats: StatTypes;
+    file: FileTypes;
     icon: string;
 }
 
-const FileCard = ({ stats, icon }: FileCardProps): JSX.Element => {
+const FileCard = ({ file, icon }: FileCardProps): JSX.Element => {
     return (
         <div className="flex flex-col border-2 bg-gray-800 border-gray-900 rounded-md shadow-lg overflow-hidden duration-200 hoverItem">
             <div className="flex relative">
@@ -28,14 +33,14 @@ const FileCard = ({ stats, icon }: FileCardProps): JSX.Element => {
                         width="120%"
                         height="120%"
                         src={icon}
-                        alt={stats.fileName}
+                        alt={file.stats.fileName}
                         placeholder="blur"
                         blurDataURL={shimmer(1920, 1080)}
                     />
                 </div>
                 <div className="pl-6 sm:pl-0 py-5 pr-6 justify-self-center">
                     <h1 className="text-lg leading-6 font-semibold">
-                        {stats.fileName}
+                        {file.name}
                     </h1>
                     <div className="pt-2 flex flex-col">
                         <p className="text-gray-400 font-mono break-all">
@@ -43,21 +48,21 @@ const FileCard = ({ stats, icon }: FileCardProps): JSX.Element => {
                                 File size:{" "}
                             </span>
                             <br className="sm:hidden" />
-                            {stats.size}
+                            {file.stats.size}
                         </p>
                         <p className="pt-3 text-gray-400 font-mono break-all">
                             <span className="text-gray-300 font-medium pr-2">
                                 MD5:
                             </span>
                             <br className="sm:hidden" />
-                            {stats.md5}
+                            {file.stats.md5}
                         </p>
                         <p className="pt-3 sm:pt-0 text-gray-400 font-mono break-all">
                             <span className="text-gray-300 font-medium">
                                 SHA1:{" "}
                             </span>
                             <br className="sm:hidden" />
-                            {stats.sha1}
+                            {file.stats.sha1}
                         </p>
                     </div>
                 </div>
@@ -66,7 +71,7 @@ const FileCard = ({ stats, icon }: FileCardProps): JSX.Element => {
                         <img
                             className="transform rotate-45"
                             src={icon}
-                            alt={stats.fileName}
+                            alt={file.stats.fileName}
                         />
                     </div>
                 </div>

@@ -5,39 +5,34 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import NotFound from "@components/NotFound";
-import FileCard, { StatTypes } from "@components/FileCard/FileCard";
+import FileCard, { FileTypes } from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/IconUtils";
 
 interface Props {
     message?: string;
-    stats: StatTypes;
+    file: FileTypes;
 }
 
-const ViewFile = ({ message, stats }: Props): JSX.Element => {
+const ViewFile = ({ message, file }: Props): JSX.Element => {
     const router = useRouter();
     const { slug } = router.query;
 
     if (message) return <NotFound />;
 
-    const icon = getFileIconFromExtension(stats.fileName);
+    const icon = getFileIconFromExtension(file.stats.extension);
 
     return (
         <>
             <NextSeo
-                title={stats.fileName}
+                title={file.name}
                 canonical={`http://localhost:3000/${router.asPath}`}
-                description={`${stats.fileName} - ${stats.size} - MD5: ${stats.md5}`}
+                description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
-                    title: stats.fileName,
+                    title: file.name,
                     site_name: "ShareX Media Server",
-                    description: `${stats.fileName} - ${stats.size} - MD5: ${stats.md5}`,
+                    description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
                     url: `http://localhost:3000/${router.asPath}`,
-                    type: "article",
-                    // article: {
-                    //     publishedTime: new Date(
-                    //         frontMatter.publishedAt
-                    //     ).toISOString(),
-                    // },
+                    type: "website",
                     images: [
                         {
                             url: `/file-icons/${icon}.svg`,
@@ -49,27 +44,29 @@ const ViewFile = ({ message, stats }: Props): JSX.Element => {
                 <Fade direction="down">
                     <div>
                         <FileCard
-                            stats={stats}
+                            file={file}
                             icon={`/file-icons/${icon}.svg`}
                         />
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <div className="pt-6 flex justify-center">
                                 <a
-                                    href=""
+                                    href={`http://localhost:4000/dl/${slug}`}
                                     className="px-4 py-2 text-lg bg-indigo-600 hover:bg-indigo-700 duration-150 rounded shadow"
                                 >
                                     Download
                                 </a>
                             </div>
-                            {icon === "image" && (
+                            {icon === "java" && (
                                 <div className="sm:pt-6 flex justify-center">
-                                    <Link href={`/f/${slug}/preview`}>
+                                    <Link
+                                        href={`http://localhost:3000/f/${slug}/preview`}
+                                    >
                                         <a className="px-4 py-2 text-lg bg-gray-600 hover:bg-gray-700 duration-150 rounded shadow">
                                             Preview
                                         </a>
                                     </Link>
                                 </div>
-                            )}{" "}
+                            )}
                         </div>
                     </div>
                 </Fade>
@@ -87,7 +84,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     } else {
         return {
             props: {
-                stats: response,
+                file: response,
             },
         };
     }

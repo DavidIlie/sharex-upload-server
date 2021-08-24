@@ -12,7 +12,7 @@ export const findUploads = async () => {
     return await fs.readdir(uploadDir);
 };
 
-interface getFileStatsTypes {
+export interface getFileStatsTypes {
     size: string;
     extension: string;
     fileName: string;
@@ -24,7 +24,7 @@ interface getFileStatsTypes {
     };
 }
 
-const getFileStats = (file: Buffer, path: string, fileName: string) => {
+export const getFileStats = (file: Buffer, path: string, fileName: string) => {
     const format = fileName.substring(fileName.indexOf(".") + 1);
 
     let resolution = {};
@@ -61,11 +61,6 @@ export const findFullFileNameFromSlug = async (slug: string) => {
     });
 };
 
-interface getFileTypes {
-    file: Buffer;
-    stats: getFileStatsTypes;
-}
-
 export const getFileBySlug = async (slug: string) => {
     try {
         const fileName = await findFullFileNameFromSlug(slug);
@@ -73,12 +68,7 @@ export const getFileBySlug = async (slug: string) => {
 
         const file = await fs.readFile(fullPath);
 
-        const stats = getFileStats(file, fullPath, fileName);
-
-        return {
-            file,
-            stats,
-        } as getFileTypes;
+        return file as Buffer;
     } catch (error) {
         return undefined;
     }

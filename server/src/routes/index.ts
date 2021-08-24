@@ -1,3 +1,4 @@
+import { Uploads } from "./../entity/Uploads";
 import * as express from "express";
 const router = express.Router();
 
@@ -13,17 +14,17 @@ router.get("/image/:slug", async (req, res, next) => {
     try {
         const { slug } = req.params;
 
-        const data = await getFileBySlug(slug);
+        const upload = await Uploads.findOne({ slug });
 
-        if (!data?.file)
-            return res.status(404).json({ message: "file not found" });
+        if (!upload) return res.status(404).json({ message: "file not found" });
+
+        const file = await getFileBySlug(slug);
 
         if (
-            data?.stats.extension === "png" ||
-            data?.stats.extension === "jpg"
+            upload!.stats.extension === "png" ||
+            upload!.stats.extension === "jpg"
         ) {
-            res.contentType(`image/${data?.stats.extension}`);
-            return res.end(data.file);
+            return res.end(file);
         } else {
             return res.redirect(`http://localhost:3000/f/${slug}`);
         }
@@ -32,20 +33,20 @@ router.get("/image/:slug", async (req, res, next) => {
     }
 });
 
-router.get("/dl/:slug", async (req, res, next) => {
-    try {
-        const { slug } = req.params;
+// router.get("/dl/:slug", async (req, res, next) => {
+//     try {
+//         const { slug } = req.params;
 
-        const data = await getFileBySlug(slug);
+//         const data = await getFileBySlug(slug);
 
-        if (!data?.file)
-            return res.status(404).json({ message: "file not found" });
+//         if (!data?.file)
+//             return res.status(404).json({ message: "file not found" });
 
-        //TODO: find a way to download the file (even if its image)
-        res.sendStatus(200);
-    } catch (error) {
-        return next(error);
-    }
-});
+//         //TODO: find a way to download the file (even if its image)
+//         res.sendStatus(200);
+//     } catch (error) {
+//         return next(error);
+//     }
+// });
 
 export default router;
