@@ -1,4 +1,4 @@
-const supportedTypes = ["zip", "java"];
+const supportedTypes = ["zip", "jar"];
 
 export const SupportPreview = (icon: string) => {
     if (supportedTypes.includes(icon)) return true;

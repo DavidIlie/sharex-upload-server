@@ -1,6 +1,6 @@
 {
-    "name": "sharex-media-server",
-    "version": "0.0.1",
+    "name": "@davidilie/server",
+    "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
     "devDependencies": {
@@ -26,7 +26,8 @@
         "multer": "^1.4.3",
         "nanoid": "^3.1.25",
         "path": "^0.12.7",
-        "typeorm": "^0.2.37"
+        "typeorm": "^0.2.37",
+        "@sharex-server/common": "1.0.0"
     },
     "scripts": {
         "start": "ts-node src/index.ts",

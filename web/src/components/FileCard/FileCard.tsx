@@ -1,25 +1,10 @@
 import { shimmer } from "@lib/shimmer";
 import Image from "next/image";
 
-export interface FileTypes {
-    type: string;
-    name: string;
-    slug: string;
-    stats: {
-        size: string;
-        fileName: string;
-        extension: string;
-        md5: string;
-        sha1: string;
-        resolution?: {
-            height: number;
-            width: number;
-        };
-    };
-}
+import { FileType } from "@sharex-server/common";
 
 interface FileCardProps {
-    file: FileTypes;
+    file: FileType;
     icon: string;
 }
 

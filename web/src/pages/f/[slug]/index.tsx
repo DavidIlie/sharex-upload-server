@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import NotFound from "@components/NotFound";
-import FileCard, { FileTypes } from "@components/FileCard/FileCard";
+import FileCard from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/IconUtils";
-import { SupportPreview } from "@lib/SupportPreview";
+
+import { FileType, SupportPreview } from "@sharex-server/common";
 
 interface Props {
     message?: string;
-    file: FileTypes;
+    file: FileType;
 }
 
 const ViewFile = ({ message, file }: Props): JSX.Element => {
@@ -57,7 +58,7 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
                                     Download
                                 </a>
                             </div>
-                            {SupportPreview(icon) && (
+                            {SupportPreview(file.stats.extension) && (
                                 <div className="sm:pt-6 flex justify-center">
                                     <Link
                                         href={`http://localhost:3000/f/${slug}/preview`}
