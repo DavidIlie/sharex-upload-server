@@ -1,12 +1,12 @@
 # sharex-media-server
 
-work in progress highly customizable sharex media server with a Express API and a Next.js frontend. Everything is written with Typescript :)
+sharex media server with an Express API and a Next.js frontend. Everything is written with typescript :)
 
 ## TODO:
 
 backend:
 
--   add/fix the remaining functions
+-   add the remaining functions
     -   text
 -   authentication system for user(s) with email/password auth (typeorm)
     -   ability create API keys for specific tasks (and then use that to authenticate when adding new images/etc)
@@ -15,5 +15,6 @@ backend:
 
 frontend:
 
+-   create a context for settings
 -   login flow
 -   dashboard

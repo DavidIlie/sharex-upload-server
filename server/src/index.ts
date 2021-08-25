@@ -8,7 +8,8 @@ import * as middlewares from "./middleware";
 import api from "./routes";
 
 const main = async () => {
-    await createConnection();
+    const conn = await createConnection();
+    await conn.runMigrations();
 
     const app = express();
 

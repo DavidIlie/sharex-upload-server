@@ -6,5 +6,6 @@
     "database": "sharex-media-server",
     "synchronize": true,
     "logging": true,
-    "entities": ["src/entity/*.*"]
+    "entities": ["src/entity/*.*"],
+    "migrations": ["src/migrations/*.*"]
 }
