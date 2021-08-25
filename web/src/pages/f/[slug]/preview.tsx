@@ -12,10 +12,13 @@ import { FileType, SettingsType } from "@sharex-server/common";
 interface Props {
     message?: string;
     file: FileType;
+    env: {
+        app_url: string;
+    };
     settings: SettingsType;
 }
 
-const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
+const ViewFile = ({ message, file, env, settings }: Props): JSX.Element => {
     const router = useRouter();
 
     if (message) return <NotFound />;
@@ -26,13 +29,13 @@ const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
         <>
             <NextSeo
                 title={file.name}
-                canonical={`http://localhost:3000/${router.asPath}`}
+                canonical={`${env.app_url}/${router.asPath}`}
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
                     site_name: settings.name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
-                    url: `http://localhost:3000/${router.asPath}`,
+                    url: `${env.app_url}/${router.asPath}`,
                     type: "website",
                     images: [
                         {
@@ -49,8 +52,7 @@ const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    console.log(params);
-    const data = await fetch(`http://localhost:4000/api/file/${params?.slug}`);
+    const data = await fetch(`${process.env.API_URL}/api/file/${params?.slug}`);
     const response = await data.json();
 
     if (response.message) {
@@ -59,6 +61,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         return {
             props: {
                 file: response,
+                env: {
+                    app_url: process.env.APP_URL,
+                },
             },
         };
     }

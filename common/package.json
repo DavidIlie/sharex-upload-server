@@ -2,5 +2,8 @@
     "name": "@sharex-server/common",
     "version": "1.0.0",
     "main": "src/index.ts",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "yup": "^0.32.9"
+    }
 }

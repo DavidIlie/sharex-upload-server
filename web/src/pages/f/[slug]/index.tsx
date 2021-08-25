@@ -13,10 +13,14 @@ import { FileType, SettingsType, SupportPreview } from "@sharex-server/common";
 interface Props {
     message?: string;
     file: FileType;
+    env: {
+        api_url: string;
+        app_url: string;
+    };
     settings: SettingsType;
 }
 
-const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
+const ViewFile = ({ message, file, env, settings }: Props): JSX.Element => {
     const router = useRouter();
     const { slug } = router.query;
 
@@ -28,13 +32,13 @@ const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
         <>
             <NextSeo
                 title={file.name}
-                canonical={`http://localhost:3000/${router.asPath}`}
+                canonical={`${env.app_url}/${router.asPath}`}
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
                     site_name: settings.name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
-                    url: `http://localhost:3000/${router.asPath}`,
+                    url: `${env.app_url}/${router.asPath}`,
                     type: "website",
                     images: [
                         {
@@ -53,7 +57,7 @@ const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <div className="pt-6 flex justify-center">
                                 <a
-                                    href={`http://localhost:4000/dl/${slug}`}
+                                    href={`${env.api_url}/dl/${slug}`}
                                     className="px-4 py-2 text-lg bg-indigo-600 hover:bg-indigo-700 duration-150 rounded shadow"
                                 >
                                     Download
@@ -61,9 +65,7 @@ const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
                             </div>
                             {SupportPreview(file.stats.extension) && (
                                 <div className="sm:pt-6 flex justify-center">
-                                    <Link
-                                        href={`http://localhost:3000/f/${slug}/preview`}
-                                    >
+                                    <Link href={`/f/${slug}/preview`}>
                                         <a className="px-4 py-2 text-lg bg-gray-600 hover:bg-gray-700 duration-150 rounded shadow">
                                             Preview
                                         </a>
@@ -79,7 +81,7 @@ const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const data = await fetch(`http://localhost:4000/api/file/${params?.slug}`);
+    const data = await fetch(`${process.env.API_URL}/api/file/${params?.slug}`);
     const response = await data.json();
 
     if (response.message) {
@@ -88,6 +90,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         return {
             props: {
                 file: response,
+                env: {
+                    api_url: process.env.API_URL,
+                    app_url: process.env.APP_URL,
+                },
             },
         };
     }

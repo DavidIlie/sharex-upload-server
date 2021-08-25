@@ -9,6 +9,8 @@
     },
     "dependencies": {
         "@sharex-server/common": "1.0.0",
+        "@tailwindcss/forms": "^0.3.3",
+        "formik": "^2.2.9",
         "next": "latest",
         "next-compose-plugins": "^2.2.1",
         "next-seo": "^4.26.0",

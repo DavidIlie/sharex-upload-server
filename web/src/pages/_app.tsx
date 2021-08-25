@@ -59,7 +59,7 @@ function App({ Component, pageProps, router, settings }: ApplicationProps) {
 }
 
 App.getInitialProps = async () => {
-    const settingsRequest = await fetch("http://localhost:4000/api/settings");
+    const settingsRequest = await fetch(`${process.env.API_URL}/api/settings`);
     const settingsResponse = await settingsRequest.json();
 
     return { settings: settingsResponse };

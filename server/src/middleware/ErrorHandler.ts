@@ -6,9 +6,8 @@ const ErrorHandler = (
     res: Response,
     _next: NextFunction
 ) => {
-    const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
-    res.status(statusCode);
-    res.json({
+    //@ts-ignore
+    res.status(err.status ? err.status : 200).json({
         message: err.message,
     });
 };

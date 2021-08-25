@@ -4,6 +4,7 @@ import express from "express";
 import morgan from "morgan";
 import { createConnection } from "typeorm";
 import chalk from "chalk";
+import cookieParser from "cookie-parser";
 
 import * as middlewares from "./middleware";
 import api from "./routes";
@@ -17,7 +18,8 @@ const main = async () => {
     const app = express();
 
     app.use(express.json());
-    app.use(cors());
+    app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+    app.use(cookieParser());
 
     app.use(morgan("dev"));
 

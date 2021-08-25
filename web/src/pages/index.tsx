@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import type { SettingsType } from "@sharex-server/common";
+import { isLoggedIn } from "@lib/isLoggedIn";
 
 interface HomeProps {
     settings: SettingsType;
@@ -15,10 +16,18 @@ const Home = ({ settings }: HomeProps): JSX.Element => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-    res.setHeader("location", "/login");
-    res.statusCode = 302;
-    res.end();
+export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
+    const loggedIn = await isLoggedIn(req.cookies.access);
+
+    if (loggedIn) {
+        res.setHeader("location", "/dashboard");
+        res.statusCode = 302;
+        res.end();
+    } else {
+        res.setHeader("location", "/login");
+        res.statusCode = 302;
+        res.end();
+    }
 
     return { props: {} };
 };

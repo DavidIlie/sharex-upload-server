@@ -14,6 +14,7 @@ export class DefaultUser1605114801130 implements MigrationInterface {
             email: "sharex@example.com",
             password: password,
             isAdmin: true,
+            confirmed: true,
         }).save();
     }
 

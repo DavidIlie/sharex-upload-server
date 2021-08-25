@@ -3,6 +3,8 @@ import multer from "multer";
 import { nanoid } from "nanoid";
 import path from "path";
 
+import { Users } from "../entity/Users";
+
 declare module "express-serve-static-core" {
     interface Request {
         file: {
@@ -11,6 +13,7 @@ declare module "express-serve-static-core" {
             path: string;
             suffix: string;
         };
+        user?: Users;
     }
 }
 
