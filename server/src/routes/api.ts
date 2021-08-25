@@ -1,4 +1,4 @@
-import { Settings } from "./../entity/Settings";
+import { Settings } from "../entity/Settings";
 import { Uploads } from "./../entity/Uploads";
 import * as express from "express";
 const router = express.Router();
@@ -7,9 +7,11 @@ import { SupportPreview } from "@sharex-server/common";
 
 router.get("/settings", async (_req, res, next) => {
     try {
-        const settings = await Settings.find();
+        const settings = await Settings.findOne();
         //TODO: only display name if there is no session, otherwise display the rest of the data
-        res.json(settings[0]);
+        res.json({
+            name: settings!.name,
+        });
     } catch (error) {
         next(error);
     }

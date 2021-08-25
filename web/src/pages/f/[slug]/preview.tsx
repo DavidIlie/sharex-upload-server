@@ -5,15 +5,17 @@ import { useRouter } from "next/router";
 // import Image from "next/image";
 
 import NotFound from "@components/NotFound";
-import { FileTypes } from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/IconUtils";
+
+import { FileType, SettingsType } from "@sharex-server/common";
 
 interface Props {
     message?: string;
-    file: FileTypes;
+    file: FileType;
+    settings: SettingsType;
 }
 
-const ViewFile = ({ message, file }: Props): JSX.Element => {
+const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
     const router = useRouter();
 
     if (message) return <NotFound />;
@@ -28,7 +30,7 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
-                    site_name: "ShareX Media Server",
+                    site_name: settings.name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
                     url: `http://localhost:3000/${router.asPath}`,
                     type: "website",

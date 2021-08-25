@@ -3,13 +3,16 @@ import cors from "cors";
 import express from "express";
 import morgan from "morgan";
 import { createConnection } from "typeorm";
+import chalk from "chalk";
 
 import * as middlewares from "./middleware";
 import api from "./routes";
 
 const main = async () => {
     const conn = await createConnection();
+    console.log(chalk`{bold.yellow running migrations}`);
     await conn.runMigrations();
+    console.log(chalk`{bold.green migrations finished!}`);
 
     const app = express();
 

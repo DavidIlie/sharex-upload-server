@@ -13,13 +13,13 @@ export class AppSettings1605114801130 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        let settings = await Settings.find();
+        let config = await Settings.find();
 
         const mongoRunner = queryRunner as MongoQueryRunner;
         const database = (await getConnectionOptions()).database as string;
         await mongoRunner.databaseConnection
             .db(database)
             .collection("settings")
-            .deleteMany(settings);
+            .deleteMany(config);
     }
 }

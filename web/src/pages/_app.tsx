@@ -1,6 +1,7 @@
 import { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { DefaultSeo } from "next-seo";
+import type { SettingsType } from "@sharex-server/common";
 
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
@@ -8,7 +9,11 @@ import "../styles/global.css";
 import Loader from "@components/Loader";
 import AppLayout from "@components/AppLayout";
 
-function App({ Component, pageProps, router }: AppProps) {
+type ApplicationProps = AppProps & {
+    settings: SettingsType;
+};
+
+function App({ Component, pageProps, router, settings }: ApplicationProps) {
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -32,20 +37,32 @@ function App({ Component, pageProps, router }: AppProps) {
     return (
         <>
             <DefaultSeo
-                defaultTitle="ShareX Media Server"
-                titleTemplate="%s | ShareX Media Server"
+                defaultTitle={settings.name}
+                titleTemplate={`%s | ${settings.name}`}
                 openGraph={{
-                    title: `ShareX Media Server`,
+                    title: settings.name,
                     type: `website`,
-                    site_name: `ShareX Media Server`,
+                    site_name: settings.name,
                 }}
-                description="Advanced ShareX media server with support for most types of uploads and a web interface."
+                description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
             />
             <AppLayout>
-                {loading ? <Loader /> : <Component {...pageProps} />}
+                {loading ? (
+                    <Loader />
+                ) : (
+                    //TODO: find a way to make this global
+                    <Component {...pageProps} settings={settings} />
+                )}
             </AppLayout>
         </>
     );
 }
+
+App.getInitialProps = async () => {
+    const settingsRequest = await fetch("http://localhost:4000/api/settings");
+    const settingsResponse = await settingsRequest.json();
+
+    return { settings: settingsResponse };
+};
 
 export default App;

@@ -8,14 +8,15 @@ import NotFound from "@components/NotFound";
 import FileCard from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/IconUtils";
 
-import { FileType, SupportPreview } from "@sharex-server/common";
+import { FileType, SettingsType, SupportPreview } from "@sharex-server/common";
 
 interface Props {
     message?: string;
     file: FileType;
+    settings: SettingsType;
 }
 
-const ViewFile = ({ message, file }: Props): JSX.Element => {
+const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
     const router = useRouter();
     const { slug } = router.query;
 
@@ -31,7 +32,7 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
-                    site_name: "ShareX Media Server",
+                    site_name: settings.name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
                     url: `http://localhost:3000/${router.asPath}`,
                     type: "website",
