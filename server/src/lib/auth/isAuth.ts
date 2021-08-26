@@ -1,6 +1,6 @@
 import { RequestHandler, Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-import { Users } from "../entity/Users";
+import { Users } from "../../entities/Users";
 import createError from "http-errors";
 import { AccessTokenData } from "./createToken";
 

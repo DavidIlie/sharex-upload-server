@@ -1,4 +1,4 @@
-import { Settings } from "../entity/Settings";
+import { Settings } from "../entities/Settings";
 import { getConnectionOptions, MigrationInterface, QueryRunner } from "typeorm";
 import { MongoQueryRunner } from "typeorm/driver/mongodb/MongoQueryRunner";
 

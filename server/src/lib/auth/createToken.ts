@@ -1,5 +1,5 @@
 import { sign } from "jsonwebtoken";
-import { Users } from "../entity/Users";
+import { Users } from "../../entities/Users";
 
 export type AccessTokenData = {
     userId: string;

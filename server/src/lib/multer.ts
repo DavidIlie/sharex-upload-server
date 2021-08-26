@@ -3,7 +3,7 @@ import multer from "multer";
 import { nanoid } from "nanoid";
 import path from "path";
 
-import { Users } from "../entity/Users";
+import { Users } from "../entities/Users";
 
 declare module "express-serve-static-core" {
     interface Request {

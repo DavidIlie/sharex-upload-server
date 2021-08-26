@@ -1,5 +1,5 @@
-import { Settings } from "../../entity/Settings";
-import { Uploads } from "../../entity/Uploads";
+import { Settings } from "../../entities/Settings";
+import { Uploads } from "../../entities/Uploads";
 import * as express from "express";
 const router = express.Router();
 

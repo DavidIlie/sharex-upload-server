@@ -1,5 +1,5 @@
 import { hashPassword } from "./../lib/hashPassword";
-import { Users } from "../entity/Users";
+import { Users } from "../entities/Users";
 import { getConnectionOptions, MigrationInterface, QueryRunner } from "typeorm";
 import { MongoQueryRunner } from "typeorm/driver/mongodb/MongoQueryRunner";
 

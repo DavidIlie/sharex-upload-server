@@ -1,4 +1,4 @@
-import { isAuth } from "./../../auth/isAuth";
+import { isAuth } from "../../lib/auth/isAuth";
 import * as express from "express";
 const router = express.Router();
 

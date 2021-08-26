@@ -1,4 +1,4 @@
-import { Uploads } from "./../entity/Uploads";
+import { Uploads } from "../entities/Uploads";
 import * as express from "express";
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import { Uploads } from "./../entity/Uploads";
+import { Uploads } from "../entities/Uploads";
 import { getFileByName, getFileBySlug, getFileStats } from "./filesystem";
 import { uploadFileToDisk, uploadImageToDisk } from "./multer";
 import * as express from "express";

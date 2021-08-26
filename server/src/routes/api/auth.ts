@@ -1,7 +1,7 @@
-import { isAuth } from "./../../../auth/isAuth";
-import { createTokens } from "./../../../auth/createToken";
-import { Users } from "./../../../entity/Users";
-import { verifyPasswordToHashed } from "../../../lib/hashPassword";
+import { isAuth } from "../../lib/auth/isAuth";
+import { createTokens } from "../../lib/auth/createToken";
+import { Users } from "../../entities/Users";
+import { verifyPasswordToHashed } from "../../lib/hashPassword";
 import * as express from "express";
 const router = express.Router();
 
