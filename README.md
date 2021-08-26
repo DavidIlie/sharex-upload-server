@@ -6,15 +6,13 @@ sharex media server with an Express API and a Next.js frontend. Everything is wr
 
 backend:
 
--   add the remaining functions
+-   add the remaining functions:
     -   text
--   authentication system for user(s) with email/password auth (typeorm)
-    -   ability create API keys for specific tasks (and then use that to authenticate when adding new images/etc)
-        -   permissions system for api keys
+-   ability create API keys for specific tasks (and then use that to authenticate when adding new images/etc)
+    -   permissions system for api keys
 -   add support for other providers (s3)
 
 frontend:
 
--   create a context for settings
--   login flow
+-   try and make a global store for settings & user using redux
 -   dashboard
