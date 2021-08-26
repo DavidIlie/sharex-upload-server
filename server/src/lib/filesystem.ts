@@ -25,7 +25,7 @@ export const getTotalSize = async () => {
 
     for (var i = 0, sum = 0; i < a.length; sum += a[i++]);
 
-    return bytesToSize(sum, true);
+    return bytesToSize(sum);
 };
 
 export interface getFileStatsTypes {
@@ -57,9 +57,12 @@ export const getFileStats = (
         };
     }
 
+    //@ts-ignore
+    const { value, unit } = bytesToSize(file.byteLength, true);
+
     if (resolution) {
         return {
-            size: bytesToSize(file.byteLength),
+            size: `${value} ${unit}`,
             fileName,
             extension: format,
             md5: md5(file.toString()),
@@ -68,7 +71,7 @@ export const getFileStats = (
         };
     } else {
         return {
-            size: bytesToSize(file.byteLength),
+            size: `${value} ${unit}`,
             fileName,
             extension: format,
             md5: md5(file.toString()),
