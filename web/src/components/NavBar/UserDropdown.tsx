@@ -79,12 +79,11 @@ const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
                             </Menu.Item>
                         </div>
                         <Menu.Item>
-                            <a
-                                onClick={() => console.log("logout!")}
-                                className="font-semibold cursor-pointer bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm"
-                            >
-                                Log Out
-                            </a>
+                            <Link href="/logout">
+                                <a className="font-semibold cursor-pointer bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm">
+                                    Log Out
+                                </a>
+                            </Link>
                         </Menu.Item>
                     </Menu.Items>
                 </Transition>

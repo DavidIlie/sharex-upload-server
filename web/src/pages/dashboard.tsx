@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 
 import { SettingsType } from "@sharex-server/common";
-import { loginCheckAndUser } from "@lib/loginCheckAndUser";
+import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
 
 import type User from "../types/User";
 import NavBar from "@components/NavBar";
@@ -13,8 +13,6 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ settings, user }: DashboardProps): JSX.Element => {
-    console.log(settings);
-    console.log(user);
     return (
         <>
             <NextSeo title="Dashboard" />
@@ -26,7 +24,7 @@ const Dashboard = ({ settings, user }: DashboardProps): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const user = await loginCheckAndUser(req, res);
+    const user = await loginCheckAndGetUser(req, res);
     return {
         props: user,
     };

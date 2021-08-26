@@ -1,6 +1,6 @@
 import { isLoggedIn } from "./isLoggedIn";
 
-export const loginCheckAndUser = async (req: any, res: any) => {
+export const loginCheckAndGetUser = async (req: any, res: any) => {
     const cookie = req.cookies.access;
 
     const loggedIn = await isLoggedIn(cookie);

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import { Fade } from "react-awesome-reveal";
 import { Field, Form, Formik } from "formik";
@@ -19,6 +20,7 @@ interface LoginProps {
 
 const Login = ({ settings, api_url }: LoginProps): JSX.Element => {
     const [errorMessage, setErrorMessage] = useState<boolean | string>(false);
+    const router = useRouter();
 
     return (
         <>
@@ -61,7 +63,7 @@ const Login = ({ settings, api_url }: LoginProps): JSX.Element => {
                                 if (loginRequest.status !== 200) {
                                     setErrorMessage(response.message);
                                 } else {
-                                    console.log(response);
+                                    router.push("/dashboard");
                                 }
 
                                 setSubmitting(false);
