@@ -84,7 +84,35 @@ const NavBar = ({ user, settings }: NavBarProps): JSX.Element => {
                 className={
                     clickMobileMenu ? "sm:hidden block" : "sm:hidden hidden"
                 }
-            ></div>
+            >
+                <div className="pb-2 space-y-1">
+                    <NavLink name="Dashboard" link="/dashboard" />
+                    <NavLink name="Images" link="/images" />
+                    <NavLink name="Files" link="/files" />
+                    <NavLink name="Admin Panel" link="/admin" />
+                    <NavLink
+                        name="Report a bug"
+                        link="https://github.com/DavidIlie/sharex-media-server/issues"
+                    />
+                </div>
+                <div className="pt-2 pb-1 border-t border-gray-200">
+                    <div className="flex items-center px-4">
+                        <div>
+                            <div className="font-medium text-base text-gray-300">
+                                {user.name}
+                            </div>
+                            <div className="font-medium text-sm text-gray-400">
+                                {user.email}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-3 space-y-1">
+                        <NavLink name="Profile" link="/user/profile" />
+                        <NavLink name="API Keys" link="/user/api-keys" />
+                        <NavLink name="Log Out" link="/logout" />
+                    </div>
+                </div>
+            </div>
         </nav>
     );
 };

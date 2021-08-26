@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import Link from "next/link";
 import { AiFillBug, AiOutlineUser, AiFillApi } from "react-icons/ai";
 
 import type User from "../../types/User";
@@ -39,34 +40,49 @@ const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
                     <Menu.Items className="absolute right-0 mt-2 w-36 bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-900">
                         <div className="border-1 rounded-t-md border-gray-900 cursor-pointer">
                             <Menu.Item>
-                                <a
+                                <Link
                                     href="https://github.com/DavidIlie/sharex-media-server/issues"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    aria-label="Submit a bug report"
-                                    title="Submit a bug report"
+                                    passHref={true}
                                 >
-                                    <DropdownElement>
-                                        <AiFillBug className="mx-0.5 text-xl" />
-                                        Report a bug
-                                    </DropdownElement>
-                                </a>
+                                    <a
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label="Submit a bug report"
+                                        title="Submit a bug report"
+                                    >
+                                        <DropdownElement>
+                                            <AiFillBug className="mx-0.5 text-xl" />
+                                            Report a bug
+                                        </DropdownElement>
+                                    </a>
+                                </Link>
                             </Menu.Item>
                             <Menu.Item>
-                                <DropdownElement>
-                                    <AiOutlineUser className="mx-0.5 text-xl" />
-                                    Profile
-                                </DropdownElement>
+                                <Link href="/user/profile">
+                                    <a>
+                                        <DropdownElement>
+                                            <AiOutlineUser className="mx-0.5 text-xl" />
+                                            Profile
+                                        </DropdownElement>
+                                    </a>
+                                </Link>
                             </Menu.Item>
                             <Menu.Item>
-                                <DropdownElement>
-                                    <AiFillApi className="mx-0.5 text-xl" />
-                                    API Keys
-                                </DropdownElement>
+                                <Link href="/user/api-keys">
+                                    <a>
+                                        <DropdownElement>
+                                            <AiFillApi className="mx-0.5 text-xl" />
+                                            API Keys
+                                        </DropdownElement>
+                                    </a>
+                                </Link>
                             </Menu.Item>
                         </div>
                         <Menu.Item>
-                            <a className="font-semibold cursor-pointer bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm">
+                            <a
+                                onClick={() => console.log("logout!")}
+                                className="font-semibold cursor-pointer bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm"
+                            >
                                 Log Out
                             </a>
                         </Menu.Item>
