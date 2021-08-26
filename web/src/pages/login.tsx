@@ -1,24 +1,24 @@
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import { Fade } from "react-awesome-reveal";
 import { Field, Form, Formik } from "formik";
 
 import { loginSchema, SettingsType } from "@sharex-server/common";
+import { isLoggedIn } from "@lib/isLoggedIn";
+import { api_url } from "@lib/constants";
 
 import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
 import Radio from "@ui/form/Radio";
 import SubmitButton from "@ui/form/SubmitButton";
 import { useState } from "react";
-import { isLoggedIn } from "@lib/isLoggedIn";
-import { GetServerSideProps } from "next";
 
 interface LoginProps {
     settings: SettingsType;
-    api_url: string;
 }
 
-const Login = ({ settings, api_url }: LoginProps): JSX.Element => {
+const Login = ({ settings }: LoginProps): JSX.Element => {
     const [errorMessage, setErrorMessage] = useState<boolean | string>(false);
     const router = useRouter();
 
@@ -157,9 +157,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
         res.end();
     }
     return {
-        props: {
-            api_url: process.env.API_URL,
-        },
+        props: {},
     };
 };
 

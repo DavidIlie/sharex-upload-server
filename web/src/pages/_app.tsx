@@ -1,6 +1,7 @@
 import { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { DefaultSeo } from "next-seo";
+import { QueryClientProvider } from "react-query";
 import type { SettingsType } from "@sharex-server/common";
 
 import "tailwindcss/tailwind.css";
@@ -8,6 +9,7 @@ import "../styles/global.css";
 
 import Loader from "@components/Loader";
 import AppLayout from "@components/AppLayout";
+import { queryClient } from "@lib/queryClient";
 
 type ApplicationProps = AppProps & {
     settings: SettingsType;
@@ -46,14 +48,16 @@ function App({ Component, pageProps, router, settings }: ApplicationProps) {
                 }}
                 description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
             />
-            <AppLayout>
-                {loading ? (
-                    <Loader />
-                ) : (
-                    //TODO: find a way to make this global
-                    <Component {...pageProps} settings={settings} />
-                )}
-            </AppLayout>
+            <QueryClientProvider client={queryClient}>
+                <AppLayout>
+                    {loading ? (
+                        <Loader />
+                    ) : (
+                        //TODO: find a way to make this global
+                        <Component {...pageProps} settings={settings} />
+                    )}
+                </AppLayout>
+            </QueryClientProvider>
         </>
     );
 }

@@ -6,19 +6,17 @@ import { useRouter } from "next/router";
 
 import NotFound from "@components/NotFound";
 import { getFileIconFromExtension } from "@lib/iconUtils";
+import { app_url } from "@lib/constants";
 
 import { FileType, SettingsType } from "@sharex-server/common";
 
 interface Props {
     message?: string;
     file: FileType;
-    env: {
-        app_url: string;
-    };
     settings: SettingsType;
 }
 
-const ViewFile = ({ message, file, env, settings }: Props): JSX.Element => {
+const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
     const router = useRouter();
 
     if (message) return <NotFound />;
@@ -29,13 +27,13 @@ const ViewFile = ({ message, file, env, settings }: Props): JSX.Element => {
         <>
             <NextSeo
                 title={file.name}
-                canonical={`${env.app_url}/${router.asPath}`}
+                canonical={`${app_url}/${router.asPath}`}
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
                     site_name: settings.name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
-                    url: `${env.app_url}/${router.asPath}`,
+                    url: `${app_url}/${router.asPath}`,
                     type: "website",
                     images: [
                         {

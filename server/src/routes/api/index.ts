@@ -8,6 +8,9 @@ import { SupportPreview } from "@sharex-server/common";
 import user from "./user";
 router.use("/user", user);
 
+import statistics from "./statistics";
+router.use("/statistics", statistics);
+
 router.get("/settings", async (_req, res, next) => {
     try {
         const settings = await Settings.findOne();

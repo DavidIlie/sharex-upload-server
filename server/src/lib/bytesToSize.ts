@@ -1,4 +1,4 @@
-export const bytesToSize = (bytes: number, decimals = 2) => {
+export const bytesToSize = (bytes: number, split?: boolean, decimals = 2) => {
     if (bytes === 0) return "0 Bytes";
 
     const k = 1024;
@@ -7,5 +7,14 @@ export const bytesToSize = (bytes: number, decimals = 2) => {
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    if (split) {
+        return {
+            value: parseFloat((bytes / Math.pow(k, i)).toFixed(dm)),
+            unit: sizes[i],
+        };
+    } else {
+        return (
+            parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i]
+        );
+    }
 };

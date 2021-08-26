@@ -4,8 +4,10 @@ import { NextSeo } from "next-seo";
 import { SettingsType } from "@sharex-server/common";
 import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
 
-import type User from "../types/User";
 import NavBar from "@components/NavBar";
+import { StatisticsModule } from "modules/dashboard/statistics";
+
+import type User from "../types/User";
 
 interface DashboardProps {
     settings: SettingsType;
@@ -18,6 +20,9 @@ const Dashboard = ({ settings, user }: DashboardProps): JSX.Element => {
             <NextSeo title="Dashboard" />
             <div className="h-screen">
                 <NavBar user={user} settings={settings} />
+                <div className="pt-12" />
+                <StatisticsModule />
+                <div className="pt-12" />
             </div>
         </>
     );

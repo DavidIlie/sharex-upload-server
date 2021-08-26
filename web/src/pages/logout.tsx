@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     const loggedIn = await isLoggedIn(cookie);
 
     if (!loggedIn) {
-        res.setHeader("location", "/");
+        res.setHeader("location", "/login");
         res.statusCode = 302;
         res.end();
     }

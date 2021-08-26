@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import { default as fsNormal } from "fs";
 import path from "path";
 import sizeOf from "buffer-image-size";
 
@@ -10,6 +11,21 @@ export const uploadDir = path.join(__dirname, "../../uploads");
 
 export const findUploads = async () => {
     return await fs.readdir(uploadDir);
+};
+
+export const getTotalSize = async () => {
+    const uploads = await findUploads();
+
+    const a: Array<number> = [];
+
+    uploads.forEach((file) => {
+        let finalPath = `${uploadDir}/${file}`;
+        a.push(fsNormal.statSync(finalPath).size);
+    });
+
+    for (var i = 0, sum = 0; i < a.length; sum += a[i++]);
+
+    return bytesToSize(sum, true);
 };
 
 export interface getFileStatsTypes {
