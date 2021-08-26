@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 // import Image from "next/image";
 
 import NotFound from "@components/NotFound";
-import { getFileIconFromExtension } from "@lib/IconUtils";
+import { getFileIconFromExtension } from "@lib/iconUtils";
 
 import { FileType, SettingsType } from "@sharex-server/common";
 

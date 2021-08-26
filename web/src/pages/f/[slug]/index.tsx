@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import NotFound from "@components/NotFound";
 import FileCard from "@components/FileCard/FileCard";
-import { getFileIconFromExtension } from "@lib/IconUtils";
+import { getFileIconFromExtension } from "@lib/iconUtils";
 
 import { FileType, SettingsType, SupportPreview } from "@sharex-server/common";
 
