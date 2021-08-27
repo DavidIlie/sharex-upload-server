@@ -10,6 +10,7 @@ import type User from "../types/User";
 import LatestImagesModule from "modules/dashboard/previews/image";
 import LatestFilesModule from "modules/dashboard/previews/file";
 import LatestTextsModule from "modules/dashboard/previews/text";
+import { Fade } from "react-awesome-reveal";
 
 interface DashboardProps {
     user: User;
@@ -22,13 +23,28 @@ const Dashboard = ({ user }: DashboardProps): JSX.Element => {
             <div className="mb-12">
                 <NavBar user={user} />
                 <div className="pt-12" />
-                <StatisticsModule />
+
+                <Fade direction="up" triggerOnce>
+                    <StatisticsModule />
+                </Fade>
+
                 <div className="pt-12" />
-                <LatestImagesModule />
+
+                <Fade direction="up" triggerOnce>
+                    <LatestImagesModule />
+                </Fade>
+
                 <div className="pt-12" />
-                <LatestFilesModule />
+
+                <Fade direction="up" triggerOnce>
+                    <LatestFilesModule />
+                </Fade>
+
                 <div className="pt-12" />
-                <LatestTextsModule />
+
+                <Fade direction="up" triggerOnce>
+                    <LatestTextsModule />
+                </Fade>
             </div>
         </>
     );
