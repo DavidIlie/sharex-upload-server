@@ -6,8 +6,8 @@ interface LayoutProps {
 
 const AppLayout = ({ children }: LayoutProps): JSX.Element => {
     return (
-        <div className="text-white">
-            <div className="bg-gray-900">{children}</div>
+        <div className="flex flex-col justify-between min-h-screen text-white bg-gray-900">
+            {children}
             <Footer />
         </div>
     );

@@ -11,6 +11,9 @@ router.use("/user", user);
 import statistics from "./statistics";
 router.use("/statistics", statistics);
 
+import latest from "./latest";
+router.use("/latest", latest);
+
 router.get("/settings", async (_req, res, next) => {
     try {
         const settings = await Settings.findOne();
