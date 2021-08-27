@@ -14,4 +14,11 @@ backend:
 
 frontend:
 
--   dashboard
+-   dashboard (home page done)
+    -   images
+    -   files
+    -   texts
+    -   admin panel
+-   user
+    -   profile
+    -   api keys
