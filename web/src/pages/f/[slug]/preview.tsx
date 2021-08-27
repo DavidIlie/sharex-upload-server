@@ -7,17 +7,19 @@ import { useRouter } from "next/router";
 import NotFound from "@components/NotFound";
 import { getFileIconFromExtension } from "@lib/iconUtils";
 import { app_url } from "@lib/constants";
+import useSettings from "@hooks/useSettings";
 
-import { FileType, SettingsType } from "@sharex-server/common";
+import { FileType } from "@sharex-server/common";
 
 interface Props {
     message?: string;
     file: FileType;
-    settings: SettingsType;
 }
 
-const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
+const ViewFile = ({ message, file }: Props): JSX.Element => {
     const router = useRouter();
+
+    const settings = useSettings();
 
     if (message) return <NotFound />;
 

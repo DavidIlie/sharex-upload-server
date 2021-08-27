@@ -4,9 +4,10 @@ import { NextSeo } from "next-seo";
 import { Fade } from "react-awesome-reveal";
 import { Field, Form, Formik } from "formik";
 
-import { loginSchema, SettingsType } from "@sharex-server/common";
+import { loginSchema } from "@sharex-server/common";
 import { isLoggedIn } from "@lib/isLoggedIn";
 import { api_url } from "@lib/constants";
+import useSettings from "@hooks/useSettings";
 
 import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
@@ -14,13 +15,11 @@ import Radio from "@ui/form/Radio";
 import SubmitButton from "@ui/form/SubmitButton";
 import { useState } from "react";
 
-interface LoginProps {
-    settings: SettingsType;
-}
-
-const Login = ({ settings }: LoginProps): JSX.Element => {
+const Login = (): JSX.Element => {
     const [errorMessage, setErrorMessage] = useState<boolean | string>(false);
     const router = useRouter();
+
+    const settings = useSettings();
 
     return (
         <>

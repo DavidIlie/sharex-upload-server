@@ -9,17 +9,19 @@ import FileCard from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/iconUtils";
 import { api_url, app_url } from "@lib/constants";
 
-import { FileType, SettingsType, SupportPreview } from "@sharex-server/common";
+import { FileType, SupportPreview } from "@sharex-server/common";
+import useSettings from "@hooks/useSettings";
 
 interface Props {
     message?: string;
     file: FileType;
-    settings: SettingsType;
 }
 
-const ViewFile = ({ message, file, settings }: Props): JSX.Element => {
+const ViewFile = ({ message, file }: Props): JSX.Element => {
     const router = useRouter();
     const { slug } = router.query;
+
+    const settings = useSettings();
 
     if (message) return <NotFound />;
 

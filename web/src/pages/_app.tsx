@@ -4,6 +4,12 @@ import { DefaultSeo } from "next-seo";
 import { QueryClientProvider } from "react-query";
 import type { SettingsType } from "@sharex-server/common";
 
+import {
+    checkIfSettingsArePresent,
+    getDataAndUpdateLocalStorage,
+} from "@lib/settingsManager";
+import useSettings from "@hooks/useSettings";
+
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
 
@@ -15,8 +21,22 @@ type ApplicationProps = AppProps & {
     settings: SettingsType;
 };
 
-function App({ Component, pageProps, router, settings }: ApplicationProps) {
+function App({ Component, pageProps, router }: ApplicationProps) {
+    const [finishedSettingsCheck, setFinishedSettingsCheck] =
+        useState<boolean>(false);
+
     const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        const settingsPreset = checkIfSettingsArePresent();
+        if (performance.navigation.type != 1)
+            if (settingsPreset) return setFinishedSettingsCheck(true);
+        const getData = async () => {
+            await getDataAndUpdateLocalStorage();
+            setFinishedSettingsCheck(true);
+        };
+        getData();
+    }, []);
 
     useEffect(() => {
         document.documentElement.lang = `en-US`;
@@ -36,6 +56,12 @@ function App({ Component, pageProps, router, settings }: ApplicationProps) {
         };
     });
 
+    if (!finishedSettingsCheck) {
+        return null;
+    }
+
+    const settings = useSettings();
+
     return (
         <>
             <DefaultSeo
@@ -50,23 +76,11 @@ function App({ Component, pageProps, router, settings }: ApplicationProps) {
             />
             <QueryClientProvider client={queryClient}>
                 <AppLayout>
-                    {loading ? (
-                        <Loader />
-                    ) : (
-                        //TODO: find a way to make this global
-                        <Component {...pageProps} settings={settings} />
-                    )}
+                    {loading ? <Loader /> : <Component {...pageProps} />}
                 </AppLayout>
             </QueryClientProvider>
         </>
     );
 }
-
-App.getInitialProps = async () => {
-    const settingsRequest = await fetch(`${process.env.API_URL}/api/settings`);
-    const settingsResponse = await settingsRequest.json();
-
-    return { settings: settingsResponse };
-};
 
 export default App;

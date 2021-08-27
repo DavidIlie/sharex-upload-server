@@ -1,19 +1,22 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+import useSettings from "@hooks/useSettings";
+
 import type User from "../../types/User";
-import type { SettingsType } from "@sharex-server/common";
 import NavLink from "./NavLink";
 import UserDropdown from "./UserDropdown";
 
 interface NavBarProps {
     user: User;
-    settings: SettingsType;
 }
 
-const NavBar = ({ user, settings }: NavBarProps): JSX.Element => {
+const NavBar = ({ user }: NavBarProps): JSX.Element => {
     const [clickMobileMenu, setClickMobileMenu] = useState<boolean>(false);
     const router = useRouter();
+
+    const settings = useSettings();
+
     return (
         <nav className="bg-gray-800 border-b border-gray-900 shadow">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

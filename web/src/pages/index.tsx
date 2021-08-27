@@ -1,11 +1,10 @@
 import { GetServerSideProps } from "next";
-import type { SettingsType } from "@sharex-server/common";
 
-interface HomeProps {
-    settings: SettingsType;
-}
+import useSettings from "@hooks/useSettings";
 
-const Home = ({ settings }: HomeProps): JSX.Element => {
+const Home = (): JSX.Element => {
+    const settings = useSettings();
+
     return (
         <div className="h-screen flex items-center justify-center">
             <h1 className="text-5xl text-white text-semibold">
