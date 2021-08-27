@@ -14,5 +14,4 @@ backend:
 
 frontend:
 
--   try and make a global store for settings & user using redux
 -   dashboard
