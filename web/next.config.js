@@ -1,4 +1,10 @@
 const withPlugins = require("next-compose-plugins");
 const withTM = require("next-transpile-modules")(["@sharex-server/common"]);
 
-module.exports = withPlugins([withTM]);
+const nextConfig = {
+    images: {
+        domains: ["localhost"],
+    },
+};
+
+module.exports = withPlugins([withTM], nextConfig);

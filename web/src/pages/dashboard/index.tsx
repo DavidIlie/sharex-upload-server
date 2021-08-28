@@ -1,22 +1,18 @@
 import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
-
-import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
-
-import NavBar from "@components/NavBar";
-import { StatisticsModule } from "modules/dashboard/statistics";
-
-import type User from "../types/User";
-import LatestImagesModule from "modules/dashboard/previews/image";
-import LatestFilesModule from "modules/dashboard/previews/file";
-import LatestTextsModule from "modules/dashboard/previews/text";
 import { Fade } from "react-awesome-reveal";
 
-interface DashboardProps {
-    user: User;
-}
+import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
+import type User from "../../types/User";
 
-const Dashboard = ({ user }: DashboardProps): JSX.Element => {
+import NavBar from "@components/NavBar";
+
+import StatisticsModule from "@modules/dashboard/statistics";
+import LatestImagesModule from "@modules/dashboard/previews/image";
+import LatestFilesModule from "@modules/dashboard/previews/file";
+import LatestTextsModule from "@modules/dashboard/previews/text";
+
+const Dashboard = ({ user }: { user: User }): JSX.Element => {
     return (
         <>
             <NextSeo title="Dashboard" />

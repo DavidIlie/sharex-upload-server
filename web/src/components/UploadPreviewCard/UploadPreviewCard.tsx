@@ -1,14 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { api_url } from "@lib/constants";
 import { getFileIconFromExtension } from "@lib/iconUtils";
+import { shimmer } from "@lib/shimmer";
+
 import type { FileType } from "@sharex-server/common";
 
-interface UploadPreviewCardProps {
-    file: FileType;
-}
-
-const UploadPreviewCard = ({ file }: UploadPreviewCardProps): JSX.Element => {
+const UploadPreviewCard = ({ file }: { file: FileType }): JSX.Element => {
     const icon = getFileIconFromExtension(file.stats.extension);
 
     const href =
@@ -17,25 +16,37 @@ const UploadPreviewCard = ({ file }: UploadPreviewCardProps): JSX.Element => {
             : `/f/${file.slug}`;
 
     return (
-        <div className="m-6 flex flex-col">
+        <div className="m-5 flex flex-col">
             <Link href={href} passHref>
-                <a className="flex-1 flex items-center" target="_blank">
+                <a
+                    className="flex-1 flex items-center  duration-200 hoverItem ease-in-out"
+                    target="_blank"
+                >
                     {file.type === "image" ? (
-                        <img
-                            className="rounded-sm shadow-md duration-200 hoverItem ease-in-out"
-                            height="256"
-                            width="256"
+                        <Image
+                            className="rounded-sm shadow-md"
+                            width={1000}
+                            height={1000}
                             src={`${api_url}/image/${file.slug}`}
                             alt={`${file.name}`}
+                            objectFit="cover"
+                            placeholder="blur"
+                            blurDataURL={shimmer(
+                                file.stats.resolution!.width,
+                                file.stats.resolution!.height
+                            )}
                         />
                     ) : (
                         <div className="p-2 mb-1 flex flex-col w-full text-center overflow-ellipsis bg-dark-gray-800 rounded shadow-md duration-200 hoverItem ease-in-out">
-                            <img
+                            <Image
                                 className="flex flex-1"
-                                height="256"
-                                width="256"
+                                width={1000}
+                                height={1000}
                                 src={`/file-icons/${icon}.svg`}
                                 alt={`${file.name}`}
+                                objectFit="cover"
+                                placeholder="blur"
+                                blurDataURL={shimmer(1920, 1080)}
                             />
 
                             <p className="pt-2 text-xs text-dark-gray-200 overflow-hidden overflow-ellipsis">

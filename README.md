@@ -14,10 +14,7 @@ backend:
 
 frontend:
 
--   dashboard (home page done)
-    -   images
-    -   files
-    -   texts
+-   dashboard (almost done)
     -   admin panel
 -   user
     -   profile

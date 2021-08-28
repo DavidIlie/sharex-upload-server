@@ -32,9 +32,13 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
                         </div>
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink name="Dashboard" link="/dashboard" />
-                            <NavLink name="Images" link="/images" />
-                            <NavLink name="Files" link="/files" />
-                            <NavLink name="Admin Panel" link="/admin" />
+                            <NavLink name="Images" link="/dashboard/images" />
+                            <NavLink name="Files" link="/dashboard/files" />
+                            <NavLink name="Texts" link="/dashboard/texts" />
+                            <NavLink
+                                name="Control Panel"
+                                link="/control-panel"
+                            />
                         </div>
                     </div>
                     <UserDropdown user={user} />
@@ -90,9 +94,10 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
             >
                 <div className="pb-2 space-y-1">
                     <NavLink name="Dashboard" link="/dashboard" />
-                    <NavLink name="Images" link="/images" />
-                    <NavLink name="Files" link="/files" />
-                    <NavLink name="Admin Panel" link="/admin" />
+                    <NavLink name="Images" link="/dashboard/images" />
+                    <NavLink name="Files" link="/dashboard/files" />
+                    <NavLink name="Texts" link="/dashboard/texts" />
+                    <NavLink name="Control Panel" link="/control-panel" />
                     <NavLink
                         name="Report a bug"
                         link="https://github.com/DavidIlie/sharex-media-server/issues"

@@ -15,6 +15,18 @@ router.get("/images", isAuth(), async (_req, res, next) => {
     }
 });
 
+router.get("/images/no-limit", isAuth(), async (_req, res, next) => {
+    try {
+        const images = await Uploads.find({
+            where: { type: "image" },
+            order: { id: "DESC" },
+        });
+        res.json(images.reverse());
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get("/files", isAuth(), async (_req, res, next) => {
     try {
         const files = await Uploads.find({
@@ -27,7 +39,23 @@ router.get("/files", isAuth(), async (_req, res, next) => {
     }
 });
 
+router.get("/files/no-limit", isAuth(), async (_req, res, next) => {
+    try {
+        const files = await Uploads.find({
+            where: { type: "file" },
+            order: { id: "DESC" },
+        });
+        res.json(files.reverse());
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get("/texts", isAuth(), async (_req, res) => {
+    res.json([]);
+});
+
+router.get("/texts/no-limit", isAuth(), async (_req, res) => {
     res.json([]);
 });
 

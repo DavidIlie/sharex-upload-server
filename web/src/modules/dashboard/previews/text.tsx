@@ -12,7 +12,7 @@ const LatestTextsModule = (): JSX.Element => {
     return (
         <PreviewListPane
             title="Latest Text Uploads"
-            link="/texts"
+            link="/dashboard/texts"
             viewTitle="View all text files"
             type="text"
         >

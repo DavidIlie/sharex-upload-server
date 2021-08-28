@@ -12,7 +12,7 @@ const LatestImagesModule = (): JSX.Element => {
     return (
         <PreviewListPane
             title="Latest Image Uploads"
-            link="/images"
+            link="/dashboard/images"
             viewTitle="View all images"
             type="image"
         >

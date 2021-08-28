@@ -12,7 +12,7 @@ const LatestFilesModule = (): JSX.Element => {
     return (
         <PreviewListPane
             title="Latest File Uploads"
-            link="/files"
+            link="/dashboard/files"
             viewTitle="View all files"
             type="file"
         >

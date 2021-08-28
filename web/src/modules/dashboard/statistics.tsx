@@ -15,7 +15,7 @@ interface DataTypes {
     };
 }
 
-export const StatisticsModule = (): JSX.Element => {
+const StatisticsModule = (): JSX.Element => {
     const { isLoading, data: response } = useQuery<DataTypes>(
         "/api/statistics",
         { refetchOnWindowFocus: true }
@@ -56,3 +56,5 @@ export const StatisticsModule = (): JSX.Element => {
         </div>
     );
 };
+
+export default StatisticsModule;

@@ -24,7 +24,7 @@ const DashboardStatCard = ({
                     {type === "metric" ? (
                         <div className="mt-1 text-5xl font-bold text-dark-gray-200">
                             {value}
-                            <span className="ml-5 text-xl">{unit}</span>
+                            <span className="ml-1 text-xl">{unit}</span>
                         </div>
                     ) : (
                         <div className="mt-1 text-5xl font-bold text-dark-gray-200">
