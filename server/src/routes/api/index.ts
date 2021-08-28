@@ -1,3 +1,4 @@
+import { canBeAuth } from "./../../lib/auth/canBeAuth";
 import { Settings } from "../../entities/Settings";
 import { Uploads } from "../../entities/Uploads";
 import * as express from "express";
@@ -14,12 +15,17 @@ router.use("/statistics", statistics);
 import latest from "./latest";
 router.use("/latest", latest);
 
-router.get("/settings", async (_req, res, next) => {
+router.get("/settings", canBeAuth(), async (req, res, next) => {
     try {
         const settings = await Settings.findOne();
-        res.json({
-            name: settings!.name,
-        });
+        if (req.user) {
+            res.json(settings);
+        } else {
+            res.json({
+                name: settings!.name,
+                default_theme: settings!.default_theme,
+            });
+        }
     } catch (error) {
         next(error);
     }

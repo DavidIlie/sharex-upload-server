@@ -5,6 +5,7 @@ import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
 import type User from "../types/User";
 
 import NavBar from "@components/NavBar";
+import GeneralSettingsModule from "@modules/control-panel/general-settings";
 
 const ControlPanel = ({ user }: { user: User }): JSX.Element => {
     return (
@@ -13,6 +14,7 @@ const ControlPanel = ({ user }: { user: User }): JSX.Element => {
             <div className="mb-12">
                 <NavBar user={user} />
                 <div className="pt-12" />
+                <GeneralSettingsModule />
             </div>
         </>
     );

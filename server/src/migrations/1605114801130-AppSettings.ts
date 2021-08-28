@@ -8,7 +8,19 @@ export class AppSettings1605114801130 implements MigrationInterface {
     public async up(): Promise<void> {
         await Settings.create({
             name: "ShareX Media Server",
+            default_theme: "dark",
             domains: [],
+            media_settings: {
+                images: {
+                    per_page: 24,
+                },
+                files: {
+                    per_page: 24,
+                },
+                texts: {
+                    per_page: 24,
+                },
+            },
         }).save();
     }
 

@@ -5,7 +5,9 @@ export const checkIfSettingsArePresent = () => {
 };
 
 export const getDataAndUpdateLocalStorage = async () => {
-    const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings`);
+    const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings`, {
+        credentials: "include",
+    });
     const response = await r.json();
 
     localStorage.setItem("app_settings", JSON.stringify(response));
