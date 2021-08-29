@@ -5,6 +5,8 @@ import { AiFillBug, AiOutlineUser, AiFillApi } from "react-icons/ai";
 
 import type User from "../../types/User";
 
+import ThemeToggle from "./ThemeToggle";
+
 interface UserDropdownProps {
     user: User;
 }
@@ -57,9 +59,12 @@ const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
                                     </a>
                                 </Link>
                             </Menu.Item>
+                            <Menu.Item as={DropdownElement}>
+                                <ThemeToggle />
+                            </Menu.Item>
                             <Menu.Item>
                                 <Link href="/user/profile">
-                                    <a className="mt-1">
+                                    <a>
                                         <DropdownElement>
                                             <AiOutlineUser className="mx-0.5 text-xl" />
                                             Profile
@@ -69,7 +74,7 @@ const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
                             </Menu.Item>
                             <Menu.Item>
                                 <Link href="/user/api-keys">
-                                    <a className="mt-1">
+                                    <a>
                                         <DropdownElement>
                                             <AiFillApi className="mx-0.5 text-xl" />
                                             API Keys
@@ -98,7 +103,7 @@ export const DropdownElement = ({
     children: React.ReactNode;
 }) => {
     return (
-        <div className="group flex gap-1 items-center w-full px-2 py-2 text-sm duration-200 hover:bg-dark-gray-800 text-black dark:text-white">
+        <div className="group flex gap-1 items-center w-full px-2 py-2 text-sm duration-200 hover:bg-gray-200 dark:hover:bg-dark-gray-700 text-black dark:text-white">
             {children}
         </div>
     );

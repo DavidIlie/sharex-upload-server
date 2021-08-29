@@ -1,3 +1,5 @@
+import { is_dev } from "@lib/constants";
+
 const Footer = (): JSX.Element => {
     return (
         <footer className="flex justify-center items-center shadow bg-white dark:bg-gray-800">
@@ -7,7 +9,7 @@ const Footer = (): JSX.Element => {
                     target="blank"
                     className="font-semibold hover:underline"
                 >
-                    sharex-media-server v0.0.5-DEV
+                    sharex-media-server v0.1.0{is_dev && "-DEV"}
                 </a>
                 <p className="text-sm">
                     Created by{" "}
