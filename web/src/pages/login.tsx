@@ -14,6 +14,7 @@ import Input from "@ui/form/Input";
 import Radio from "@ui/form/Radio";
 import SubmitButton from "@ui/form/SubmitButton";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
+import { axios } from "@lib/axiosClient";
 
 const Login = (): JSX.Element => {
     const [errorMessage, setErrorMessage] = useState<boolean | string>(false);
@@ -45,21 +46,13 @@ const Login = (): JSX.Element => {
                             ) => {
                                 setSubmitting(true);
 
-                                const loginRequest = await fetch(
+                                const r = await axios.post(
                                     `${api_url}/api/user/auth/login`,
-                                    {
-                                        method: "POST",
-                                        body: JSON.stringify(data),
-                                        credentials: "include",
-                                        headers: {
-                                            "Content-type": "application/json",
-                                        },
-                                    }
+                                    data
                                 );
+                                const response = await r.data;
 
-                                const response = await loginRequest.json();
-
-                                if (loginRequest.status !== 200) {
+                                if (r.status !== 200) {
                                     setErrorMessage(response.message);
                                 } else {
                                     updateSettings();

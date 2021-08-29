@@ -1,7 +1,11 @@
 import { Field, Form, Formik } from "formik";
+import { useState } from "react";
+import { Fade } from "react-awesome-reveal";
 
 import { api_url } from "@lib/constants";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
+import { updateSettingsSchema } from "@sharex-server/common";
+import { axios } from "@lib/axiosClient";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -11,10 +15,12 @@ import SaveButton from "@components/SettingSection/SaveButton";
 import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
 import Select from "@ui/form/Select";
+import Error from "@ui/form/Error";
 import SavedText from "@components/SettingSection/SavedText";
 
 const GeneralSettingsModule = (): JSX.Element => {
     const { settings, updateSettings } = useSettingsStore();
+    const [finished, setFinished] = useState<boolean>(false);
 
     return (
         <SettingSection
@@ -24,6 +30,7 @@ const GeneralSettingsModule = (): JSX.Element => {
             <Formik
                 validateOnChange={false}
                 validateOnBlur={false}
+                validationSchema={updateSettingsSchema}
                 initialValues={{
                     name: settings.name,
                     default_theme: settings.default_theme,
@@ -31,26 +38,24 @@ const GeneralSettingsModule = (): JSX.Element => {
                 onSubmit={async (data, { setSubmitting }) => {
                     setSubmitting(true);
 
-                    const r = await fetch(`${api_url}/api/settings`, {
-                        method: "POST",
-                        credentials: "include",
-                        body: JSON.stringify(data),
-                        headers: {
-                            "Content-type": "application/json",
-                        },
-                    });
-                    const response = await r.json();
+                    const r = await axios.post(`${api_url}/api/settings`, data);
+                    const response = await r.data;
 
                     updateSettings(response);
                     setSubmitting(false);
+                    setFinished(true);
+                    setInterval(() => {
+                        setFinished(false);
+                    }, 1500);
                 }}
             >
-                {({ isSubmitting }) => (
+                {({ errors, isSubmitting }) => (
                     <Form>
                         <TopPart>
                             <div className="col-span-6 sm:col-span-4">
                                 <Label>Site Name</Label>
                                 <Field name="name" required as={Input} />
+                                <Error error={errors.name} />
                             </div>
                             <div className="col-span-6 sm:col-span-4">
                                 <Label>Default Site Theme</Label>
@@ -76,10 +81,15 @@ const GeneralSettingsModule = (): JSX.Element => {
                                         Light Mode
                                     </option>
                                 </Field>
+                                <Error error={errors.default_theme} />
                             </div>
                         </TopPart>
                         <BottomPart>
-                            <SavedText />
+                            {finished && (
+                                <Fade duration={100}>
+                                    <SavedText />
+                                </Fade>
+                            )}
                             <SaveButton disabled={isSubmitting} />
                         </BottomPart>
                     </Form>
