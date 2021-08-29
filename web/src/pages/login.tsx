@@ -8,17 +8,18 @@ import { useState } from "react";
 import { loginSchema } from "@sharex-server/common";
 import { isLoggedIn } from "@lib/isLoggedIn";
 import { api_url } from "@lib/constants";
-import useSettings from "@hooks/useSettings";
 
 import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
 import Radio from "@ui/form/Radio";
 import SubmitButton from "@ui/form/SubmitButton";
+import { useSettingsStore } from "@global-stores/useSettingsStore";
 
 const Login = (): JSX.Element => {
     const [errorMessage, setErrorMessage] = useState<boolean | string>(false);
     const router = useRouter();
-    const settings = useSettings();
+
+    const { settings, update: updateSettings } = useSettingsStore();
 
     return (
         <>
@@ -61,6 +62,7 @@ const Login = (): JSX.Element => {
                                 if (loginRequest.status !== 200) {
                                     setErrorMessage(response.message);
                                 } else {
+                                    updateSettings();
                                     router.push("/dashboard");
                                 }
 

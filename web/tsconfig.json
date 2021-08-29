@@ -29,7 +29,8 @@
             "@components/*": ["components/*"],
             "@ui/*": ["ui/*"],
             "@hooks/*": ["hooks/*"],
-            "@modules/*": ["modules/*"]
+            "@modules/*": ["modules/*"],
+            "@global-stores/*": ["global-stores/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -1,10 +1,9 @@
+import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { SettingsType } from "@sharex-server/common";
 
 export default function useSettings() {
-    const settings = localStorage.getItem("app_settings") || {
-        name: "ShareX Media Server",
-    };
+    const settings = useSettingsStore((s) => s.settings);
 
     //@ts-ignore
-    return JSON.parse(settings) as SettingsType;
+    return settings as SettingsType;
 }

@@ -1,4 +1,5 @@
 import { isLoggedIn } from "./isLoggedIn";
+import User from "../types/User";
 
 export const loginCheckAndGetUser = async (req: any, res: any) => {
     const cookie = req.cookies.access;
@@ -18,6 +19,6 @@ export const loginCheckAndGetUser = async (req: any, res: any) => {
     });
     const userResponse = await userRequest.json();
     return {
-        user: userResponse,
+        user: userResponse as User,
     };
 };

@@ -2,37 +2,31 @@ import { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { DefaultSeo } from "next-seo";
 import { QueryClientProvider } from "react-query";
-import type { SettingsType } from "@sharex-server/common";
-
-import {
-    checkIfSettingsArePresent,
-    getDataAndUpdateLocalStorage,
-} from "@lib/settingsManager";
-import useSettings from "@hooks/useSettings";
 
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
 
 import Loader from "@components/Loader";
 import AppLayout from "@components/AppLayout";
+
 import { queryClient } from "@lib/queryClient";
+import { useSettingsStore } from "@global-stores/useSettingsStore";
+import { getSettingsData } from "@lib/settingsManager";
 
-type ApplicationProps = AppProps & {
-    settings: SettingsType;
-};
-
-function App({ Component, pageProps, router }: ApplicationProps) {
+function App({ Component, pageProps, router }: AppProps) {
     const [finishedSettingsCheck, setFinishedSettingsCheck] =
         useState<boolean>(false);
 
     const [loading, setLoading] = useState<boolean>(false);
 
+    const { settings, updateSettings } = useSettingsStore((s) => s);
+
     useEffect(() => {
-        const settingsPreset = checkIfSettingsArePresent();
         if (performance.navigation.type != 1)
-            if (settingsPreset) return setFinishedSettingsCheck(true);
+            if (settings.name) return setFinishedSettingsCheck(true);
         const getData = async () => {
-            await getDataAndUpdateLocalStorage();
+            const settings = await getSettingsData();
+            updateSettings(settings);
             setFinishedSettingsCheck(true);
         };
         getData();
@@ -59,8 +53,6 @@ function App({ Component, pageProps, router }: ApplicationProps) {
     if (!finishedSettingsCheck) {
         return null;
     }
-
-    const settings = useSettings();
 
     return (
         <>

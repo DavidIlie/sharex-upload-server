@@ -22,6 +22,11 @@ const ControlPanel = ({ user }: { user: User }): JSX.Element => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     const user = await loginCheckAndGetUser(req, res);
+    if (!user.user.isAdmin) {
+        res.setHeader("location", "/dashboard");
+        res.statusCode = 302;
+        res.end();
+    }
     return {
         props: user,
     };
