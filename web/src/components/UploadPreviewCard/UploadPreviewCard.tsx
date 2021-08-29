@@ -19,7 +19,7 @@ const UploadPreviewCard = ({ file }: { file: FileType }): JSX.Element => {
         <div className="m-5 flex flex-col">
             <Link href={href} passHref>
                 <a
-                    className="flex-1 flex items-center  duration-200 hoverItem ease-in-out"
+                    className="flex-1 flex items-center duration-200 hoverItem ease-in-out"
                     target="_blank"
                 >
                     {file.type === "image" ? (
@@ -37,7 +37,7 @@ const UploadPreviewCard = ({ file }: { file: FileType }): JSX.Element => {
                             )}
                         />
                     ) : (
-                        <div className="p-2 mb-1 flex flex-col w-full text-center overflow-ellipsis bg-dark-gray-800 rounded shadow-md duration-200 hoverItem ease-in-out">
+                        <div className="p-2 mb-1 flex flex-col w-full text-center overflow-ellipsis bg-gray-100 dark:bg-dark-gray-800 rounded shadow-md duration-200 hoverItem ease-in-out">
                             <Image
                                 className="flex flex-1"
                                 width={1000}
@@ -49,7 +49,7 @@ const UploadPreviewCard = ({ file }: { file: FileType }): JSX.Element => {
                                 blurDataURL={shimmer(1920, 1080)}
                             />
 
-                            <p className="pt-2 text-xs text-dark-gray-200 overflow-hidden overflow-ellipsis">
+                            <p className="pt-2 text-xs text-black dark:text-dark-gray-200 overflow-hidden overflow-ellipsis">
                                 {file.name}
                             </p>
                         </div>
@@ -57,7 +57,7 @@ const UploadPreviewCard = ({ file }: { file: FileType }): JSX.Element => {
                 </a>
             </Link>
 
-            <div className="p-2 mt-2 items-end grid grid-cols-2 text-center bg-dark-gray-800 rounded-md border-b border-dark-gray-900 shadow-md divide-x dark:divide-dark-gray-500">
+            <div className="p-2 mt-2 items-end grid grid-cols-2 text-center bg-white dark:bg-dark-gray-800 rounded-md border-b border-gray-200 dark:border-dark-gray-900 shadow-md divide-x dark:divide-dark-gray-500">
                 <Link href={href} passHref>
                     <a
                         className="text-dark-gray-200 hover:text-dark-gray-400"

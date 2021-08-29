@@ -2,6 +2,7 @@ import { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { DefaultSeo } from "next-seo";
 import { QueryClientProvider } from "react-query";
+import { ThemeProvider } from "next-themes";
 
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
@@ -66,11 +67,16 @@ function App({ Component, pageProps, router }: AppProps) {
                 }}
                 description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
             />
-            <QueryClientProvider client={queryClient}>
-                <AppLayout>
-                    {loading ? <Loader /> : <Component {...pageProps} />}
-                </AppLayout>
-            </QueryClientProvider>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme={settings.default_theme}
+            >
+                <QueryClientProvider client={queryClient}>
+                    <AppLayout>
+                        {loading ? <Loader /> : <Component {...pageProps} />}
+                    </AppLayout>
+                </QueryClientProvider>
+            </ThemeProvider>
         </>
     );
 }

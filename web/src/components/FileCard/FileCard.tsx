@@ -10,7 +10,7 @@ interface FileCardProps {
 
 const FileCard = ({ file, icon }: FileCardProps): JSX.Element => {
     return (
-        <div className="flex flex-col border-2 bg-gray-800 border-gray-900 rounded-md shadow-lg overflow-hidden duration-200 hoverItem">
+        <div className="flex flex-col border-2 bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-900 rounded-md shadow-lg overflow-hidden duration-200 hoverItem">
             <div className="flex relative">
                 <div className="ResponsiveFileCard sm:block sm:p-4">
                     <Image
@@ -24,26 +24,26 @@ const FileCard = ({ file, icon }: FileCardProps): JSX.Element => {
                     />
                 </div>
                 <div className="pl-6 sm:pl-0 py-5 pr-6 justify-self-center">
-                    <h1 className="text-lg leading-6 font-semibold">
+                    <h1 className="text-lg leading-6 font-semibold text-black dark:text-white">
                         {file.name}
                     </h1>
                     <div className="pt-2 flex flex-col">
-                        <p className="text-gray-400 font-mono break-all">
-                            <span className="text-gray-300 font-medium">
+                        <p className="text-gray-800 dark:text-gray-400 font-mono break-all">
+                            <span className="text-black dark:text-gray-300 font-medium">
                                 File size:{" "}
                             </span>
                             <br className="sm:hidden" />
                             {file.stats.size}
                         </p>
-                        <p className="pt-3 text-gray-400 font-mono break-all">
-                            <span className="text-gray-300 font-medium pr-2">
+                        <p className="pt-3 text-gray-800 dark:text-gray-400 font-mono break-all">
+                            <span className="text-black dark:text-gray-300 font-medium pr-2">
                                 MD5:
                             </span>
                             <br className="sm:hidden" />
                             {file.stats.md5}
                         </p>
-                        <p className="pt-3 sm:pt-0 text-gray-400 font-mono break-all">
-                            <span className="text-gray-300 font-medium">
+                        <p className="pt-3 sm:pt-0 text-gray-800 dark:text-gray-400 font-mono break-all">
+                            <span className="text-black dark:text-gray-300 font-medium">
                                 SHA1:{" "}
                             </span>
                             <br className="sm:hidden" />

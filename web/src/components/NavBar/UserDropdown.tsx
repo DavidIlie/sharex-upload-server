@@ -13,7 +13,7 @@ const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
     return (
         <div className="hidden sm:flex sm:items-center sm:ml-6">
             <Menu as="div" className="relative inline-block text-right">
-                <Menu.Button className="inline-flex items-center">
+                <Menu.Button className="inline-flex items-center text-black dark:text-white">
                     {user.name}
                     <svg
                         className="ml-1 h-4 w-4"
@@ -37,8 +37,8 @@ const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="z-10 absolute right-0 mt-2 w-36 bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-900">
-                        <div className="border-1 rounded-t-md border-gray-900">
+                    <Menu.Items className="z-10 absolute right-0 mt-2 w-36 bg-gray-100 dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-200 dark:border-gray-900">
+                        <div className="border-1 rounded-t-md border-gray-300 dark:border-gray-900">
                             <Menu.Item>
                                 <Link
                                     href="https://github.com/DavidIlie/sharex-media-server/issues"
@@ -80,7 +80,7 @@ const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
                         </div>
                         <Menu.Item>
                             <Link href="/logout">
-                                <a className="font-semibold cursor-pointer bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm">
+                                <a className="font-semibold cursor-pointer bg-blue-600 dark:bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm">
                                     Log Out
                                 </a>
                             </Link>
@@ -98,7 +98,7 @@ export const DropdownElement = ({
     children: React.ReactNode;
 }) => {
     return (
-        <div className="group flex gap-1 items-center w-full px-2 py-2 text-sm duration-200 hover:bg-dark-gray-800">
+        <div className="group flex gap-1 items-center w-full px-2 py-2 text-sm duration-200 hover:bg-dark-gray-800 text-black dark:text-white">
             {children}
         </div>
     );

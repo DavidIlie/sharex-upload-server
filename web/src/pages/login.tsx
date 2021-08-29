@@ -27,10 +27,10 @@ const Login = (): JSX.Element => {
             <NextSeo title="Login" />
             <div className="h-screen flex flex-col justify-center items-center">
                 <Fade direction="up" cascade>
-                    <div className="text-3xl font-medium">
+                    <div className="text-3xl font-medium text-black dark:text-white">
                         <a href="/login">{settings.name}</a>
                     </div>
-                    <div className="w-full sm:max-w-md mt-3 px-6 py-4 border-2 bg-dark-gray-800 border-gray-900 shadow-md overflow-hidden sm:rounded-lg">
+                    <div className="w-full sm:max-w-md mt-3 px-6 py-4 border-2 bg-white dark:bg-dark-gray-800 border-gray-200 dark:border-gray-900 shadow-md overflow-hidden sm:rounded-lg">
                         <Formik
                             validateOnChange={false}
                             validateOnBlur={false}
@@ -137,14 +137,14 @@ const Login = (): JSX.Element => {
                         </Formik>
                     </div>
                     <a
-                        className="mt-4 flex text-sm font-semibold text-gray-400 hover:underline"
+                        className="mt-4 flex text-sm font-semibold text-black dark:text-gray-400 hover:underline"
                         href="https://github.com/DavidIlie/sharex-media-server"
                         target="_blank"
                     >
                         Get source code on
                         <svg
                             viewBox="0 0 128 128"
-                            className="w-5 h-5 mx-1 text-gray-400"
+                            className="w-5 h-5 mx-1 text-black dark:text-gray-400"
                         >
                             <g fill="currentColor">
                                 <path

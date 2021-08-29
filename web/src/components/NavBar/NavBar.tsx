@@ -18,13 +18,13 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
     const settings = useSettings();
 
     return (
-        <nav className="bg-gray-800 border-b border-gray-900 shadow">
+        <nav className="bg-white dark:bg-gray-800 border-b border-gray-300 dark:border-gray-900 shadow">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         <div className="flex-shrink-0 flex items-center">
                             <a
-                                className="font-medium text-gray-100"
+                                className="font-medium text-black dark:text-gray-100"
                                 href={router.asPath}
                             >
                                 {settings.name}
@@ -45,7 +45,7 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
                     <div className="-mr-2 flex items-center sm:hidden">
                         <button
                             type="button"
-                            className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700"
+                            className="bg-gray-200 dark:bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700 duration-200"
                             onClick={() => {
                                 setClickMobileMenu(!clickMobileMenu);
                             }}
@@ -106,7 +106,7 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
                 <div className="pt-2 pb-1 border-t border-gray-200">
                     <div className="flex items-center px-4">
                         <div>
-                            <div className="font-medium text-base text-gray-300">
+                            <div className="font-medium text-base text-gray-800 dark:text-gray-300">
                                 {user.name}
                             </div>
                             <div className="font-medium text-sm text-gray-400">

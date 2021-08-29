@@ -1,6 +1,6 @@
 const Footer = (): JSX.Element => {
     return (
-        <footer className="flex justify-center items-center shadow bg-dark-gray-900">
+        <footer className="flex justify-center items-center shadow bg-white dark:bg-gray-800">
             <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-dark-gray-200">
                 <a
                     href="https://github.com/DavidIlie/sharex-media-server"

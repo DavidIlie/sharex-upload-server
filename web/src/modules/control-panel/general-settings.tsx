@@ -1,11 +1,13 @@
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
+import { useTheme } from "next-themes";
 
 import { api_url } from "@lib/constants";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { updateSettingsSchema } from "@sharex-server/common";
 import { axios } from "@lib/axiosClient";
+import ToggleColorMode from "@hooks/ToggleColorMode";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -20,6 +22,8 @@ import SavedText from "@components/SettingSection/SavedText";
 
 const GeneralSettingsModule = (): JSX.Element => {
     const { settings, updateSettings } = useSettingsStore();
+    const { resolvedTheme } = useTheme();
+    const updateTheme = ToggleColorMode();
     const [finished, setFinished] = useState<boolean>(false);
 
     return (
@@ -44,6 +48,9 @@ const GeneralSettingsModule = (): JSX.Element => {
                     updateSettings(response);
                     setSubmitting(false);
                     setFinished(true);
+
+                    if (resolvedTheme !== response.default_theme) updateTheme();
+
                     setInterval(() => {
                         setFinished(false);
                     }, 1500);
