@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 
 import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
-import type User from "../types/User";
+import type User from "../../types/User";
 
 import NavBar from "@components/NavBar";
 import GeneralSettingsModule from "@modules/control-panel/general-settings";

@@ -13,11 +13,7 @@ const ThemeSwitcher = (): JSX.Element => {
     useEffect(() => setMounted(true), []);
 
     const path = router.pathname;
-    if (
-        path.startsWith("/dashboard") ||
-        path.startsWith("/user") ||
-        path === "/control-panel"
-    )
+    if (path.startsWith("/dashboard" || "/user"))
         return <div className="hidden" />;
 
     return (

@@ -37,7 +37,7 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
                             <NavLink name="Texts" link="/dashboard/texts" />
                             <NavLink
                                 name="Control Panel"
-                                link="/control-panel"
+                                link="/dashboard/control-panel"
                             />
                         </div>
                     </div>
@@ -97,7 +97,10 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
                     <NavLink name="Images" link="/dashboard/images" />
                     <NavLink name="Files" link="/dashboard/files" />
                     <NavLink name="Texts" link="/dashboard/texts" />
-                    <NavLink name="Control Panel" link="/control-panel" />
+                    <NavLink
+                        name="Control Panel"
+                        link="/dashboard/control-panel"
+                    />
                     <NavLink
                         name="Report a bug"
                         link="https://github.com/DavidIlie/sharex-media-server/issues"
