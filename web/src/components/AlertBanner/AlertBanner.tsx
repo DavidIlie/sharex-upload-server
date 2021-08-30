@@ -15,9 +15,9 @@ const AlertBanner = ({
     message,
 }: AlertBannerProps): JSX.Element => {
     const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void;
-    const alreadyChecked = sessionStorage.getItem(storageName);
+    const alreadyChecked = localStorage.getItem(storageName);
     const HandleClick = () => {
-        sessionStorage.setItem(storageName, "true");
+        localStorage.setItem(storageName, "true");
         forceUpdate();
     };
     return alreadyChecked !== "true" ? (
