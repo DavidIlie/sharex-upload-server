@@ -82,7 +82,7 @@ const UserDropdown = (): JSX.Element => {
                         </div>
                         <Menu.Item>
                             <Link href="/logout">
-                                <a className="font-semibold cursor-pointer bg-blue-600 dark:bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm">
+                                <a className="text-white font-semibold cursor-pointer bg-blue-600 dark:bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm">
                                     Log Out
                                 </a>
                             </Link>
