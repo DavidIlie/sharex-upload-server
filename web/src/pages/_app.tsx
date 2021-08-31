@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { DefaultSeo } from "next-seo";
 import { QueryClientProvider } from "react-query";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
 
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
@@ -21,7 +22,6 @@ function App({ Component, pageProps, router }: AppProps) {
     const [loading, setLoading] = useState<boolean>(false);
 
     const { settings, updateSettings } = useSettingsStore((s) => s);
-
     useEffect(() => {
         if (performance.navigation.type != 1)
             if (settings.name) return setFinishedSettingsCheck(true);
@@ -72,6 +72,7 @@ function App({ Component, pageProps, router }: AppProps) {
                 defaultTheme={settings.default_theme}
             >
                 <QueryClientProvider client={queryClient}>
+                    <Toaster position="top-right" />
                     <AppLayout>
                         {loading ? <Loader /> : <Component {...pageProps} />}
                     </AppLayout>

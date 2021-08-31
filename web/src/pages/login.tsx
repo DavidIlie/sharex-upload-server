@@ -6,15 +6,16 @@ import { Field, Form, Formik } from "formik";
 import { useState } from "react";
 
 import { loginSchema } from "@sharex-server/common";
-import { isLoggedIn } from "@lib/isLoggedIn";
+import { noRedirectIsLoggedIn } from "@lib/isLoggedIn";
 import { api_url } from "@lib/constants";
+import { axios } from "@lib/axiosClient";
+
+import { useSettingsStore } from "@global-stores/useSettingsStore";
 
 import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
 import Radio from "@ui/form/Radio";
 import SubmitButton from "@ui/form/SubmitButton";
-import { useSettingsStore } from "@global-stores/useSettingsStore";
-import { axios } from "@lib/axiosClient";
 
 const Login = (): JSX.Element => {
     const [errorMessage, setErrorMessage] = useState<boolean | string>(false);
@@ -164,7 +165,7 @@ const Login = (): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
-    const loggedIn = await isLoggedIn(req.cookies.access);
+    const loggedIn = await noRedirectIsLoggedIn(req.cookies.access);
     if (loggedIn) {
         res.setHeader("location", "/dashboard");
         res.statusCode = 302;

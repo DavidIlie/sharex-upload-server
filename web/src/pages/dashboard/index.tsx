@@ -2,8 +2,7 @@ import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 import { Fade } from "react-awesome-reveal";
 
-import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
-import type User from "../../types/User";
+import { isLoggedIn } from "@lib/isLoggedIn";
 
 import NavBar from "@components/NavBar";
 
@@ -12,12 +11,12 @@ import LatestImagesModule from "@modules/dashboard/previews/image";
 import LatestFilesModule from "@modules/dashboard/previews/file";
 import LatestTextsModule from "@modules/dashboard/previews/text";
 
-const Dashboard = ({ user }: { user: User }): JSX.Element => {
+const Dashboard = (): JSX.Element => {
     return (
         <>
             <NextSeo title="Dashboard" />
             <div className="mb-12">
-                <NavBar user={user} />
+                <NavBar />
                 <div className="pt-12" />
 
                 <Fade direction="up" triggerOnce>
@@ -47,9 +46,9 @@ const Dashboard = ({ user }: { user: User }): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const user = await loginCheckAndGetUser(req, res);
+    await isLoggedIn(req, res);
     return {
-        props: user,
+        props: {},
     };
 };
 

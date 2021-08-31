@@ -1,18 +1,17 @@
 import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 
-import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
-import type User from "../../types/User";
+import { isLoggedIn } from "@lib/isLoggedIn";
 
 import NavBar from "@components/NavBar";
 import GeneralSettingsModule from "@modules/control-panel/general-settings";
 
-const ControlPanel = ({ user }: { user: User }): JSX.Element => {
+const ControlPanel = (): JSX.Element => {
     return (
         <>
             <NextSeo title="Control Panel" />
             <div className="mb-12">
-                <NavBar user={user} />
+                <NavBar />
                 <div className="pt-12" />
                 <GeneralSettingsModule />
             </div>
@@ -21,14 +20,9 @@ const ControlPanel = ({ user }: { user: User }): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const user = await loginCheckAndGetUser(req, res);
-    if (!user.user.isAdmin) {
-        res.setHeader("location", "/dashboard");
-        res.statusCode = 302;
-        res.end();
-    }
+    await isLoggedIn(req, res);
     return {
-        props: user,
+        props: {},
     };
 };
 

@@ -2,20 +2,18 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 import useSettings from "@hooks/useSettings";
+import useUser from "@hooks/useUser";
 
-import type User from "../../types/User";
 import NavLink from "./NavLink";
 import UserDropdown from "./UserDropdown";
 
-interface NavBarProps {
-    user: User;
-}
-
-const NavBar = ({ user }: NavBarProps): JSX.Element => {
+const NavBar = (): JSX.Element => {
     const [clickMobileMenu, setClickMobileMenu] = useState<boolean>(false);
     const router = useRouter();
 
     const settings = useSettings();
+
+    const { isLoading, user } = useUser();
 
     return (
         <nav className="bg-white dark:bg-gray-800 border-b border-gray-300 dark:border-gray-900 shadow">
@@ -41,7 +39,7 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
                             />
                         </div>
                     </div>
-                    <UserDropdown user={user} />
+                    {!isLoading && <UserDropdown user={user!} />}
                     <div className="-mr-2 flex items-center sm:hidden">
                         <button
                             type="button"
@@ -108,14 +106,16 @@ const NavBar = ({ user }: NavBarProps): JSX.Element => {
                 </div>
                 <div className="pt-2 pb-1 border-t border-gray-200">
                     <div className="flex items-center px-4">
-                        <div>
-                            <div className="font-medium text-base text-gray-800 dark:text-gray-300">
-                                {user.name}
+                        {!isLoading && (
+                            <div>
+                                <div className="font-medium text-base text-gray-800 dark:text-gray-300">
+                                    {user!.name}
+                                </div>
+                                <div className="font-medium text-sm text-gray-400">
+                                    {user!.email}
+                                </div>
                             </div>
-                            <div className="font-medium text-sm text-gray-400">
-                                {user.email}
-                            </div>
-                        </div>
+                        )}
                     </div>
                     <div className="mt-3 space-y-1">
                         <NavLink name="Profile" link="/user/profile" />

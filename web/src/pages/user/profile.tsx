@@ -1,16 +1,15 @@
 import { GetServerSideProps } from "next";
 
-import User from "../../types/User";
-import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
+import { isLoggedIn } from "@lib/isLoggedIn";
 
-const ProfilePage = ({ user }: { user: User }): JSX.Element => {
+const ProfilePage = (): JSX.Element => {
     return <div />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const user = await loginCheckAndGetUser(req, res);
+    await isLoggedIn(req, res);
     return {
-        props: user,
+        props: {},
     };
 };
 

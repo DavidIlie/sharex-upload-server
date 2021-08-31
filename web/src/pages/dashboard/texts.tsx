@@ -3,14 +3,13 @@ import { NextSeo } from "next-seo";
 import { useQuery } from "react-query";
 import { Fade } from "react-awesome-reveal";
 
-import { loginCheckAndGetUser } from "@lib/loginCheckAndGetUser";
-import type User from "../../types/User";
+import { isLoggedIn } from "@lib/isLoggedIn";
 import type { FileType } from "@sharex-server/common";
 
 import NavBar from "@components/NavBar";
 import LargePreviewListPane from "@components/LargePreviewListPane";
 
-const Images = ({ user }: { user: User }): JSX.Element => {
+const Images = (): JSX.Element => {
     const { data, isLoading } = useQuery<FileType[]>(
         "/api/latest/texts/no-limit"
     );
@@ -21,7 +20,7 @@ const Images = ({ user }: { user: User }): JSX.Element => {
         <>
             <NextSeo title="Text Files" />
             <div className="mb-12">
-                <NavBar user={user} />
+                <NavBar />
                 <div className="pt-12" />
                 <Fade direction="up" triggerOnce>
                     <LargePreviewListPane type="text" data={data} />
@@ -32,9 +31,9 @@ const Images = ({ user }: { user: User }): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const user = await loginCheckAndGetUser(req, res);
+    await isLoggedIn(req, res);
     return {
-        props: user,
+        props: {},
     };
 };
 

@@ -1,6 +1,4 @@
 import { Field, Form, Formik } from "formik";
-import { useState } from "react";
-import { Fade } from "react-awesome-reveal";
 import { useTheme } from "next-themes";
 
 import { api_url } from "@lib/constants";
@@ -18,13 +16,12 @@ import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
 import Select from "@ui/form/Select";
 import Error from "@ui/form/Error";
-import SavedText from "@components/SettingSection/SavedText";
+import toast from "react-hot-toast";
 
 const GeneralSettingsModule = (): JSX.Element => {
     const { settings, updateSettings } = useSettingsStore();
     const { resolvedTheme } = useTheme();
     const updateTheme = ToggleColorMode();
-    const [finished, setFinished] = useState<boolean>(false);
 
     return (
         <SettingSection
@@ -45,15 +42,17 @@ const GeneralSettingsModule = (): JSX.Element => {
                     const r = await axios.post(`${api_url}/api/settings`, data);
                     const response = await r.data;
 
-                    updateSettings(response);
-                    setSubmitting(false);
-                    setFinished(true);
+                    if (r.status === 200) {
+                        toast.success("Updated successfully!");
 
-                    if (resolvedTheme !== response.default_theme) updateTheme();
+                        updateSettings(response);
+                        setSubmitting(false);
 
-                    setInterval(() => {
-                        setFinished(false);
-                    }, 1500);
+                        if (resolvedTheme !== response.default_theme)
+                            updateTheme();
+                    } else {
+                        toast.error(response.message);
+                    }
                 }}
             >
                 {({ errors, isSubmitting }) => (
@@ -92,11 +91,6 @@ const GeneralSettingsModule = (): JSX.Element => {
                             </div>
                         </TopPart>
                         <BottomPart>
-                            {finished && (
-                                <Fade duration={100}>
-                                    <SavedText />
-                                </Fade>
-                            )}
                             <SaveButton disabled={isSubmitting} />
                         </BottomPart>
                     </Form>
