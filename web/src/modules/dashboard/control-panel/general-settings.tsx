@@ -91,7 +91,7 @@ const GeneralSettingsModule = (): JSX.Element => {
                             </div>
                         </TopPart>
                         <BottomPart>
-                            <SaveButton disabled={isSubmitting} />
+                            <SaveButton isSubmitting={isSubmitting} />
                         </BottomPart>
                     </Form>
                 )}

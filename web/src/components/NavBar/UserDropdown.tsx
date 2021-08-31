@@ -3,15 +3,12 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { AiFillBug, AiOutlineUser, AiFillApi } from "react-icons/ai";
 
-import type User from "../../types/User";
-
 import ThemeToggle from "./ThemeToggle";
 
-interface UserDropdownProps {
-    user: User;
-}
+import useUser from "@hooks/useUser";
 
-const UserDropdown = ({ user }: UserDropdownProps): JSX.Element => {
+const UserDropdown = (): JSX.Element => {
+    const user = useUser();
     return (
         <div className="hidden sm:flex sm:items-center sm:ml-6">
             <Menu as="div" className="relative inline-block text-right">

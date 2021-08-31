@@ -14,6 +14,8 @@ import AppLayout from "@components/AppLayout";
 import { queryClient } from "@lib/queryClient";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { getSettingsData } from "@lib/settingsManager";
+import { useUserStore } from "@global-stores/useUserStore";
+import { getUserData } from "@lib/userManager";
 
 function App({ Component, pageProps, router }: AppProps) {
     const [finishedSettingsCheck, setFinishedSettingsCheck] =
@@ -22,12 +24,18 @@ function App({ Component, pageProps, router }: AppProps) {
     const [loading, setLoading] = useState<boolean>(false);
 
     const { settings, updateSettings } = useSettingsStore((s) => s);
+    const { user, updateUser } = useUserStore();
+
     useEffect(() => {
-        if (performance.navigation.type != 1)
-            if (settings.name) return setFinishedSettingsCheck(true);
+        if (performance.navigation.type != 1) {
+            if (settings.name && user.name)
+                return setFinishedSettingsCheck(true);
+        }
         const getData = async () => {
             const settings = await getSettingsData();
+            const user = await getUserData();
             updateSettings(settings);
+            updateUser(user);
             setFinishedSettingsCheck(true);
         };
         getData();
@@ -72,7 +80,7 @@ function App({ Component, pageProps, router }: AppProps) {
                 defaultTheme={settings.default_theme}
             >
                 <QueryClientProvider client={queryClient}>
-                    <Toaster position="top-right" />
+                    <Toaster position="top-center" />
                     <AppLayout>
                         {loading ? <Loader /> : <Component {...pageProps} />}
                     </AppLayout>

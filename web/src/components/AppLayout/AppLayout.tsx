@@ -12,7 +12,7 @@ const AppLayout = ({ children }: LayoutProps): JSX.Element => {
     return (
         <>
             {dissmissDevAlert !== "true" && <DevelopmentModeAlertModule />}
-            <div className="flex flex-col justify-between min-h-screen text-white bg-gray-100 dark:bg-gray-900">
+            <div className="flex flex-col justify-between min-h-screen text-black dark:text-white bg-gray-100 dark:bg-gray-900">
                 <ThemeSwitcher />
                 {children}
                 <Footer />

@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 import { isLoggedIn } from "@lib/isLoggedIn";
 
 import NavBar from "@components/NavBar";
-import GeneralSettingsModule from "@modules/control-panel/general-settings";
+import GeneralSettingsModule from "@modules/dashboard/control-panel/general-settings";
 
 const ControlPanel = (): JSX.Element => {
     return (
