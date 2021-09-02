@@ -45,7 +45,7 @@ const PreviewListPane = ({
                     </Link>
                 </div>
                 <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-                    {children.length === 0 && (
+                    {children && children.length === 0 && (
                         <>
                             <p className="px-4 pt-8 mb-4 col-span-6 text-center text-black dark:text-dark-gray-300">
                                 You don't have any {type} uploads right now,
