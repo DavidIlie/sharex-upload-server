@@ -8,7 +8,10 @@ export const queryClient = new QueryClient({
             retry: false,
             onError: (e) => {
                 if ("message" in (e as Error)) {
-                    toast.error((e as Error).message);
+                    const message = (e as Error).message;
+                    toast.error(message);
+                    if (message === "not authenticated")
+                        window.location.href = "/";
                 }
             },
             queryFn: defaultQueryFn as any,

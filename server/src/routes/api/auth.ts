@@ -1,4 +1,4 @@
-import { isAuth } from "../../lib/auth/isAuth";
+import { verifyTokenNoReqUser } from "../../lib/auth/verifyTokenNoReqUser";
 import { createTokens } from "../../lib/auth/createToken";
 import { Users } from "../../entities/Users";
 import { verifyPasswordToHashed } from "../../lib/hashPassword";
@@ -7,7 +7,7 @@ const router = express.Router();
 
 import { loginSchema } from "@sharex-server/common";
 
-router.get("/", isAuth(), async (_req, res) => {
+router.get("/", verifyTokenNoReqUser(), async (_req, res) => {
     res.sendStatus(200);
 });
 

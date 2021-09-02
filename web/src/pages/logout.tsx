@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-import { isLoggedIn } from "@lib/isLoggedIn";
+import { noRedirectIsLoggedIn } from "@lib/isLoggedIn";
 
 import Loader from "@components/Loader";
 
@@ -25,7 +25,7 @@ const Logout = (): JSX.Element => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     const cookie = req.cookies.access;
-    const loggedIn = await isLoggedIn(cookie);
+    const loggedIn = await noRedirectIsLoggedIn(cookie);
 
     if (!loggedIn) {
         res.setHeader("location", "/login");

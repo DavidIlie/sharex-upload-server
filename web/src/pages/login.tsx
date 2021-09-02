@@ -9,8 +9,11 @@ import { loginSchema } from "@sharex-server/common";
 import { noRedirectIsLoggedIn } from "@lib/isLoggedIn";
 import { api_url } from "@lib/constants";
 import { axios } from "@lib/axiosClient";
+import { getSettingsData } from "@lib/settingsManager";
+import { getUserData } from "@lib/userManager";
 
 import { useSettingsStore } from "@global-stores/useSettingsStore";
+import { useUserStore } from "@global-stores/useUserStore";
 
 import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
@@ -21,7 +24,8 @@ const Login = (): JSX.Element => {
     const [errorMessage, setErrorMessage] = useState<boolean | string>(false);
     const router = useRouter();
 
-    const { settings, update: updateSettings } = useSettingsStore();
+    const { settings, updateSettings } = useSettingsStore();
+    const { updateUser } = useUserStore();
 
     return (
         <>
@@ -56,7 +60,8 @@ const Login = (): JSX.Element => {
                                 if (r.status !== 200) {
                                     setErrorMessage(response.message);
                                 } else {
-                                    updateSettings();
+                                    updateSettings(await getSettingsData());
+                                    updateUser(await getUserData());
                                     router.push("/dashboard");
                                 }
 
