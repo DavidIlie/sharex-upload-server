@@ -29,7 +29,7 @@ const LargePreviewListPane = ({
 
     return (
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="bg-gray-200 dark:bg-gray-800 dark:bg-opacity-25 overflow-hidden shadow-xl sm:rounded-lg">
+            <div className="bg-gray-200 dark:bg-gray-700 dark:bg-opacity-25 overflow-hidden shadow-xl sm:rounded-lg">
                 {data?.length === 0 || data === undefined ? (
                     <>
                         <p className="px-4 pt-8 mb-4 col-span-6 text-center text-black dark:text-dark-gray-300">
