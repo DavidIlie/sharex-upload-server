@@ -6,6 +6,7 @@ import { isLoggedIn } from "@lib/isLoggedIn";
 import NavBar from "@components/NavBar";
 
 import ProfileInformationModule from "@modules/user/profile/profile-information";
+import ChangePasswordModule from "@modules/user/profile/change-password";
 
 const ProfilePage = (): JSX.Element => {
     return (
@@ -15,6 +16,8 @@ const ProfilePage = (): JSX.Element => {
                 <NavBar />
                 <div className="pt-12" />
                 <ProfileInformationModule />
+                <div className="pt-12" />
+                <ChangePasswordModule />
             </div>
         </>
     );

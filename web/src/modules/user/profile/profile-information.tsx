@@ -1,8 +1,10 @@
 import { Field, Form, Formik } from "formik";
+import toast from "react-hot-toast";
 
 import { axios } from "@lib/axiosClient";
 import { api_url } from "@lib/constants";
 import { useUserStore } from "@global-stores/useUserStore";
+import { updateProfileSchema } from "@sharex-server/common";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -12,7 +14,6 @@ import SaveButton from "@components/SettingSection/SaveButton";
 import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
 import Error from "@ui/form/Error";
-import toast from "react-hot-toast";
 
 const ProfileInformationModule = (): JSX.Element => {
     const { user, updateUser } = useUserStore();
@@ -26,21 +27,26 @@ const ProfileInformationModule = (): JSX.Element => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 initialValues={{ name: user.name, email: user!.email }}
+                validationSchema={updateProfileSchema}
                 onSubmit={async (data, { setSubmitting }) => {
                     setSubmitting(true);
 
-                    const r = await axios.post(
-                        `${api_url}/api/user/profile`,
-                        data
-                    );
-                    const response = await r.data;
+                    try {
+                        const r = await axios.post(
+                            `${api_url}/api/user/profile`,
+                            data
+                        );
+                        const response = await r.data;
 
-                    if (r.status === 200) {
-                        toast.success("Updated successfully!");
-                        updateUser(response);
-                        setSubmitting(true);
-                    } else {
-                        toast.error(response.message);
+                        if (r.status === 200) {
+                            toast.success("Updated successfully!");
+                            updateUser(response);
+                            setSubmitting(true);
+                        } else {
+                            toast.error(response.message);
+                        }
+                    } catch (error: any) {
+                        toast.error(error.message);
                     }
                 }}
             >

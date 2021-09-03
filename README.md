@@ -14,8 +14,7 @@ backend:
 
 frontend:
 
--   dashboard (almost done)
-    -   admin panel
+-   admin panel
 -   user
-    -   profile
+    -   profile (almost done)
     -   api keys
