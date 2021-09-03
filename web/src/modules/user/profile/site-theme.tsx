@@ -7,14 +7,14 @@ import TopPart from "@components/SettingSection/TopPart";
 
 const SiteThemeModule = (): JSX.Element => {
     const { theme } = useTheme();
-
     const updateTheme = ToggleColorMode();
+
     return (
         <SettingSection
             title="Site Theme Preferences"
             subtitle="Change the look of the site when you're logged in."
         >
-            <TopPart noGrid>
+            <TopPart noGrid noBottom>
                 <div className="mt-3 max-w-xl text-sm text-gray-600 dark:text-dark-gray-100">
                     <p>
                         You're currently viewing the site in {theme} mode, you
