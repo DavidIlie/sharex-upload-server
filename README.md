@@ -10,11 +10,12 @@ backend:
     -   text
 -   ability create API keys for specific tasks (and then use that to authenticate when adding new images/etc)
     -   permissions system for api keys
+-   implement deleting of accounts
 -   add support for other providers (s3)
 
 frontend:
 
--   admin panel
+-   admin panel (almost done)
 -   user
-    -   profile (almost done)
+    -   profile (only have to implement deleting of accounts)
     -   api keys

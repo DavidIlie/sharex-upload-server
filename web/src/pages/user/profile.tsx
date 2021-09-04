@@ -8,6 +8,7 @@ import NavBar from "@components/NavBar";
 import ProfileInformationModule from "@modules/user/profile/profile-information";
 import ChangePasswordModule from "@modules/user/profile/change-password";
 import SiteThemeModule from "@modules/user/profile/site-theme";
+import DeleteAccountModule from "@modules/user/profile/delete-account";
 
 const ProfilePage = (): JSX.Element => {
     return (
@@ -21,6 +22,8 @@ const ProfilePage = (): JSX.Element => {
                 <ChangePasswordModule />
                 <div className="pt-12" />
                 <SiteThemeModule />
+                <div className="pt-12" />
+                <DeleteAccountModule />
             </div>
         </>
     );
