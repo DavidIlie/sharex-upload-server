@@ -89,10 +89,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         return {
             props: {
                 file: response,
-                env: {
-                    api_url: process.env.API_URL,
-                    app_url: process.env.APP_URL,
-                },
             },
         };
     }
