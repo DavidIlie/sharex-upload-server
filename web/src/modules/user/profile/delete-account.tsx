@@ -1,6 +1,7 @@
+import toast from "react-hot-toast";
+
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
-import toast from "react-hot-toast";
 
 const DeleteAccountModule = (): JSX.Element => {
     return (
