@@ -6,19 +6,48 @@ const Footer = (): JSX.Element => {
             <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-dark-gray-200">
                 <a
                     href="https://github.com/DavidIlie/sharex-media-server"
-                    target="blank"
+                    target="_blank"
                     className="font-semibold hover:underline"
                 >
-                    sharex-media-server v0.1.0{is_dev && "-DEV"}
+                    sharex-media-server v0.1.2{is_dev && "-DEV"}
                 </a>
                 <p className="text-sm">
                     Created by{" "}
                     <a
                         className="text-indigo-500 hover:text-indigo-600 duration-150 font-semibold"
                         href="https://davidilie.com"
+                        target="_blank"
                     >
                         David Ilie
                     </a>
+                    , powered by
+                    <a
+                        className="text-indigo-400 hover:text-indigo-500 font-semibold"
+                        href="https://nextjs.org/"
+                        target="_blank"
+                    >
+                        {" "}
+                        Next.js
+                    </a>
+                    ,
+                    <a
+                        className="text-indigo-400 hover:text-indigo-500 font-semibold"
+                        href="https://expressjs.com/"
+                        target="_blank"
+                    >
+                        {" "}
+                        Express.js
+                    </a>
+                    , and
+                    <a
+                        className="text-indigo-400 hover:text-indigo-500 font-semibold"
+                        href="https://tailwindcss.com/"
+                        target="_blank"
+                    >
+                        {" "}
+                        Tailwind CSS
+                    </a>
+                    .
                 </p>
             </div>
         </footer>
