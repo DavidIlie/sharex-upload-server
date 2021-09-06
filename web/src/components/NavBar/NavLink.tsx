@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -16,6 +16,8 @@ const NavLink = ({ name, link, ...rest }: NavLinkProps): JSX.Element => {
             setPageWidth(window.innerWidth);
         });
     }, [pageWidth]);
+
+    if (pageWidth === 0) return <div className="hidden" />;
 
     const router = useRouter();
     const path = router.pathname;
