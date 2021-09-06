@@ -19,7 +19,8 @@ const SiteThemeModule = (): JSX.Element => {
                     <p>
                         You're currently viewing the site in {theme} mode, you
                         can use the button below to change your prefered site
-                        theme.
+                        theme. You can also change the theme from the dropdown
+                        on the navigation bar.
                     </p>
 
                     <button
