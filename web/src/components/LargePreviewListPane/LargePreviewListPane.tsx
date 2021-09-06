@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import type { FileType } from "@sharex-server/common";
+import useSettings from "@hooks/useSettings";
 
 import UploadPreviewCard from "@components/UploadPreviewCard";
 
@@ -13,7 +14,11 @@ const LargePreviewListPane = ({
     type,
     data,
 }: LargePreviewListPaneProps): JSX.Element => {
-    const postsPerPage = 24;
+    const settings = useSettings();
+
+    const settingsPostPerPage = settings.media_settings![`${type}s`].per_page;
+
+    const postsPerPage = settingsPostPerPage || 24;
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     const indexOfLastPost = currentPage * postsPerPage;
