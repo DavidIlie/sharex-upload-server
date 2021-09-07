@@ -14,7 +14,7 @@ const Footer = (): JSX.Element => {
                 <p className="text-sm">
                     Created by{" "}
                     <a
-                        className="text-indigo-500 hover:text-indigo-600 duration-150 font-semibold"
+                        className="text-indigo-400 hover:text-indigo-500 duration-150 font-semibold"
                         href="https://davidilie.com"
                         target="_blank"
                     >
