@@ -26,7 +26,9 @@ const main = async () => {
         const uploads = await Uploads.find();
         if (uploads) {
             await Uploads.remove(uploads);
-            console.log(chalk`{bold.blue removed all uploads in DB}`);
+            console.log(
+                chalk`{bold.blue removed all uploads in DB (upload folder empty)}`
+            );
         }
     }
 
