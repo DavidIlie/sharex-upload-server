@@ -42,11 +42,11 @@ router.post("/login", async (req, res, next) => {
 
         const { accessToken } = createTokens(user, body.remember);
 
-        res.cookie("access", accessToken);
-
-        return res.json({
-            accessToken: accessToken,
+        res.cookie("access", accessToken, {
+            maxAge: body.remember === true ? 604800 : 86400,
         });
+
+        return res.sendStatus(200);
     } catch (error) {
         return next(error);
     }
