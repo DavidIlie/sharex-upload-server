@@ -4,6 +4,7 @@ import { DefaultSeo } from "next-seo";
 import { QueryClientProvider } from "react-query";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
+import ReactModal from "react-modal";
 
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
@@ -16,6 +17,8 @@ import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { getSettingsData } from "@lib/settingsManager";
 import { useUserStore } from "@global-stores/useUserStore";
 import { getUserData } from "@lib/userManager";
+
+ReactModal.setAppElement("#__next");
 
 function App({ Component, pageProps, router }: AppProps) {
     const [finishedSettingsCheck, setFinishedSettingsCheck] =
