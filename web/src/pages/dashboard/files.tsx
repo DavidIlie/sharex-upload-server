@@ -21,8 +21,13 @@ const Images = (): JSX.Element => {
             <NextSeo title="Files" />
             <div className="mb-12">
                 <NavBar />
-                <div className="pt-12" />
+                <div className="pt-6" />
                 <Fade direction="up" triggerOnce>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-end mb-3">
+                        <button className="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-dark-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 mt-4">
+                            Upload File
+                        </button>
+                    </div>
                     <LargePreviewListPane type="file" data={data} />
                 </Fade>
             </div>
