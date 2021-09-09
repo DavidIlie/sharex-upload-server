@@ -9,7 +9,7 @@ export const queryClient = new QueryClient({
             onError: (e) => {
                 if ("message" in (e as Error)) {
                     const message = (e as Error).message;
-                    toast.error(message);
+                    toast.error(message, { id: "notLoggedIn" });
                     if (message === "not authenticated")
                         window.location.href = "/";
                 }
