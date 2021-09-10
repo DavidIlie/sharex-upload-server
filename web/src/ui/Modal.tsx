@@ -1,71 +1,68 @@
-import React from "react";
-import ReactModal from "react-modal";
-import { AiOutlineClose } from "react-icons/ai";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 
-import { useTheme } from "next-themes";
+interface ModalProps {
+    isOpen: boolean;
+    updateModalState: () => void;
+    title: string;
+    children: JSX.Element;
+}
 
-const customStyles = (theme: string) => {
-    return {
-        overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            zIndex: 1000,
-        },
-        content: {
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            borderRadius: 8,
-            padding: "20px 20px 20px 20px",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: theme === "dark" ? "#1F2937" : "#F3F4F6",
-            border: "none",
-            maxHeight: "80vh",
-            width: "50%",
-            maxWidth: 500,
-        },
-    };
-};
-
-export const Modal: React.FC<
-    ReactModal["props"] & { variant?: keyof typeof customStyles }
-> = ({ children, variant = "default", ...props }) => {
-    const { theme } = useTheme();
-
-    const onKeyDown = (event: React.KeyboardEvent) => {
-        const currentActive = document.activeElement;
-
-        if (event.key === "ArrowLeft") {
-            (currentActive?.previousElementSibling as HTMLElement)?.focus();
-        } else if (event.key === "ArrowRight") {
-            (currentActive?.nextElementSibling as HTMLElement)?.focus();
-        }
-    };
-
+const Modal = ({
+    isOpen,
+    updateModalState,
+    title,
+    children,
+}: ModalProps): JSX.Element => {
     return (
-        <ReactModal
-            shouldCloseOnEsc
-            shouldFocusAfterRender
-            style={customStyles(theme!)}
-            {...props}
-        >
-            <div className={`flex flex-col w-full`}>
-                <div className={`flex justify-end absolute right-3 top-3`}>
-                    <button
-                        className="p-1 text-black dark:text-white"
-                        onClick={(e) => props?.onRequestClose?.(e)}
+        <Transition appear show={isOpen} as={Fragment}>
+            <Dialog
+                as="div"
+                className="fixed inset-0 z-10 overflow-y-auto"
+                onClose={updateModalState}
+            >
+                <div className="min-h-screen px-4 text-center">
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
                     >
-                        <AiOutlineClose size="1.5rem" />
-                    </button>
+                        <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+                    </Transition.Child>
+
+                    <span
+                        className="inline-block h-screen align-middle"
+                        aria-hidden="true"
+                    >
+                        &#8203;
+                    </span>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0 scale-95"
+                        enterTo="opacity-100 scale-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100 scale-100"
+                        leaveTo="opacity-0 scale-95"
+                    >
+                        <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-800 shadow-xl rounded-2xl">
+                            <Dialog.Title
+                                as="h3"
+                                className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
+                            >
+                                {title}
+                            </Dialog.Title>
+                            {children}
+                        </div>
+                    </Transition.Child>
                 </div>
-                <div
-                    tabIndex={-1}
-                    className={`focus:outline-none`}
-                    onKeyDown={onKeyDown}
-                >
-                    {children}
-                </div>
-            </div>
-        </ReactModal>
+            </Dialog>
+        </Transition>
     );
 };
+
+export default Modal;

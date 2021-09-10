@@ -43,7 +43,7 @@ router.post("/login", async (req, res, next) => {
         const { accessToken } = createTokens(user, body.remember);
 
         res.cookie("access", accessToken, {
-            maxAge: body.remember === true ? 604800 : 86400,
+            maxAge: body.remember === true ? 604800000 : 86400000,
         });
 
         return res.sendStatus(200);
