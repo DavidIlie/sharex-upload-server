@@ -52,7 +52,7 @@ const Login = (): JSX.Element => {
                                 setSubmitting(true);
 
                                 const r = await axios.post(
-                                    `${api_url}/api/user/auth/login`,
+                                    `${api_url}/api/auth/login`,
                                     data
                                 );
                                 const response = await r.data;

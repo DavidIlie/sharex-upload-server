@@ -9,9 +9,6 @@ import {
     changePasswordSchema,
 } from "@sharex-server/common";
 
-import auth from "./auth";
-router.use("/auth", auth);
-
 router.get("/", isAuth(), async (req, res) => {
     const user = req.user;
     res.json({

@@ -1,6 +1,6 @@
 export const noRedirectIsLoggedIn = async (cookie: string) => {
     if (cookie) {
-        const request = await fetch(`${process.env.API_URL}/api/user/auth`, {
+        const request = await fetch(`${process.env.API_URL}/api/auth`, {
             credentials: "include",
             headers: {
                 access_token: cookie,
@@ -15,7 +15,7 @@ export const isLoggedIn = async (req: any, res: any) => {
     const cookie = req.cookies.access;
 
     if (cookie) {
-        const request = await fetch(`${process.env.API_URL}/api/user/auth`, {
+        const request = await fetch(`${process.env.API_URL}/api/auth`, {
             credentials: "include",
             headers: {
                 access_token: cookie,
