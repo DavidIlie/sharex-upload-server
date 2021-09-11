@@ -9,11 +9,17 @@ export const canBeAuth: (st?: boolean) => RequestHandler<{}, any, any, {}> =
         const accessToken = req.cookies.access || req.headers["access_token"];
 
         if (typeof accessToken == "string") {
-            let data = <AccessTokenData>(
-                verify(accessToken, process.env.ACCESS_TOKEN_SECRET as string)
-            );
+            let data;
+            try {
+                data = <AccessTokenData>(
+                    verify(
+                        accessToken,
+                        process.env.ACCESS_TOKEN_SECRET as string
+                    )
+                );
+            } catch {}
 
-            const user = await Users.findOne(data.userId);
+            const user = await Users.findOne(data?.userId);
             if (user) req.user = user;
         }
 

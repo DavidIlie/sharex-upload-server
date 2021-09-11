@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 
 import useSettings from "@hooks/useSettings";
+import { isLoggedIn } from "@lib/isLoggedIn";
 
 const Home = (): JSX.Element => {
     const settings = useSettings();
@@ -15,7 +16,9 @@ const Home = (): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
-    if (req.cookies.access) {
+    const loggedIn = await isLoggedIn(req, res);
+
+    if (loggedIn) {
         res.setHeader("location", "/dashboard");
         res.statusCode = 302;
         res.end();
@@ -25,7 +28,9 @@ export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
         res.end();
     }
 
-    return { props: {} };
+    return {
+        props: {},
+    };
 };
 
 export default Home;
