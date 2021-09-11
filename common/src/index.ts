@@ -5,3 +5,6 @@ export * from "./yup-schemas/loginSchema";
 export * from "./yup-schemas/updateSettingsSchema";
 export * from "./yup-schemas/updateProfileSchema";
 export * from "./yup-schemas/changePasswordSchema";
+export * from "./yup-schemas/media-settings/updateImagesPerPageSchema";
+export * from "./yup-schemas/media-settings/updateFilesPerPageSchema";
+export * from "./yup-schemas/media-settings/updateTextsPerPageSchema";

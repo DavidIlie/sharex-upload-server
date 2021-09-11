@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { useTheme } from "next-themes";
+import toast from "react-hot-toast";
 
 import { api_url } from "@lib/constants";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
@@ -16,7 +17,6 @@ import Label from "@ui/form/Label";
 import Input from "@ui/form/Input";
 import Select from "@ui/form/Select";
 import Error from "@ui/form/Error";
-import toast from "react-hot-toast";
 
 const GeneralSettingsModule = (): JSX.Element => {
     const { settings, updateSettings } = useSettingsStore();
