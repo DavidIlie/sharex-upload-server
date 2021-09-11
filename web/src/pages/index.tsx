@@ -1,7 +1,6 @@
 import { GetServerSideProps } from "next";
 
 import useSettings from "@hooks/useSettings";
-import { isLoggedIn } from "@lib/isLoggedIn";
 
 const Home = (): JSX.Element => {
     const settings = useSettings();
@@ -16,9 +15,15 @@ const Home = (): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
-    const loggedIn = await isLoggedIn(req, res);
+    const cookie = req.cookies.access;
 
-    if (loggedIn) {
+    const request = await fetch(`${process.env.API_URL}/api/auth`, {
+        credentials: "include",
+        headers: {
+            access_token: cookie,
+        },
+    });
+    if (request.status === 200) {
         res.setHeader("location", "/dashboard");
         res.statusCode = 302;
         res.end();
