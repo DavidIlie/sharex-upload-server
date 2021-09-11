@@ -15,7 +15,6 @@ backend:
 
 frontend:
 
--   admin panel (almost done)
 -   user
     -   profile (only have to implement deleting of accounts)
     -   api keys
