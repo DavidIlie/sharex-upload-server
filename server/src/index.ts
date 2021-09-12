@@ -13,7 +13,12 @@ import { Uploads } from "./entities/Uploads";
 import * as middlewares from "./middleware";
 import api from "./routes";
 
+import { createToken } from "./lib/permissions/createToken";
+
 const main = async () => {
+    const { token, permissions } = createToken(["image:view", "file:view"]);
+    console.log(token, permissions);
+
     const conn = await createConnection();
     console.log(chalk`{bold.yellow running migrations}`);
     await conn.runMigrations();
