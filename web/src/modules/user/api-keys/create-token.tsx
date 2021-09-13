@@ -1,7 +1,14 @@
+import { Field, Form, Formik } from "formik";
+
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
 import BottomPart from "@components/SettingSection/BottomPart";
 import SaveButton from "@components/SettingSection/SaveButton";
+
+import Label from "@ui/form/Label";
+import Input from "@ui/form/Input";
+import Error from "@ui/form/Error";
+import Radio from "@ui/form/Radio";
 
 const CreateTokenModule = (): JSX.Element => {
     return (
@@ -9,12 +16,52 @@ const CreateTokenModule = (): JSX.Element => {
             title="Create API Key"
             subtitle="API keys allow third-party services to authenticate with this application on your behalf."
         >
-            <TopPart>
-                <h1>yo</h1>
-            </TopPart>
-            <BottomPart>
-                <SaveButton isSubmitting={false} />
-            </BottomPart>
+            <Formik
+                validateOnChange={false}
+                validateOnBlur={false}
+                initialValues={{
+                    name: "",
+                }}
+                onSubmit={async (data, { setSubmitting }) => {
+                    setSubmitting(true);
+
+                    console.log(data);
+
+                    setSubmitting(false);
+                }}
+            >
+                {({ errors, isSubmitting }) => (
+                    <Form>
+                        <TopPart>
+                            <div className="col-span-6 sm:col-span-4">
+                                <Label>Token Name</Label>
+                                <Field name="name" required as={Input} />
+                                <Error error={errors.name} />
+                            </div>
+                            <div className="col-span-6 sm:col-span-4">
+                                <Label>Permissions:</Label>
+                                <div className="ml-3 mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <Field label="image:view" as={Radio} />
+                                    <Field label="file:view" as={Radio} />
+                                    <Field label="text:view" as={Radio} />
+                                    <Field label="image:upload" as={Radio} />
+                                    <Field label="file:upload" as={Radio} />
+                                    <Field label="text:upload" as={Radio} />
+                                    <Field label="image:list" as={Radio} />
+                                    <Field label="file:list" as={Radio} />
+                                    <Field label="text:list" as={Radio} />
+                                    <Field label="image:delete" as={Radio} />
+                                    <Field label="file:delete" as={Radio} />
+                                    <Field label="text:delete" as={Radio} />
+                                </div>
+                            </div>
+                        </TopPart>
+                        <BottomPart>
+                            <SaveButton isSubmitting={isSubmitting} />
+                        </BottomPart>
+                    </Form>
+                )}
+            </Formik>
         </SettingSection>
     );
 };

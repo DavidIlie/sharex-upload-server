@@ -13,6 +13,7 @@
         "@tailwindcss/forms": "^0.3.3",
         "axios": "^0.21.1",
         "formik": "^2.2.9",
+        "litkey": "^0.1.2",
         "next": "latest",
         "next-compose-plugins": "^2.2.1",
         "next-seo": "^4.26.0",

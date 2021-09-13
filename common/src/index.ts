@@ -10,3 +10,4 @@ export * from "./yup-schemas/changePasswordSchema";
 export * from "./yup-schemas/media-settings/updateImagesPerPageSchema";
 export * from "./yup-schemas/media-settings/updateFilesPerPageSchema";
 export * from "./yup-schemas/media-settings/updateTextsPerPageSchema";
+export * from "./yup-schemas/createAPIKeySchema";

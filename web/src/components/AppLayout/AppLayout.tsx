@@ -1,3 +1,7 @@
+import { useShortcut } from "litkey";
+
+import ToggleColorMode from "@hooks/ToggleColorMode";
+
 import Footer from "@components/Footer";
 import ThemeSwitcher from "@components/ThemeSwitcher";
 import DevelopmentModeAlertModule from "@modules/misc/DevelopmentModeAlert";
@@ -8,6 +12,9 @@ interface LayoutProps {
 
 const AppLayout = ({ children }: LayoutProps): JSX.Element => {
     const dissmissDevAlert = localStorage.getItem("dismissDevelopmentAlert");
+
+    const changeTheme = ToggleColorMode();
+    useShortcut("shift+d", () => changeTheme());
 
     return (
         <>
