@@ -10,7 +10,12 @@ const ManageTokensModule = (): JSX.Element => {
             subtitle="You may delete any of your existing tokens if they are no longer needed."
         >
             <TopPart>
-                <h1>yo</h1>
+                <div className="col-span-6 sm:col-span-4">
+                    <h1>
+                        You don't have any API Keys right now, add one and then
+                        come back!
+                    </h1>
+                </div>
             </TopPart>
             <BottomPart>
                 <SaveButton isSubmitting={false} />
