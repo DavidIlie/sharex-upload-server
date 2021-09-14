@@ -1,4 +1,4 @@
-import { Field, Form, Formik, FieldArray } from "formik";
+import { Field, Form, Formik, FieldArray, FieldArrayRenderProps } from "formik";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -11,6 +11,18 @@ import Error from "@ui/form/Error";
 import Radio from "@ui/form/Radio";
 
 const CreateTokenModule = (): JSX.Element => {
+    const APITypesController = (
+        name: string,
+        types: Array<string>,
+        arrayHelpers: FieldArrayRenderProps
+    ) => {
+        if (types.includes(name)) {
+            arrayHelpers.remove(types.indexOf(name));
+        } else {
+            arrayHelpers.push(name);
+        }
+    };
+
     return (
         <SettingSection
             title="Create API Key"
@@ -52,54 +64,133 @@ const CreateTokenModule = (): JSX.Element => {
                                                 <Field
                                                     label="image:view"
                                                     onClick={() =>
-                                                        arrayHelpers.push(
-                                                            "image:view"
+                                                        APITypesController(
+                                                            "image:view",
+                                                            values.types,
+                                                            arrayHelpers
                                                         )
                                                     }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="file:view"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "file:view",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="text:view"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "text:view",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="image:upload"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "image:upload",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="file:upload"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "file:upload",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="text:upload"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "text:upload",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="image:list"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "image:list",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="file:list"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "file:list",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="text:list"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "text:list",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="image:delete"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "image:delete",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="file:delete"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "file:delete",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                                 <Field
                                                     label="text:delete"
+                                                    onClick={() =>
+                                                        APITypesController(
+                                                            "text:delete",
+                                                            values.types,
+                                                            arrayHelpers
+                                                        )
+                                                    }
                                                     as={Radio}
                                                 />
                                             </>
