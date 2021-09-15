@@ -1,5 +1,7 @@
 import { Field, Form, Formik, FieldArray, FieldArrayRenderProps } from "formik";
 
+import useSettings from "@hooks/useSettings";
+
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
 import BottomPart from "@components/SettingSection/BottomPart";
@@ -11,6 +13,8 @@ import Error from "@ui/form/Error";
 import Radio from "@ui/form/Radio";
 
 const CreateTokenModule = (): JSX.Element => {
+    const settings = useSettings();
+
     const APITypesController = (
         name: string,
         types: Array<string>,
@@ -26,7 +30,7 @@ const CreateTokenModule = (): JSX.Element => {
     return (
         <SettingSection
             title="Create API Key"
-            subtitle="API keys allow third-party services to authenticate with this application on your behalf."
+            subtitle={`API keys allow third-party services to authenticate with ${settings.name} on your behalf.`}
         >
             <Formik
                 validateOnChange={false}
