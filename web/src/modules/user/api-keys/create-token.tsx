@@ -1,6 +1,7 @@
 import { Field, Form, Formik, FieldArray, FieldArrayRenderProps } from "formik";
 
 import useSettings from "@hooks/useSettings";
+import { createAPIKeySchema } from "@sharex-server/common";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -35,9 +36,10 @@ const CreateTokenModule = (): JSX.Element => {
             <Formik
                 validateOnChange={false}
                 validateOnBlur={false}
+                validationSchema={createAPIKeySchema}
                 initialValues={{
                     name: "",
-                    types: [],
+                    permissions: [],
                 }}
                 onSubmit={async (data, { setSubmitting }) => {
                     setSubmitting(true);
@@ -62,7 +64,7 @@ const CreateTokenModule = (): JSX.Element => {
                                 <Label>Permissions:</Label>
                                 <div className="ml-3 mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <FieldArray
-                                        name="types"
+                                        name="permissions"
                                         render={(arrayHelpers) => (
                                             <>
                                                 <Field
@@ -70,7 +72,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "image:view",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -81,7 +83,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "file:view",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -92,7 +94,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "text:view",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -103,7 +105,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "image:upload",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -114,7 +116,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "file:upload",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -125,7 +127,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "text:upload",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -136,7 +138,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "image:list",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -147,7 +149,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "file:list",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -158,7 +160,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "text:list",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -169,7 +171,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "image:delete",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -180,7 +182,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "file:delete",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -191,7 +193,7 @@ const CreateTokenModule = (): JSX.Element => {
                                                     onClick={() =>
                                                         APITypesController(
                                                             "text:delete",
-                                                            values.types,
+                                                            values.permissions,
                                                             arrayHelpers
                                                         )
                                                     }
@@ -201,6 +203,8 @@ const CreateTokenModule = (): JSX.Element => {
                                         )}
                                     />
                                 </div>
+                                <div className="pt-2" />
+                                <Error error={errors.permissions} />
                             </div>
                         </TopPart>
                         <BottomPart>

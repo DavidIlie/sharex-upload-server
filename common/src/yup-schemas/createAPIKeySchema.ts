@@ -6,5 +6,10 @@ export const createAPIKeySchema = yup.object().shape({
         .min(4, "Name can't be less than 4 characters.")
         .max(32, "Name can't be more than 32 characters.")
         .required(),
-    permissions: yup.array().of(yup.string()),
+    permissions: yup
+        .array()
+        .of(yup.string())
+        .defined()
+        .required()
+        .min(1, "You must pick at least one option."),
 });
