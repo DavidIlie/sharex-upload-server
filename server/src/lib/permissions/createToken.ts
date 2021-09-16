@@ -2,7 +2,7 @@ import * as crypto from "crypto";
 
 import { isPermission } from "@sharex-server/common";
 
-export const createToken = (permissions: Array<string>) => {
+export const createToken = (permissions: Array<string | undefined>) => {
     permissions.forEach((permission) => {
         if (!isPermission(permission)) {
             throw new Error(`${permission} is not a valid permission!`);
@@ -11,5 +11,5 @@ export const createToken = (permissions: Array<string>) => {
 
     let token = crypto.randomBytes(20).toString("hex");
 
-    return { token, permissions };
+    return token;
 };

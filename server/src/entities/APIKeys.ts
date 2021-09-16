@@ -1,12 +1,12 @@
 import { BaseEntity, Column, Entity, ObjectID, ObjectIdColumn } from "typeorm";
 
 @Entity()
-export class Settings extends BaseEntity {
+export class APIKeys extends BaseEntity {
     @ObjectIdColumn()
     id: ObjectID;
 
     @ObjectIdColumn()
-    cretor: ObjectID;
+    creator: ObjectID;
 
     @Column()
     name: string;
@@ -15,5 +15,5 @@ export class Settings extends BaseEntity {
     token: string;
 
     @Column()
-    permissions: Array<string>;
+    permissions: Array<string | undefined>;
 }

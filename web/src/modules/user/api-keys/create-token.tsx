@@ -1,7 +1,10 @@
 import { Field, Form, Formik, FieldArray, FieldArrayRenderProps } from "formik";
+import toast from "react-hot-toast";
 
 import useSettings from "@hooks/useSettings";
 import { createAPIKeySchema } from "@sharex-server/common";
+import { axios } from "@lib/axiosClient";
+import { api_url } from "@lib/constants";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -41,11 +44,19 @@ const CreateTokenModule = (): JSX.Element => {
                     name: "",
                     permissions: [],
                 }}
-                onSubmit={async (data, { setSubmitting }) => {
+                onSubmit={async (data, { setSubmitting, resetForm }) => {
                     setSubmitting(true);
 
-                    console.log(data);
+                    const r = await axios.post(`${api_url}/api/keys`, data);
+                    const response = await r.data;
 
+                    if (r.status === 200) {
+                        toast.success("Token added successfully!");
+                    } else {
+                        toast.error(response);
+                    }
+
+                    resetForm();
                     setSubmitting(false);
                 }}
             >

@@ -13,20 +13,7 @@ import { Uploads } from "./entities/Uploads";
 import * as middlewares from "./middleware";
 import api from "./routes";
 
-import { createToken } from "./lib/permissions/createToken";
-
-import { getPermissions } from "@sharex-server/common";
-
 const main = async () => {
-    const { token, permissions: perms } = createToken([
-        "image:view",
-        "file:view",
-    ]);
-    console.log(token, perms);
-
-    const permissions = getPermissions();
-    console.log(permissions);
-
     const conn = await createConnection();
     console.log(chalk`{bold.yellow running migrations}`);
     await conn.runMigrations();

@@ -19,6 +19,9 @@ router.use("/settings", settings);
 import auth from "./auth";
 router.use("/auth", auth);
 
+import keys from "./keys";
+router.use("/keys", keys);
+
 router.get("/file/:slug", async (req, res, next) => {
     try {
         const { slug } = req.params;
