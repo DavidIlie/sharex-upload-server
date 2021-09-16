@@ -24,6 +24,18 @@ export class Permission {
     }
 }
 
+export const getPermissions = () => {
+    let permissions = [];
+
+    for (let type in PermissionType) {
+        for (let action in PermissionAction) {
+            permissions.push(`${type}:${action}`);
+        }
+    }
+
+    return permissions;
+};
+
 export const isPermission = (x: any): x is Permission => {
     if (typeof x !== "string") {
         return false;

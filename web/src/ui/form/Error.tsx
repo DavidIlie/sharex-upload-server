@@ -1,4 +1,8 @@
-const Error = ({ error }: { error: string | undefined }): JSX.Element => {
+const Error = ({
+    error,
+}: {
+    error: string | string[] | undefined;
+}): JSX.Element => {
     return error !== undefined ? (
         <p className="text-sm text-red-400 mt-2">{error}</p>
     ) : (
