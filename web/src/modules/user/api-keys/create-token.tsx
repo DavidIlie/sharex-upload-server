@@ -53,9 +53,6 @@ const CreateTokenModule = (): JSX.Element => {
                     <Form>
                         <TopPart>
                             <div className="col-span-6 sm:col-span-4">
-                                <h1>{JSON.stringify(values)}</h1>
-                            </div>
-                            <div className="col-span-6 sm:col-span-4">
                                 <Label>Token Name</Label>
                                 <Field name="name" required as={Input} />
                                 <Error error={errors.name} />
