@@ -7,6 +7,19 @@ import { createAPIKeySchema } from "@sharex-server/common";
 
 import { isAuth } from "../../lib/auth/isAuth";
 
+router.get("/", isAuth(), async (req, res, next) => {
+    try {
+        const keys = await APIKeys.find({ where: { creator: req.user?.id } });
+        keys.forEach((key) => {
+            //@ts-ignore
+            delete key.token;
+        });
+        res.json(keys);
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.post("/", isAuth(), async (req, res, next) => {
     try {
         const body = await createAPIKeySchema.validate(req.body);
