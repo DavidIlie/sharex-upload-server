@@ -2,7 +2,7 @@ import { Field, Form, Formik, FieldArray, FieldArrayRenderProps } from "formik";
 import toast from "react-hot-toast";
 
 import useSettings from "@hooks/useSettings";
-import { createAPIKeySchema } from "@sharex-server/common";
+import { createAPIKeySchema, getPermissions } from "@sharex-server/common";
 import { axios } from "@lib/axiosClient";
 import { api_url } from "@lib/constants";
 
@@ -21,15 +21,17 @@ const CreateTokenModule = (): JSX.Element => {
 
     const APITypesController = (
         name: string,
-        types: Array<string>,
+        permissions: Array<string>,
         arrayHelpers: FieldArrayRenderProps
     ) => {
-        if (types.includes(name)) {
-            arrayHelpers.remove(types.indexOf(name));
+        if (permissions.includes(name)) {
+            arrayHelpers.remove(permissions.indexOf(name));
         } else {
             arrayHelpers.push(name);
         }
     };
+
+    const permissions = getPermissions();
 
     return (
         <SettingSection
@@ -53,7 +55,7 @@ const CreateTokenModule = (): JSX.Element => {
                     if (r.status === 200) {
                         toast.success("Token added successfully!");
                     } else {
-                        toast.error(response);
+                        toast.error(response.message);
                     }
 
                     resetForm();
@@ -64,6 +66,9 @@ const CreateTokenModule = (): JSX.Element => {
                     <Form>
                         <TopPart>
                             <div className="col-span-6 sm:col-span-4">
+                                <pre>{JSON.stringify(values)}</pre>
+                            </div>
+                            <div className="col-span-6 sm:col-span-4">
                                 <Label>Token Name</Label>
                                 <Field name="name" required as={Input} />
                                 <Error error={errors.name} />
@@ -73,142 +78,27 @@ const CreateTokenModule = (): JSX.Element => {
                                 <div className="ml-3 mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <FieldArray
                                         name="permissions"
-                                        render={(arrayHelpers) => (
-                                            <>
-                                                <Field
-                                                    label="image:view"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "image:view",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="file:view"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "file:view",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="text:view"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "text:view",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="image:upload"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "image:upload",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="file:upload"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "file:upload",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="text:upload"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "text:upload",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="image:list"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "image:list",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="file:list"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "file:list",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="text:list"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "text:list",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="image:delete"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "image:delete",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="file:delete"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "file:delete",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                                <Field
-                                                    label="text:delete"
-                                                    onClick={() =>
-                                                        APITypesController(
-                                                            "text:delete",
-                                                            values.permissions,
-                                                            arrayHelpers
-                                                        )
-                                                    }
-                                                    as={Radio}
-                                                />
-                                            </>
-                                        )}
+                                        render={(arrayHelpers) =>
+                                            permissions.map(
+                                                (permission, index) => (
+                                                    <Field
+                                                        label={permission}
+                                                        key={index}
+                                                        onClick={() =>
+                                                            APITypesController(
+                                                                permission,
+                                                                values.permissions,
+                                                                arrayHelpers
+                                                            )
+                                                        }
+                                                        checked={values.permissions.includes(
+                                                            permission as never
+                                                        )}
+                                                        as={Radio}
+                                                    />
+                                                )
+                                            )
+                                        }
                                     />
                                 </div>
                                 <div className="pt-2" />

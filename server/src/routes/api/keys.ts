@@ -37,7 +37,7 @@ router.post("/", isAuth(), async (req, res, next) => {
 
             res.sendStatus(200);
         } else {
-            res.send(409).json({ message: `${body.name} already exists!` });
+            res.status(409).json({ message: `${body.name} already exists!` });
         }
     } catch (error) {
         next(error);

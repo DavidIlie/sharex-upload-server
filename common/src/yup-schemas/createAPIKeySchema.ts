@@ -5,8 +5,8 @@ import { isPermission } from "../api-tokens/index";
 export const createAPIKeySchema = yup.object().shape({
     name: yup
         .string()
-        .min(4, "Name can't be less than 4 characters.")
-        .max(32, "Name can't be more than 32 characters.")
+        .min(2, "Name can't be less than 2 characters.")
+        .max(8, "Name can't be more than 8 characters.")
         .required(),
     permissions: yup
         .array()
