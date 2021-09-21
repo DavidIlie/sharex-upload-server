@@ -2,16 +2,12 @@ import { useQuery } from "react-query";
 
 import APIKeyCard from "@components/APIKeyCard";
 
+import type { TokenProps } from "../../../types/Token";
+
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
 import BottomPart from "@components/SettingSection/BottomPart";
 import SaveButton from "@components/SettingSection/SaveButton";
-
-interface TokenProps {
-    creator: string;
-    permissions: Array<string>;
-    name: string;
-}
 
 const ManageKeysModule = (): JSX.Element => {
     const { isLoading, data } = useQuery<TokenProps[]>("/api/keys");
