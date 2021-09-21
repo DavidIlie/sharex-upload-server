@@ -45,7 +45,7 @@ const CreateKeyModule = (): JSX.Element => {
                 validationSchema={createAPIKeySchema}
                 initialValues={{
                     name: "",
-                    permissions: [],
+                    permissions: ["image:upload", "text:upload", "file:upload"],
                 }}
                 onSubmit={async (data, { setSubmitting, resetForm }) => {
                     setSubmitting(true);

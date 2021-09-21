@@ -6,8 +6,6 @@ import type { TokenProps } from "../../../types/Token";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
-import BottomPart from "@components/SettingSection/BottomPart";
-import SaveButton from "@components/SettingSection/SaveButton";
 
 const ManageKeysModule = (): JSX.Element => {
     const { isLoading, data } = useQuery<TokenProps[]>("/api/keys");
@@ -17,30 +15,24 @@ const ManageKeysModule = (): JSX.Element => {
             title="Manage API Keys"
             subtitle="You may delete any of your existing tokens if they are no longer needed."
         >
-            <TopPart>
-                {!isLoading && (
-                    <div className="col-span-12">
-                        {data?.length === 0 ? (
-                            <h1>You don't have any API Tokens right now.</h1>
-                        ) : (
-                            data?.map((key, index) => {
-                                return (
-                                    <div
-                                        className={`${
-                                            index !== data?.length - 1 && "mb-6"
-                                        }`}
-                                    >
-                                        <APIKeyCard data={key} key={index} />
-                                    </div>
-                                );
-                            })
-                        )}
-                    </div>
-                )}
+            <TopPart noGrid noBottom>
+                {!isLoading &&
+                    (data?.length === 0 ? (
+                        <h1>You don't have any API Tokens right now.</h1>
+                    ) : (
+                        data?.map((key, index) => {
+                            return (
+                                <div
+                                    className={`${
+                                        index !== data?.length - 1 && "mb-6"
+                                    }`}
+                                >
+                                    <APIKeyCard data={key} key={index} />
+                                </div>
+                            );
+                        })
+                    ))}
             </TopPart>
-            <BottomPart>
-                <SaveButton isSubmitting={false} />
-            </BottomPart>
         </SettingSection>
     );
 };

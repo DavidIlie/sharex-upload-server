@@ -20,6 +20,24 @@ router.get("/", isAuth(), async (req, res, next) => {
     }
 });
 
+router.post("/delete/:id", isAuth(), async (req, res, next) => {
+    try {
+        const { id } = req.params as any;
+        const key = await APIKeys.findOne({
+            where: { token: id, creator: req.user?.id },
+        });
+
+        if (key) {
+            await APIKeys.delete(key);
+            res.sendStatus(200);
+        } else {
+            res.status(404).json({ message: "Token not found" });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.post("/", isAuth(), async (req, res, next) => {
     try {
         const body = await createAPIKeySchema.validate(req.body);
