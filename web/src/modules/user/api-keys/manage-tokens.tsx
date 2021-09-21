@@ -23,13 +23,21 @@ const ManageTokensModule = (): JSX.Element => {
         >
             <TopPart>
                 {!isLoading && (
-                    <div className="col-span-6 sm:col-span-4">
+                    <div className="col-span-12">
                         {data?.length === 0 ? (
                             <h1>You don't have any API Tokens right now.</h1>
                         ) : (
-                            data?.map((key, index) => (
-                                <APIKeyCard data={key} key={index} />
-                            ))
+                            data?.map((key, index) => {
+                                return (
+                                    <div
+                                        className={`${
+                                            index !== data?.length - 1 && "mb-6"
+                                        }`}
+                                    >
+                                        <APIKeyCard data={key} key={index} />
+                                    </div>
+                                );
+                            })
                         )}
                     </div>
                 )}
