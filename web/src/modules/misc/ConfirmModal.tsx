@@ -39,7 +39,7 @@ const ConfirmModal = ({
                             updateModalState();
                         }}
                     >
-                        Update
+                        Confirm
                     </button>
                 </div>
             </>
