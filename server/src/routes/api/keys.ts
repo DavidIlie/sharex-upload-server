@@ -33,6 +33,7 @@ router.post("/", isAuth(), async (req, res, next) => {
                 name: body.name,
                 token: token,
                 permissions: body.permissions,
+                lastUsed: new Date("0000-00-00T00:00:00.007Z"),
             }).save();
 
             res.sendStatus(200);

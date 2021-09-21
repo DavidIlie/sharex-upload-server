@@ -15,5 +15,8 @@ export class APIKeys extends BaseEntity {
     token: string;
 
     @Column()
+    lastUsed: Date;
+
+    @Column()
     permissions: Array<string | undefined>;
 }
