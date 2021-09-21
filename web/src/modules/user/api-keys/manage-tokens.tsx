@@ -1,5 +1,7 @@
 import { useQuery } from "react-query";
 
+import APIKeyCard from "@components/APIKeyCard";
+
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
 import BottomPart from "@components/SettingSection/BottomPart";
@@ -26,7 +28,7 @@ const ManageTokensModule = (): JSX.Element => {
                             <h1>You don't have any API Tokens right now.</h1>
                         ) : (
                             data?.map((key, index) => (
-                                <h1 key={index}>{key.name}</h1>
+                                <APIKeyCard data={key} key={index} />
                             ))
                         )}
                     </div>
