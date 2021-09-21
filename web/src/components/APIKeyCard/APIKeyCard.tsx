@@ -1,13 +1,19 @@
+import { axios } from "@lib/axiosClient";
+import { api_url } from "@lib/constants";
 import ConfirmModal from "@modules/misc/ConfirmModal";
 import { formatDistance } from "date-fns";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
+import { queryClient } from "@lib/queryClient";
 import type { TokenProps } from "../../types/Token";
 
 import PermissionsModal from "./PermissionsModal";
 
 interface APIKeyCardProps {
-    data: TokenProps;
+    data: TokenProps & {
+        id: any;
+    };
 }
 
 const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {
@@ -17,8 +23,29 @@ const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {
     const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
     const updateConfirmDeleteState = () => setConfirmDelete(!confirmDelete);
 
+    console.log(data);
+
     const deleteToken = async () => {
-        console.log("yo");
+        const deleteTokenPromise = new Promise<string>(
+            async (resolve, reject) => {
+                const r = await axios.post(
+                    `${api_url}/api/keys/delete/${data.id}`
+                );
+                const response = r.data;
+                if (r.status === 200) {
+                    resolve(response.message);
+                    queryClient.refetchQueries("/api/keys");
+                } else {
+                    reject(response.message);
+                }
+            }
+        );
+
+        toast.promise(deleteTokenPromise, {
+            loading: "Loading",
+            success: "Deleted successfully!",
+            error: "Error when fetching!",
+        });
     };
 
     return (

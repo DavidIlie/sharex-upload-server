@@ -22,9 +22,9 @@ router.get("/", isAuth(), async (req, res, next) => {
 
 router.post("/delete/:id", isAuth(), async (req, res, next) => {
     try {
-        const { id } = req.params as any;
         const key = await APIKeys.findOne({
-            where: { token: id, creator: req.user?.id },
+            creator: req.user?.id,
+            id: (req.params as any).slug,
         });
 
         if (key) {
