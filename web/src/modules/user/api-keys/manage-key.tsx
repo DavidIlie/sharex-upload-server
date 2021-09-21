@@ -13,7 +13,7 @@ interface TokenProps {
     name: string;
 }
 
-const ManageTokensModule = (): JSX.Element => {
+const ManageKeysModule = (): JSX.Element => {
     const { isLoading, data } = useQuery<TokenProps[]>("/api/keys");
 
     return (
@@ -49,4 +49,4 @@ const ManageTokensModule = (): JSX.Element => {
     );
 };
 
-export default ManageTokensModule;
+export default ManageKeysModule;

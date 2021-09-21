@@ -5,8 +5,8 @@ import { isLoggedIn } from "@lib/isLoggedIn";
 
 import NavBar from "@components/NavBar";
 
-import CreateTokenModule from "@modules/user/api-keys/create-token";
-import ManageTokensModule from "@modules/user/api-keys/manage-tokens";
+import CreateTokenModule from "@modules/user/api-keys/create-key";
+import ManageKeysModule from "@modules/user/api-keys/manage-key";
 
 const APIKeysPage = (): JSX.Element => {
     return (
@@ -17,7 +17,7 @@ const APIKeysPage = (): JSX.Element => {
                 <div className="pt-12" />
                 <CreateTokenModule />
                 <div className="pt-12" />
-                <ManageTokensModule />
+                <ManageKeysModule />
             </div>
         </>
     );

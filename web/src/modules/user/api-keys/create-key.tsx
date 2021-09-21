@@ -17,7 +17,7 @@ import Input from "@ui/form/Input";
 import Error from "@ui/form/Error";
 import Radio from "@ui/form/Radio";
 
-const CreateTokenModule = (): JSX.Element => {
+const CreateKeyModule = (): JSX.Element => {
     const settings = useSettings();
 
     const APITypesController = (
@@ -117,4 +117,4 @@ const CreateTokenModule = (): JSX.Element => {
     );
 };
 
-export default CreateTokenModule;
+export default CreateKeyModule;
