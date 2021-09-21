@@ -48,7 +48,7 @@ const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {
 
     return (
         <>
-            <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex justify-between w-full hoverItem duration-200">
+            <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex justify-between">
                 <h1>{data.name}</h1>
                 <div className="flex items-center gap-4">
                     {(data.lastUsed as any) !== "1970-01-01T00:00:00.000Z" && (
