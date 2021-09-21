@@ -5,6 +5,7 @@ import useSettings from "@hooks/useSettings";
 import { createAPIKeySchema, getPermissions } from "@sharex-server/common";
 import { axios } from "@lib/axiosClient";
 import { api_url } from "@lib/constants";
+import { queryClient } from "@lib/queryClient";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -54,6 +55,7 @@ const CreateTokenModule = (): JSX.Element => {
 
                     if (r.status === 200) {
                         toast.success("Token added successfully!");
+                        queryClient.refetchQueries("/api/keys");
                     } else {
                         toast.error(response.message);
                     }
