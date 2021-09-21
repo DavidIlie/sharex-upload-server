@@ -1,5 +1,3 @@
-import { useRouter } from "next/router";
-
 import { is_dev } from "@lib/constants";
 import useUser from "@hooks/useUser";
 
@@ -7,13 +5,8 @@ import AlertBanner from "@components/AlertBanner";
 
 const DevelopmentModeAlertModule = (): JSX.Element => {
     const user = useUser();
-    const router = useRouter();
-    const path = router.pathname;
 
-    return !user.isAdmin &&
-        is_dev &&
-        path.startsWith("/dashboard" || "/user") &&
-        user?.isAdmin ? (
+    return user?.isAdmin && is_dev ? (
         <AlertBanner
             storageName="dismissDevelopmentAlert"
             color="red"
