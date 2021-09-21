@@ -23,8 +23,6 @@ const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {
     const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
     const updateConfirmDeleteState = () => setConfirmDelete(!confirmDelete);
 
-    console.log(data);
-
     const deleteToken = async () => {
         const deleteTokenPromise = new Promise<string>(
             async (resolve, reject) => {
