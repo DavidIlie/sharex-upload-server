@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 import useSettings from "@hooks/useSettings";
 import useUser from "@hooks/useUser";
@@ -9,7 +9,6 @@ import UserDropdown from "./UserDropdown";
 
 const NavBar = (): JSX.Element => {
     const [clickMobileMenu, setClickMobileMenu] = useState<boolean>(false);
-    const router = useRouter();
 
     const settings = useSettings();
 
@@ -21,12 +20,11 @@ const NavBar = (): JSX.Element => {
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         <div className="flex-shrink-0 flex items-center">
-                            <a
-                                className="font-medium text-black dark:text-gray-100"
-                                href={router.asPath}
-                            >
-                                {settings.name}
-                            </a>
+                            <Link href="/dashboard">
+                                <a className="font-medium text-black dark:text-gray-100">
+                                    {settings.name}
+                                </a>
+                            </Link>
                         </div>
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink name="Dashboard" link="/dashboard" />
