@@ -23,6 +23,6 @@ export class Users extends BaseEntity {
     @Column("boolean", { default: false })
     confirmed: boolean = false;
 
-    @Column({ select: false })
+    @Column()
     password: string;
 }
