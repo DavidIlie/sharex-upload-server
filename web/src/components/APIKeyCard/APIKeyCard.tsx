@@ -11,9 +11,7 @@ import type { TokenProps } from "../../types/Token";
 import PermissionsModal from "./PermissionsModal";
 
 interface APIKeyCardProps {
-    data: TokenProps & {
-        id: any;
-    };
+    data: TokenProps;
 }
 
 const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {

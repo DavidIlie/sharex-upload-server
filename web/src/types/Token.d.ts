@@ -3,4 +3,5 @@ export interface TokenProps {
     permissions: Array<string>;
     name: string;
     lastUsed: Date;
+    id: any;
 }

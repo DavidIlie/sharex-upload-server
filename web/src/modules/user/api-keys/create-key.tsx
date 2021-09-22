@@ -68,9 +68,6 @@ const CreateKeyModule = (): JSX.Element => {
                     <Form>
                         <TopPart>
                             <div className="col-span-6 sm:col-span-4">
-                                <pre>{JSON.stringify(values)}</pre>
-                            </div>
-                            <div className="col-span-6 sm:col-span-4">
                                 <Label>Token Name</Label>
                                 <Field name="name" required as={Input} />
                                 <Error error={errors.name} />
