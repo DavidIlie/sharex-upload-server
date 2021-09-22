@@ -77,7 +77,7 @@ router.post("/", isAuth(), async (req, res, next) => {
                 lastUsed: new Date("0000-00-00T00:00:00.007Z"),
             }).save();
 
-            res.sendStatus(200);
+            res.json({ token: token });
         } else {
             res.status(409).json({ message: `${body.name} already exists!` });
         }

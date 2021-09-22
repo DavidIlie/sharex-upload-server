@@ -55,7 +55,7 @@ const Modal = ({
                         <div className="inline-block w-full max-w-xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl">
                             <Dialog.Title
                                 as="h3"
-                                className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
+                                className="text-xl font-medium leading-6 text-gray-900 dark:text-gray-100"
                             >
                                 {title}
                             </Dialog.Title>
