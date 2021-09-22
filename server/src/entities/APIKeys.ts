@@ -5,8 +5,8 @@ export class APIKeys extends BaseEntity {
     @ObjectIdColumn()
     id: ObjectID;
 
-    @ObjectIdColumn()
-    creator: ObjectID;
+    @Column()
+    creator: ObjectID | string;
 
     @Column()
     name: string;
