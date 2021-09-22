@@ -1,6 +1,10 @@
 import { Field, Form, Formik, FieldArray, FieldArrayRenderProps } from "formik";
+import toast from "react-hot-toast";
+import { queryClient } from "@lib/queryClient";
 
-import { getPermissions } from "@sharex-server/common";
+import { getPermissions, updateAPIKeySchema } from "@sharex-server/common";
+import { axios } from "@lib/axiosClient";
+import { api_url } from "@lib/constants";
 
 import Modal from "@ui/Modal";
 
@@ -10,12 +14,14 @@ import Error from "@ui/form/Error";
 interface Types {
     isOpen: boolean;
     updateModalState: () => void;
+    id: string;
     permissions: Array<string>;
 }
 
 const PermissionsModal = ({
     isOpen,
     updateModalState,
+    id,
     permissions,
 }: Types): JSX.Element => {
     const APITypesController = (
@@ -42,12 +48,26 @@ const PermissionsModal = ({
                 <Formik
                     validateOnChange={false}
                     validateOnBlur={false}
+                    validationSchema={updateAPIKeySchema}
                     initialValues={{
                         permissions: permissions,
                     }}
                     onSubmit={async (data, { setSubmitting }) => {
                         setSubmitting(true);
-                        console.log(data);
+
+                        const r = await axios.post(
+                            `${api_url}/api/keys/update/${id}`,
+                            data
+                        );
+                        const response = await r.data;
+
+                        if (r.status === 200) {
+                            toast.success("Updated successfully!");
+                            queryClient.refetchQueries("/api/keys");
+                            updateModalState();
+                        } else {
+                            toast.error(response.message);
+                        }
 
                         setSubmitting(false);
                     }}

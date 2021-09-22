@@ -3,7 +3,7 @@ import * as express from "express";
 const router = express.Router();
 
 import { createToken } from "../../lib/permissions/createToken";
-import { createAPIKeySchema } from "@sharex-server/common";
+import { createAPIKeySchema, updateAPIKeySchema } from "@sharex-server/common";
 
 import { isAuth } from "../../lib/auth/isAuth";
 
@@ -33,6 +33,25 @@ router.post("/delete/:id", isAuth(), async (req, res, next) => {
 
         if (key) {
             await APIKeys.delete(key);
+            res.sendStatus(200);
+        } else {
+            res.status(404).json({ message: "Token not found" });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post("/update/:id", isAuth(), async (req, res, next) => {
+    try {
+        const body = await updateAPIKeySchema.validate(req.body);
+        const key = await APIKeys.findOne({
+            creator: req.user?.id,
+            id: (req.params as any).slug,
+        });
+
+        if (key) {
+            await APIKeys.update(key, { permissions: body.permissions });
             res.sendStatus(200);
         } else {
             res.status(404).json({ message: "Token not found" });
