@@ -49,6 +49,4 @@ export const isAPI: (perms: Array<string>) => RequestHandler<{}, any, any, {}> =
             } else {
                 return next(createError(401, "not authenticated"));
             }
-
-            return next();
         };
