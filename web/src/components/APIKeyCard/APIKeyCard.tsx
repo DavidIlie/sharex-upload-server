@@ -83,6 +83,7 @@ const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {
             <PermissionsModal
                 isOpen={isOpen}
                 updateModalState={updateModalState}
+                permissions={data.permissions}
             />
             <ConfirmModal
                 isOpen={confirmDelete}
