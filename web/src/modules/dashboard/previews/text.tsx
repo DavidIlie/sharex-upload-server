@@ -17,7 +17,7 @@ const LatestTextsModule = (): JSX.Element => {
             type="text"
         >
             {data?.map((file, index) => (
-                <UploadPreviewCard file={file} key={index} />
+                <UploadPreviewCard file={file} key={index} type="text" />
             ))}
         </PreviewListPane>
     );

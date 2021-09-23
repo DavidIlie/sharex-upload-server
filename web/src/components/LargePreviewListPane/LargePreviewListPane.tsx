@@ -68,7 +68,11 @@ const LargePreviewListPane = ({
                     <>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 dark:text-dark-gray-400">
                             {currentPosts?.map((file, index) => (
-                                <UploadPreviewCard file={file} key={index} />
+                                <UploadPreviewCard
+                                    file={file}
+                                    key={index}
+                                    type={type}
+                                />
                             ))}
                         </div>
                         {data.length > 24 && (

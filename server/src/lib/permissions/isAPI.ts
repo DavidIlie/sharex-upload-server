@@ -14,7 +14,7 @@ export const isAPI: (perms: Array<string>) => RequestHandler<{}, any, any, {}> =
             _res: Response,
             next: NextFunction
         ): Promise<void> => {
-            const authKey = req.headers["Authorization"] || req.query.key;
+            const authKey = req.headers["authorization"] || req.query.key;
 
             if (typeof authKey !== "string") {
                 return next(createError(401, "not authenticated"));

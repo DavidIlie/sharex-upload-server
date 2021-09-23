@@ -1,4 +1,5 @@
 export interface FileType {
+    id: any;
     type: string;
     name: string;
     slug: string;

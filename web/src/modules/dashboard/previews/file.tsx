@@ -17,7 +17,7 @@ const LatestFilesModule = (): JSX.Element => {
             type="file"
         >
             {data?.map((file, index) => (
-                <UploadPreviewCard file={file} key={index} />
+                <UploadPreviewCard file={file} key={index} type="file" />
             ))}
         </PreviewListPane>
     );

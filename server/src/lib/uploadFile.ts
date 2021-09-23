@@ -25,6 +25,7 @@ export const uploadImage = async (
 
     await Uploads.create({
         type: MulterFile.fieldname,
+        uploaderId: req.user?.id,
         name: MulterFile.suffix + format,
         slug: MulterFile.suffix,
         stats,
@@ -47,6 +48,7 @@ export const uploadFile = async (
 
     await Uploads.create({
         type: MulterFile.fieldname,
+        uploaderId: req.user?.id,
         name: MulterFile.originalname,
         slug: suffix,
         stats,

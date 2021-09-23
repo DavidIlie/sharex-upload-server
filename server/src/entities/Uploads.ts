@@ -7,6 +7,9 @@ export class Uploads extends BaseEntity {
     id: ObjectID;
 
     @Column()
+    uploaderId: ObjectID | string;
+
+    @Column()
     type: string;
 
     @Column()

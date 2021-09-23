@@ -26,9 +26,18 @@ router.get("/", isAuth(), async (req, res, next) => {
 
 router.post("/delete/:id", isAuth(), async (req, res, next) => {
     try {
-        const key = await APIKeys.findOne({
+        const id = (req.params as any).id;
+        const keys = await APIKeys.find({
             creator: req.user?.id,
-            id: (req.params as any).slug,
+        });
+
+        let key = undefined;
+        keys.forEach((item) => {
+            const itemId = `${item.id}`;
+            const definedId = `${id}`;
+            if (itemId === definedId) {
+                key = item;
+            }
         });
 
         if (key) {

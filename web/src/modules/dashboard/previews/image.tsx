@@ -17,7 +17,7 @@ const LatestImagesModule = (): JSX.Element => {
             type="image"
         >
             {data?.map((file, index) => (
-                <UploadPreviewCard file={file} key={index} />
+                <UploadPreviewCard file={file} key={index} type="image" />
             ))}
         </PreviewListPane>
     );

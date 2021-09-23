@@ -1,6 +1,10 @@
 import { Uploads } from "../../entities/Uploads";
+import fs from "fs";
 import * as express from "express";
 const router = express.Router();
+
+import { isAuth } from "../../lib/auth/isAuth";
+import { uploadDir } from "../../lib/filesystem";
 
 import { SupportPreview } from "@sharex-server/common";
 
@@ -21,6 +25,36 @@ router.use("/auth", auth);
 
 import keys from "./keys";
 router.use("/keys", keys);
+
+router.post("/delete/:id", isAuth(), async (req, res, next) => {
+    try {
+        const id = (req.params as any).id;
+        const uploads = await Uploads.find({
+            uploaderId: req.user?.id,
+        });
+
+        let upload = undefined;
+        uploads.forEach((item) => {
+            const itemId = `${item.id}`;
+            const definedId = `${id}`;
+            if (itemId === definedId) {
+                upload = item;
+            }
+        });
+
+        if (upload) {
+            fs.unlinkSync(`${uploadDir}/${(upload as any).name}`);
+            await Uploads.delete(upload);
+            res.sendStatus(200);
+        } else {
+            res.status(404).json({
+                message: "Upload not found",
+            });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 
 router.get("/file/:slug", async (req, res, next) => {
     try {
