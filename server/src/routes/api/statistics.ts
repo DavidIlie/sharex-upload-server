@@ -4,14 +4,20 @@ import * as express from "express";
 import { Uploads } from "../../entities/Uploads";
 const router = express.Router();
 
-router.get("/", isAuth(), async (_req, res) => {
-    const Allfiles = await Uploads.find();
+router.get("/", isAuth(), async (req, res) => {
+    const Allfiles = await Uploads.find({ uploaderId: req.user?.id });
     const totalFiles = Allfiles.length;
 
-    const imageFiles = await Uploads.find({ type: "image" });
+    const imageFiles = await Uploads.find({
+        type: "image",
+        uploaderId: req.user?.id,
+    });
     const imageCount = imageFiles.length;
 
-    const files = await Uploads.find({ type: "file" });
+    const files = await Uploads.find({
+        type: "file",
+        uploaderId: req.user?.id,
+    });
     const fileCount = files.length;
 
     //static because feature not implemented yet :D

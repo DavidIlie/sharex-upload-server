@@ -48,7 +48,7 @@ const StatisticsModule = (): JSX.Element => {
                     <DashboardStatCard
                         type="metric"
                         value={response!.data.totalSize.value}
-                        title="Used Disk Space"
+                        title="Used Disk Space (Global)"
                         unit={response!.data.totalSize.unit}
                     />
                 </>
