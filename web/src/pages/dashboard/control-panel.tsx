@@ -10,6 +10,7 @@ import useUser from "@hooks/useUser";
 
 import NavBar from "@components/NavBar";
 import GeneralSettingsModule from "@modules/dashboard/control-panel/general-settings";
+import StatisticsModule from "@modules/dashboard/statistics";
 
 import FilesSettingsModule from "@modules/dashboard/control-panel/media-settings/files";
 import ImagesSettingsModule from "@modules/dashboard/control-panel/media-settings/images";
@@ -36,6 +37,8 @@ const ControlPanel: React.FC = () => {
                 <NextSeo title="Control Panel" />
                 <div className="mb-12">
                     <NavBar />
+                    <div className="pt-12" />
+                    <StatisticsModule admin={true}/>
                     <div className="pt-12" />
                     <GeneralSettingsModule />
                     <div className="pt-12 pb-12">

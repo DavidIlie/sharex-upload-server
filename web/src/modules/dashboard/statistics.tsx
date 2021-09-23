@@ -15,9 +15,9 @@ interface DataTypes {
     };
 }
 
-const StatisticsModule = (): JSX.Element => {
+const StatisticsModule = ({ admin }: { admin: boolean }): JSX.Element => {
     const { isLoading, data: response } = useQuery<DataTypes>(
-        "/api/statistics",
+        admin ? "/api/statistics/admin" : "/api/statistics",
         { refetchOnWindowFocus: true }
     );
 
@@ -48,7 +48,7 @@ const StatisticsModule = (): JSX.Element => {
                     <DashboardStatCard
                         type="metric"
                         value={response!.data.totalSize.value}
-                        title="Used Disk Space (Global)"
+                        title="Used Disk Space"
                         unit={response!.data.totalSize.unit}
                     />
                 </>

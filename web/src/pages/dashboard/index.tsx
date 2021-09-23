@@ -20,7 +20,7 @@ const Dashboard = (): JSX.Element => {
                 <div className="pt-12" />
 
                 <Fade direction="up" triggerOnce>
-                    <StatisticsModule />
+                    <StatisticsModule admin={false} />
                 </Fade>
 
                 <div className="pt-12" />
