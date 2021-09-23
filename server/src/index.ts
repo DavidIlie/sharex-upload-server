@@ -14,7 +14,23 @@ import * as middlewares from "./middleware";
 import api from "./routes";
 
 const main = async () => {
-    const conn = await createConnection();
+    const conn = await createConnection({
+        type: "mongodb",
+        host: process.env.MONGO_URI,
+        port: 27017,
+        database: "sharex-media-server",
+        synchronize: true,
+        logging: true,
+        entities: [
+            `${process.env.ENV === "PRODUCTION" ? "dist" : "src"}/entities/*.*`,
+        ],
+        migrations: [
+            `${
+                process.env.ENV === "PRODUCTION" ? "dist" : "src"
+            }/migrations/*.*`,
+        ],
+    });
+
     console.log(chalk`{bold.yellow running migrations}`);
     await conn.runMigrations();
     console.log(chalk`{bold.green migrations finished!}`);

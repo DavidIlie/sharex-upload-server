@@ -8,7 +8,7 @@ router.post("/api/images", isAPI(["image:upload"]), async (req, res, next) => {
     try {
         await uploadImage("image", req, res);
         res.json({
-            message: `http://localhost:4000/image/${req.file.suffix}`,
+            message: `${process.env.API_URL}/image/${req.file.suffix}`,
         });
     } catch (error) {
         next(error);
@@ -19,7 +19,7 @@ router.post("/api/files", isAPI(["file:upload"]), async (req, res, next) => {
     try {
         const suffix = await uploadFile("file", req, res);
         res.json({
-            message: `http://localhost:3000/f/${suffix}`,
+            message: `${process.env.FRONTEND_URL}/f/${suffix}`,
         });
     } catch (error) {
         next(error);

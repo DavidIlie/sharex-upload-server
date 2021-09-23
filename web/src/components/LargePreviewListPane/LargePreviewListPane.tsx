@@ -16,7 +16,8 @@ const LargePreviewListPane = ({
 }: LargePreviewListPaneProps): JSX.Element => {
     const settings = useSettings();
 
-    const settingsPostPerPage = settings.media_settings![`${type}s`].per_page;
+    const settingsPostPerPage = (settings as any).media_settings![`${type}s`]
+        .per_page;
 
     const postsPerPage = settingsPostPerPage || 24;
     const [currentPage, setCurrentPage] = useState<number>(1);
