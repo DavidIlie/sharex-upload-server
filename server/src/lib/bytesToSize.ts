@@ -1,4 +1,4 @@
-export const bytesToSize = (bytes: number, decimals = 2) => {
+export const bytesToSize = (bytes: number, decimals = 1) => {
     if (bytes === 0)
         return {
             value: 0,
