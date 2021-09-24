@@ -43,12 +43,10 @@ jobs:
         runs-on: ubuntu-latest
         needs: [server, web]
         steps:
-            - name: "Set Kubernetes Context"
-              uses: Azure/k8s-set-context@v1
+            - uses: actions-hub/kubectl@master
+              env:
+                  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
               with:
-                  method: kubeconfig
-                  kubeconfig: ${{ secrets.KUBE_CONFIG }}
-            - name: "Restart web deployment"
-              run: kubectl rollout restart deploy web -n sharex-media-server
-            - name: "Restart server deployment"
-              run: kubectl rollout restart deploy server -n sharex-media-server
+                  args: |
+                      rollout restart deploy web -n sharex-media-server
+                      kubectl rollout restart deploy server -n sharex-media-server
