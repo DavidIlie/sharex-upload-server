@@ -40,8 +40,10 @@ const UploadPreviewCard = ({
                 );
                 const response = r.data;
                 if (r.status === 200) {
-                    queryClient.refetchQueries(`/api/latest/${type}s`);
-                    queryClient.refetchQueries(`/api/statistics`);
+                    queryClient.refetchQueries(
+                        `${env.api_url}/api/latest/${type}s`
+                    );
+                    queryClient.refetchQueries(`${env.api_url}/api/statistics`);
                     resolve(response.message);
                 } else {
                     reject(response.message);

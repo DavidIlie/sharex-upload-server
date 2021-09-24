@@ -32,7 +32,7 @@ const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {
                 const response = r.data;
                 if (r.status === 200) {
                     resolve(response.message);
-                    queryClient.refetchQueries("/api/keys");
+                    queryClient.refetchQueries(`${env.api_url}/api/keys`);
                 } else {
                     reject(response.message);
                 }

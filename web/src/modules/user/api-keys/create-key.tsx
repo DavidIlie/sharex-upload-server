@@ -72,7 +72,9 @@ const CreateKeyModule = (): JSX.Element => {
                             toast.success("Token added successfully!");
                             setApiKey(response.token);
                             handleOpenKeyModal();
-                            queryClient.refetchQueries("/api/keys");
+                            queryClient.refetchQueries(
+                                `${env.api_url}/api/keys`
+                            );
                         } else {
                             toast.error(response.message);
                         }

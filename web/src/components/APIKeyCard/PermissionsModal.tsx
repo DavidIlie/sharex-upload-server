@@ -65,7 +65,9 @@ const PermissionsModal = ({
 
                         if (r.status === 200) {
                             toast.success("Updated successfully!");
-                            queryClient.refetchQueries("/api/keys");
+                            queryClient.refetchQueries(
+                                `${env.api_url}/api/keys`
+                            );
                             updateModalState();
                         } else {
                             toast.error(response.message);
