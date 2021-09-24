@@ -37,4 +37,4 @@ jobs:
                   password: ${{ secrets.GHCR_PASSWORD }}
                   repository: davidilie/sharex-media-server
                   tags: web
-                  file: server/Dockerfile
+                  file: web/Dockerfile
