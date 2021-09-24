@@ -65,19 +65,15 @@ function App({ Component, pageProps, router, env }: Props) {
         };
     });
 
-    if (!finishedSettingsCheck) {
-        return null;
-    }
-
     return (
         <>
             <DefaultSeo
-                defaultTitle={settings.name}
-                titleTemplate={`%s | ${settings.name}`}
+                defaultTitle={settings.name || "ShareX Media Server"}
+                titleTemplate={`%s | ${settings.name || "ShareX Media Server"}`}
                 openGraph={{
-                    title: settings.name,
+                    title: settings.name || "ShareX Media Server",
                     type: `website`,
-                    site_name: settings.name,
+                    site_name: settings.name || "ShareX Media Server",
                 }}
                 description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
             />
@@ -87,9 +83,15 @@ function App({ Component, pageProps, router, env }: Props) {
             >
                 <QueryClientProvider client={queryClient}>
                     <Toaster position="top-center" />
-                    <AppLayout>
-                        {loading ? <Loader /> : <Component {...pageProps} />}
-                    </AppLayout>
+                    {!finishedSettingsCheck ||
+                    (!finishedSettingsCheck && loading) ||
+                    loading ? (
+                        <Loader />
+                    ) : (
+                        <AppLayout>
+                            <Component {...pageProps} />
+                        </AppLayout>
+                    )}
                 </QueryClientProvider>
             </ThemeProvider>
         </>
