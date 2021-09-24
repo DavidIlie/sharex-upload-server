@@ -9,7 +9,7 @@ const Footer = (): JSX.Element => {
                     target="_blank"
                     className="font-semibold hover:underline"
                 >
-                    sharex-media-server v0.1.2{is_dev && "-DEV"}
+                    sharex-media-server v0.5.1{is_dev && "-DEV"}
                 </a>
                 <p className="text-sm">
                     Created by{" "}
