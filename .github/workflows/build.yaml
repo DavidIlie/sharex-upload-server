@@ -23,7 +23,7 @@ jobs:
                   password: ${{ secrets.GHCR_PASSWORD }}
                   repository: davidilie/sharex-media-server
                   tags: server
-                  path: web/
+                  path: server/
     web:
         name: "Build Web"
         runs-on: ubuntu-latest

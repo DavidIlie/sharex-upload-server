@@ -2,10 +2,10 @@ FROM node:15-alpine as build
 
 WORKDIR /usr/src/app
 
-COPY ../package.json .
-COPY ../yarn.lock .
-COPY ../common ./common
-COPY ../server ./server
+COPY ./package.json .
+COPY ./yarn.lock .
+COPY ./common ./common
+COPY ./server ./server
 
 RUN yarn install --pure-lockfile --non-interactive
 
