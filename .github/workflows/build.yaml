@@ -1,0 +1,44 @@
+name: "build_deploy_app"
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    server:
+        name: "Build Server"
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Build:checkout"
+              uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: "15"
+            - name: "Build:dockerimage"
+              uses: docker/build-push-action@v1
+              with:
+                  registry: ghcr.io
+                  username: "DavidIlie"
+                  password: ${{ secrets.GHCR_PASSWORD }}
+                  repository: davidilie/sharex-media-server
+                  tags: server
+                  file: server/Dockerfile
+    web:
+        name: "Build Web"
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Build:checkout"
+              uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: "15"
+            - name: "Build:dockerimage"
+              uses: docker/build-push-action@v1
+              with:
+                  registry: ghcr.io
+                  username: "DavidIlie"
+                  password: ${{ secrets.GHCR_PASSWORD }}
+                  repository: davidilie/sharex-media-server
+                  tags: web
+                  file: web/Dockerfile
