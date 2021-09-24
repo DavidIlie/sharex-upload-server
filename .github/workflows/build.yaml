@@ -6,22 +6,22 @@ on:
             - master
 
 jobs:
-    server:
-        name: "Build Server"
-        runs-on: ubuntu-latest
-        steps:
-            - name: "Build:checkout"
-              uses: actions/checkout@v2
-            - name: "Build:dockerimage"
-              uses: docker/build-push-action@v2
-              with:
-                  push: true
-                  registry: ghcr.io
-                  username: "DavidIlie"
-                  password: ${{ secrets.GHCR_PASSWORD }}
-                  repository: davidilie/sharex-media-server
-                  tags: server
-                  file: server/Dockerfile
+    # server:
+    #     name: "Build Server"
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: "Build:checkout"
+    #           uses: actions/checkout@v2
+    #         - name: "Build:dockerimage"
+    #           uses: docker/build-push-action@v2
+    #           with:
+    #               push: true
+    #               registry: ghcr.io
+    #               username: "DavidIlie"
+    #               password: ${{ secrets.GHCR_PASSWORD }}
+    #               repository: davidilie/sharex-media-server
+    #               tags: server
+    #               file: server/Dockerfile
     web:
         name: "Build Web"
         runs-on: ubuntu-latest
