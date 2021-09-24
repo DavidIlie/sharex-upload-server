@@ -12,9 +12,7 @@ jobs:
         steps:
             - name: "Build:checkout"
               uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
-              with:
-                  node-version: "15"
+            - run: ls
             - name: "Build:dockerimage"
               uses: docker/build-push-action@v1
               with:
@@ -23,16 +21,14 @@ jobs:
                   password: ${{ secrets.GHCR_PASSWORD }}
                   repository: davidilie/sharex-media-server
                   tags: server
-                  path: server/
+                  context: server/
     web:
         name: "Build Web"
         runs-on: ubuntu-latest
         steps:
             - name: "Build:checkout"
               uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
-              with:
-                  node-version: "15"
+            - run: ls
             - name: "Build:dockerimage"
               uses: docker/build-push-action@v1
               with:
@@ -41,4 +37,4 @@ jobs:
                   password: ${{ secrets.GHCR_PASSWORD }}
                   repository: davidilie/sharex-media-server
                   tags: web
-                  path: web/
+                  context: web/
