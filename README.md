@@ -8,8 +8,6 @@ backend:
 
 -   add the remaining functions:
     -   text
--   ability create API keys for specific tasks (and then use that to authenticate when adding new images/etc)
-    -   permissions system for api keys
 -   implement deleting of accounts
 -   add support for other providers (s3)
 
