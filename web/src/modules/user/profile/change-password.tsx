@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 import { changePasswordSchema } from "@sharex-server/common";
 import { axios } from "@lib/axiosClient";
-import { api_url } from "@lib/constants";
+import useEnv from "@hooks/useEnv";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -15,6 +15,8 @@ import Input from "@ui/form/Input";
 import Error from "@ui/form/Error";
 
 const ChangePasswordModule = (): JSX.Element => {
+    const env = useEnv();
+
     return (
         <SettingSection
             title="Update Password"
@@ -33,7 +35,7 @@ const ChangePasswordModule = (): JSX.Element => {
                     setSubmitting(true);
 
                     const r = await axios.post(
-                        `${api_url}/api/user/password`,
+                        `${env.api_url}/api/user/password`,
                         data
                     );
                     const response = await r.data;

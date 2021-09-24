@@ -1,5 +1,4 @@
 import { axios } from "@lib/axiosClient";
-import { api_url } from "@lib/constants";
 import ConfirmModal from "@modules/misc/ConfirmModal";
 import { formatDistance } from "date-fns";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import toast from "react-hot-toast";
 
 import { queryClient } from "@lib/queryClient";
 import type { TokenProps } from "../../types/Token";
+import useEnv from "@hooks/useEnv";
 
 import PermissionsModal from "./PermissionsModal";
 
@@ -21,11 +21,13 @@ const APIKeyCard = ({ data }: APIKeyCardProps): JSX.Element => {
     const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
     const updateConfirmDeleteState = () => setConfirmDelete(!confirmDelete);
 
+    const env = useEnv();
+
     const deleteToken = async () => {
         const deleteTokenPromise = new Promise<string>(
             async (resolve, reject) => {
                 const r = await axios.post(
-                    `${api_url}/api/keys/delete/${data.id}`
+                    `${env.api_url}/api/keys/delete/${data.id}`
                 );
                 const response = r.data;
                 if (r.status === 200) {

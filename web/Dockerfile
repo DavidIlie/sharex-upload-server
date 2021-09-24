@@ -1,4 +1,4 @@
-FROM node:15-alpine as build
+FROM node:alpine as build
 
 WORKDIR /usr/src/app
 
@@ -15,7 +15,7 @@ RUN yarn build
 WORKDIR /usr/src/app/web
 RUN yarn build
 
-FROM node:15-alpine
+FROM node:alpine
 
 WORKDIR /usr/src/app
 
@@ -38,12 +38,10 @@ COPY --from=build /usr/src/app/web/package.json /usr/src/app/web/package.json
 
 RUN yarn install --pure-lockfile --non-interactive --production
 
-ENV NODE_ENV production
-
-USER nextjs
-
 EXPOSE 3000
 
 WORKDIR /usr/src/app/web
+
+USER nextjs
 
 CMD ["yarn", "start"]

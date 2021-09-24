@@ -4,7 +4,7 @@ import { queryClient } from "@lib/queryClient";
 
 import { getPermissions, updateAPIKeySchema } from "@sharex-server/common";
 import { axios } from "@lib/axiosClient";
-import { api_url } from "@lib/constants";
+import useEnv from "@hooks/useEnv";
 
 import Modal from "@ui/Modal";
 
@@ -24,6 +24,8 @@ const PermissionsModal = ({
     id,
     permissions,
 }: Types): JSX.Element => {
+    const env = useEnv();
+
     const APITypesController = (
         name: string,
         permissions: Array<string>,
@@ -56,7 +58,7 @@ const PermissionsModal = ({
                         setSubmitting(true);
 
                         const r = await axios.post(
-                            `${api_url}/api/keys/update/${id}`,
+                            `${env.api_url}/api/keys/update/${id}`,
                             data
                         );
                         const response = await r.data;

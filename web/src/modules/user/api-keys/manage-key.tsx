@@ -2,13 +2,18 @@ import { useQuery } from "react-query";
 
 import APIKeyCard from "@components/APIKeyCard";
 
+import useEnv from "@hooks/useEnv";
 import type { TokenProps } from "../../../types/Token";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
 
 const ManageKeysModule = (): JSX.Element => {
-    const { isLoading, data } = useQuery<TokenProps[]>("/api/keys");
+    const env = useEnv();
+
+    const { isLoading, data } = useQuery<TokenProps[]>(
+        `${env.api_url}/api/keys`
+    );
 
     return (
         <SettingSection

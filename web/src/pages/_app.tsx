@@ -16,8 +16,11 @@ import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { getSettingsData } from "@lib/settingsManager";
 import { useUserStore } from "@global-stores/useUserStore";
 import { getUserData } from "@lib/userManager";
+import { useEnvStore, ENV } from "@global-stores/useEnvStore";
 
-function App({ Component, pageProps, router }: AppProps) {
+type Props = { env: ENV } & AppProps;
+
+function App({ Component, pageProps, router, env }: Props) {
     const [finishedSettingsCheck, setFinishedSettingsCheck] =
         useState<boolean>(false);
 
@@ -25,15 +28,18 @@ function App({ Component, pageProps, router }: AppProps) {
 
     const { settings, updateSettings } = useSettingsStore((s) => s);
     const { user, updateUser } = useUserStore();
+    const { updateEnv } = useEnvStore();
 
     useEffect(() => {
+        updateEnv(env);
+
         if (performance.navigation.type != 1) {
             if (settings.name && user.name)
                 return setFinishedSettingsCheck(true);
         }
         const getData = async () => {
-            const settings = await getSettingsData();
-            const user = await getUserData();
+            const settings = await getSettingsData(env);
+            const user = await getUserData(env);
             updateSettings(settings);
             updateUser(user);
             setFinishedSettingsCheck(true);
@@ -89,5 +95,14 @@ function App({ Component, pageProps, router }: AppProps) {
         </>
     );
 }
+
+App.getInitialProps = async () => {
+    const env = {
+        api_url: process.env.API_URL,
+        app_url: process.env.APP_URL,
+    };
+
+    return { env };
+};
 
 export default App;

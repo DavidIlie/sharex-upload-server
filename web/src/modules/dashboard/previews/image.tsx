@@ -1,11 +1,17 @@
 import PreviewListPane from "@components/PreviewListPane";
 import { useQuery } from "react-query";
 
+import useEnv from "@hooks/useEnv";
+
 import type { FileType } from "@sharex-server/common";
 import UploadPreviewCard from "@components/UploadPreviewCard";
 
 const LatestImagesModule = (): JSX.Element => {
-    const { data, isLoading } = useQuery<FileType[]>("/api/latest/images");
+    const env = useEnv();
+
+    const { data, isLoading } = useQuery<FileType[]>(
+        `${env.api_url}/api/latest/images`
+    );
 
     if (isLoading) return <div />;
 

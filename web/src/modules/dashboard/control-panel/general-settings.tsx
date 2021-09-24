@@ -2,11 +2,11 @@ import { Field, Form, Formik } from "formik";
 import { useTheme } from "next-themes";
 import toast from "react-hot-toast";
 
-import { api_url } from "@lib/constants";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { updateSettingsSchema } from "@sharex-server/common";
 import { axios } from "@lib/axiosClient";
 import ToggleColorMode from "@hooks/ToggleColorMode";
+import useEnv from "@hooks/useEnv";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -20,6 +20,7 @@ import Error from "@ui/form/Error";
 
 const GeneralSettingsModule = (): JSX.Element => {
     const { settings, updateSettings } = useSettingsStore();
+    const env = useEnv();
     const { resolvedTheme } = useTheme();
     const updateTheme = ToggleColorMode();
 
@@ -39,7 +40,10 @@ const GeneralSettingsModule = (): JSX.Element => {
                 onSubmit={async (data, { setSubmitting }) => {
                     setSubmitting(true);
 
-                    const r = await axios.post(`${api_url}/api/settings`, data);
+                    const r = await axios.post(
+                        `${env.api_url}/api/settings`,
+                        data
+                    );
                     const response = await r.data;
 
                     if (r.status === 200) {

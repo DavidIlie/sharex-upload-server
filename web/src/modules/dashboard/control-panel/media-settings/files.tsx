@@ -1,10 +1,10 @@
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
 
-import { api_url } from "@lib/constants";
 import { axios } from "@lib/axiosClient";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { updateFilesPerPageSchema } from "@sharex-server/common";
+import useEnv from "@hooks/useEnv";
 
 import SettingSection from "@components/SettingSection";
 import TopPart from "@components/SettingSection/TopPart";
@@ -17,6 +17,7 @@ import Error from "@ui/form/Error";
 
 const FilesSettingsModule = (): JSX.Element => {
     const { settings, updateSettings } = useSettingsStore();
+    const env = useEnv();
 
     return (
         <SettingSection
@@ -34,7 +35,7 @@ const FilesSettingsModule = (): JSX.Element => {
                     setSubmitting(true);
 
                     const r = await axios.post(
-                        `${api_url}/api/settings/media/file`,
+                        `${env.api_url}/api/settings/media/file`,
                         data
                     );
                     const response = await r.data;

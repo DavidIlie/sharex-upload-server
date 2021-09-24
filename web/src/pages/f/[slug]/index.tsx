@@ -7,10 +7,10 @@ import Link from "next/link";
 import NotFound from "@components/NotFound";
 import FileCard from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/iconUtils";
-import { api_url, app_url } from "@lib/constants";
 
 import { FileType, SupportPreview } from "@sharex-server/common";
 import useSettings from "@hooks/useSettings";
+import useEnv from "@hooks/useEnv";
 
 interface Props {
     message?: string;
@@ -22,6 +22,7 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
     const { slug } = router.query;
 
     const settings = useSettings();
+    const env = useEnv();
 
     if (message) return <NotFound />;
 
@@ -31,13 +32,13 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
         <>
             <NextSeo
                 title={file.name}
-                canonical={`${app_url}/${router.asPath}`}
+                canonical={`${env.app_url}/${router.asPath}`}
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
                     site_name: settings.name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
-                    url: `${app_url}/${router.asPath}`,
+                    url: `${env.app_url}/${router.asPath}`,
                     type: "website",
                     images: [
                         {
@@ -56,7 +57,7 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <div className="pt-6 flex justify-center">
                                 <a
-                                    href={`${api_url}/dl/${slug}`}
+                                    href={`${env.api_url}/dl/${slug}`}
                                     className="px-4 py-2 text-lg bg-indigo-600 hover:bg-indigo-700 duration-150 rounded shadow"
                                 >
                                     Download

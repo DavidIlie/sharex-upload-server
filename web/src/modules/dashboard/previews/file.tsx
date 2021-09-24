@@ -3,9 +3,14 @@ import { useQuery } from "react-query";
 import PreviewListPane from "@components/PreviewListPane";
 import type { FileType } from "@sharex-server/common";
 import UploadPreviewCard from "@components/UploadPreviewCard";
+import useEnv from "@hooks/useEnv";
 
 const LatestFilesModule = (): JSX.Element => {
-    const { data, isLoading } = useQuery<FileType[]>("/api/latest/files");
+    const env = useEnv();
+
+    const { data, isLoading } = useQuery<FileType[]>(
+        `${env.api_url}/api/latest/files`
+    );
 
     if (isLoading) return <div />;
 

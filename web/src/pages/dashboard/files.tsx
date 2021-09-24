@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import type { FileType } from "@sharex-server/common";
 import { isLoggedIn } from "@lib/isLoggedIn";
+import useEnv from "@hooks/useEnv";
 
 import FileUploadModule from "@modules/dashboard/uploads/file";
 
@@ -13,10 +14,11 @@ import NavBar from "@components/NavBar";
 import LargePreviewListPane from "@components/LargePreviewListPane";
 
 const Images = (): JSX.Element => {
+    const env = useEnv();
     const [modalState, setModalState] = useState<boolean>(false);
 
     const { data, isLoading } = useQuery<FileType[]>(
-        "/api/latest/files/no-limit"
+        `${env.api_url}/api/latest/files/no-limit`
     );
 
     const updateModalState = () => {

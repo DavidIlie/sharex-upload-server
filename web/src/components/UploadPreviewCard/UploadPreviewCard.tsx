@@ -3,12 +3,12 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 
-import { api_url } from "@lib/constants";
 import { getFileIconFromExtension } from "@lib/iconUtils";
 import { shimmer } from "@lib/shimmer";
 import { axios } from "@lib/axiosClient";
 import { queryClient } from "@lib/queryClient";
 
+import useEnv from "@hooks/useEnv";
 import type { FileType } from "@sharex-server/common";
 
 import ConfirmModal from "@modules/misc/ConfirmModal";
@@ -25,15 +25,19 @@ const UploadPreviewCard = ({
     const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
     const updateConfirmDeleteState = () => setConfirmDelete(!confirmDelete);
 
+    const env = useEnv();
+
     const href =
         file.type === "image"
-            ? `${api_url}/image/${file.slug}`
+            ? `${env.api_url}/image/${file.slug}`
             : `/f/${file.slug}`;
 
     const deleteItem = async () => {
         const deleteTokenPromise = new Promise<string>(
             async (resolve, reject) => {
-                const r = await axios.post(`${api_url}/api/delete/${file.id}`);
+                const r = await axios.post(
+                    `${env.api_url}/api/delete/${file.id}`
+                );
                 const response = r.data;
                 if (r.status === 200) {
                     queryClient.refetchQueries(`/api/latest/${type}s`);
@@ -65,7 +69,7 @@ const UploadPreviewCard = ({
                                 className="rounded-sm shadow-md"
                                 width={1000}
                                 height={1000}
-                                src={`${api_url}/image/${file.slug}`}
+                                src={`/utils/imageproxy?url=${env.api_url}/image/${file.slug}`}
                                 alt={`${file.name}`}
                                 objectFit="cover"
                                 placeholder="blur"

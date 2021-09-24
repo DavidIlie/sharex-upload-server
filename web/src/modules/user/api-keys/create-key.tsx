@@ -5,7 +5,7 @@ import { useState } from "react";
 import useSettings from "@hooks/useSettings";
 import { createAPIKeySchema, getPermissions } from "@sharex-server/common";
 import { axios } from "@lib/axiosClient";
-import { api_url } from "@lib/constants";
+import useEnv from "@hooks/useEnv";
 import { queryClient } from "@lib/queryClient";
 
 import Modal from "@ui/Modal";
@@ -25,6 +25,7 @@ const CreateKeyModule = (): JSX.Element => {
     const handleOpenKeyModal = () => setOpenKeyModal(!openKeyModal);
 
     const settings = useSettings();
+    const env = useEnv();
 
     const APITypesController = (
         name: string,
@@ -61,7 +62,10 @@ const CreateKeyModule = (): JSX.Element => {
                     onSubmit={async (data, { setSubmitting, resetForm }) => {
                         setSubmitting(true);
 
-                        const r = await axios.post(`${api_url}/api/keys`, data);
+                        const r = await axios.post(
+                            `${env.api_url}/api/keys`,
+                            data
+                        );
                         const response = await r.data;
 
                         if (r.status === 200) {

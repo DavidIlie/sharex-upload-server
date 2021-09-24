@@ -2,8 +2,8 @@ const withPlugins = require("next-compose-plugins");
 const withTM = require("next-transpile-modules")(["@sharex-server/common"]);
 
 const nextConfig = {
-    images: {
-        domains: ["localhost"],
+    async rewrites() {
+        return [{ source: "/utils/:path*", destination: "/api/:path*" }];
     },
 };
 

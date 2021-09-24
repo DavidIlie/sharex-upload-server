@@ -5,13 +5,16 @@ import { Fade } from "react-awesome-reveal";
 
 import { isLoggedIn } from "@lib/isLoggedIn";
 import type { FileType } from "@sharex-server/common";
+import useEnv from "@hooks/useEnv";
 
 import NavBar from "@components/NavBar";
 import LargePreviewListPane from "@components/LargePreviewListPane";
 
 const Images = (): JSX.Element => {
+    const env = useEnv();
+
     const { data, isLoading } = useQuery<FileType[]>(
-        "/api/latest/texts/no-limit"
+        `${env.api_url}/api/latest/texts/no-limit`
     );
 
     if (isLoading) return <div />;

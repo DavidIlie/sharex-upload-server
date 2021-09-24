@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { loginSchema } from "@sharex-server/common";
 import { noRedirectIsLoggedIn } from "@lib/isLoggedIn";
-import { api_url } from "@lib/constants";
+import useEnv from "@hooks/useEnv";
 import { axios } from "@lib/axiosClient";
 import { getSettingsData } from "@lib/settingsManager";
 import { getUserData } from "@lib/userManager";
@@ -26,6 +26,7 @@ const Login = (): JSX.Element => {
 
     const { settings, updateSettings } = useSettingsStore();
     const { updateUser } = useUserStore();
+    const env = useEnv();
 
     return (
         <>
@@ -52,7 +53,7 @@ const Login = (): JSX.Element => {
                                 setSubmitting(true);
 
                                 const r = await axios.post(
-                                    `${api_url}/api/auth/login`,
+                                    `${env.api_url}/api/auth/login`,
                                     data
                                 );
                                 const response = await r.data;
@@ -60,8 +61,8 @@ const Login = (): JSX.Element => {
                                 if (r.status !== 200) {
                                     setErrorMessage(response.message);
                                 } else {
-                                    updateSettings(await getSettingsData());
-                                    updateUser(await getUserData());
+                                    updateSettings(await getSettingsData(env));
+                                    updateUser(await getUserData(env));
                                     router.push("/dashboard");
                                 }
 

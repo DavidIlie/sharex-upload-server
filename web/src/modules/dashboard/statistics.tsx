@@ -1,5 +1,7 @@
 import { useQuery } from "react-query";
 
+import useEnv from "@hooks/useEnv";
+
 import DashboardStatCard from "@components/DashboardStatCard";
 
 interface DataTypes {
@@ -16,8 +18,12 @@ interface DataTypes {
 }
 
 const StatisticsModule = ({ admin }: { admin: boolean }): JSX.Element => {
+    const env = useEnv();
+
     const { isLoading, data: response } = useQuery<DataTypes>(
-        admin ? "/api/statistics/admin" : "/api/statistics",
+        admin
+            ? `${env.api_url}/api/statistics/admin`
+            : `${env.api_url}/api/statistics`,
         { refetchOnWindowFocus: true }
     );
 

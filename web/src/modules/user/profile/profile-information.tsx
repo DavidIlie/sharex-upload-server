@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
 
 import { axios } from "@lib/axiosClient";
-import { api_url } from "@lib/constants";
+import useEnv from "@hooks/useEnv";
 import { useUserStore } from "@global-stores/useUserStore";
 import { updateProfileSchema } from "@sharex-server/common";
 
@@ -17,6 +17,7 @@ import Error from "@ui/form/Error";
 
 const ProfileInformationModule = (): JSX.Element => {
     const { user, updateUser } = useUserStore();
+    const env = useEnv();
 
     return (
         <SettingSection
@@ -33,7 +34,7 @@ const ProfileInformationModule = (): JSX.Element => {
 
                     try {
                         const r = await axios.post(
-                            `${api_url}/api/user/profile`,
+                            `${env.api_url}/api/user/profile`,
                             data
                         );
                         const response = await r.data;
