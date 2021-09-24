@@ -14,7 +14,7 @@ const AppLayout = ({ children }: LayoutProps): JSX.Element => {
     const dissmissDevAlert = localStorage.getItem("dismissDevelopmentAlert");
 
     const changeTheme = ToggleColorMode();
-    useShortcut("shift+d", () => changeTheme());
+    useShortcut("ctrl+shift+e", () => changeTheme());
 
     return (
         <>
