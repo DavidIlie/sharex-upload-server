@@ -5,7 +5,7 @@ const Loader = (): JSX.Element => {
     return (
         <>
             <NextSeo title="Loading" />
-            <section className="h-screen flex justify-center items-center">
+            <section className="bg-gray-100 dark:bg-gray-900 h-screen flex justify-center items-center">
                 <Fade>
                     <div className="loading-loader">
                         <span />
