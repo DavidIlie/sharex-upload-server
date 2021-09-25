@@ -53,12 +53,20 @@ export const uploadImageToDisk = async (
 
     return await new Promise((resolve, reject) => {
         upload(req, res, (err) => {
-            if (err instanceof multer.MulterError) {
-                return reject(`${name} file not specified`);
-            } else if (err) {
-                return reject("internal server error");
+            try {
+                if (req.file) {
+                    if (err instanceof multer.MulterError) {
+                        return reject(`${name} file not specified`);
+                    } else if (err) {
+                        return reject("internal server error");
+                    }
+                    return resolve(true);
+                } else {
+                    throw new Error("file form name must be image");
+                }
+            } catch (error) {
+                res.status(400).json({ message: error.message });
             }
-            return resolve(true);
         });
     });
 };
@@ -75,12 +83,20 @@ export const uploadFileToDisk = async (
 
     return await new Promise((resolve, reject) => {
         upload(req, res, (err) => {
-            if (err instanceof multer.MulterError) {
-                return reject(`${name} file not specified`);
-            } else if (err) {
-                return reject("internal server error");
+            try {
+                if (req.file) {
+                    if (err instanceof multer.MulterError) {
+                        return reject(`${name} file not specified`);
+                    } else if (err) {
+                        return reject("internal server error");
+                    }
+                    return resolve(true);
+                } else {
+                    throw new Error("file form must be file");
+                }
+            } catch (error) {
+                res.status(400).json({ message: error.message });
             }
-            return resolve(true);
         });
     });
 };

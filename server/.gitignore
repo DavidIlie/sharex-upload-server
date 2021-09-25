@@ -2,3 +2,4 @@
 node_modules/
 uploads/
 dist/
+yarn-error.log

@@ -1,8 +1,6 @@
 import type { RequestHandler } from "express";
 
-const NotFound: RequestHandler = (req, res, _next) => {
-    res.status(404);
-    res.json({ message: `Not Found - ${req.originalUrl}` });
-};
+const NotFound: RequestHandler = (_req, res, _next) =>
+    res.redirect(process.env.FRONTEND_URL as any);
 
 export default NotFound;

@@ -11,6 +11,7 @@ export const uploadImage = async (
     res: express.Response
 ) => {
     await uploadImageToDisk(name, req, res);
+
     const MulterFile = req.file;
 
     const file = await getFileBySlug(MulterFile.suffix);
