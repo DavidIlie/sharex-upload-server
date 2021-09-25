@@ -65,24 +65,18 @@ function App({ Component, pageProps, router, env }: Props) {
         };
     });
 
-    const path = router.pathname;
-
     return (
         <>
-            {!path.startsWith("/f") && (
-                <DefaultSeo
-                    defaultTitle={settings.name || "ShareX Media Server"}
-                    titleTemplate={`%s | ${
-                        settings.name || "ShareX Media Server"
-                    }`}
-                    openGraph={{
-                        title: settings.name || "ShareX Media Server",
-                        type: `website`,
-                        site_name: settings.name || "ShareX Media Server",
-                    }}
-                    description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
-                />
-            )}
+            <DefaultSeo
+                defaultTitle={settings.name || "ShareX Media Server"}
+                titleTemplate={`%s | ${settings.name || "ShareX Media Server"}`}
+                openGraph={{
+                    title: settings.name || "ShareX Media Server",
+                    type: `website`,
+                    site_name: settings.name || "ShareX Media Server",
+                }}
+                description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
+            />
             <ThemeProvider
                 attribute="class"
                 defaultTheme={settings.default_theme}
