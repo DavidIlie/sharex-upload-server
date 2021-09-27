@@ -47,7 +47,7 @@ const Login = ({ stats }: Props): JSX.Element => {
                     <Tooltip content="View project on GitHub">
                         <a
                             className="text-3xl font-medium text-black dark:text-white"
-                            href="https://github.com/DavidIlie/sharex-media-server"
+                            href="https://github.com/DavidIlie/sharex-upload-server"
                             target="_blank"
                         >
                             {settings.name}

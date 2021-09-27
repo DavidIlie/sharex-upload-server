@@ -52,7 +52,7 @@ const Footer = (): JSX.Element => {
                 </div>
 
                 <a
-                    href="https://github.com/DavidIlie/sharex-media-server"
+                    href="https://github.com/DavidIlie/sharex-upload-server"
                     target="_blank"
                     className="font-semibold hover:underline"
                 >
