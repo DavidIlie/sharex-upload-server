@@ -68,35 +68,37 @@ function App({ Component, pageProps, router, env }: Props) {
     });
 
     return (
-        <>
-            <DefaultSeo
-                defaultTitle={settings.name || "ShareX Media Server"}
-                titleTemplate={`%s | ${settings.name || "ShareX Media Server"}`}
-                openGraph={{
-                    title: settings.name || "ShareX Media Server",
-                    type: `website`,
-                    site_name: settings.name || "ShareX Media Server",
-                }}
-                description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
-            />
-            <ThemeProvider
-                attribute="class"
-                defaultTheme={settings.default_theme}
-            >
-                <QueryClientProvider client={queryClient}>
-                    <Toaster position="top-center" />
-                    {!finishedSettingsCheck ||
-                    (!finishedSettingsCheck && loading) ||
-                    loading ? (
-                        <Loader />
-                    ) : (
+        <ThemeProvider attribute="class" defaultTheme={settings.default_theme}>
+            <QueryClientProvider client={queryClient}>
+                <Toaster position="top-center" />
+                {!finishedSettingsCheck ||
+                (!finishedSettingsCheck && loading) ||
+                loading ? (
+                    <Loader />
+                ) : (
+                    <>
+                        <DefaultSeo
+                            defaultTitle={
+                                settings.name || "ShareX Media Server"
+                            }
+                            titleTemplate={`%s | ${
+                                settings.name || "ShareX Media Server"
+                            }`}
+                            openGraph={{
+                                title: settings.name || "ShareX Media Server",
+                                type: `website`,
+                                site_name:
+                                    settings.name || "ShareX Media Server",
+                            }}
+                            description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
+                        />
                         <AppLayout>
                             <Component {...pageProps} />
                         </AppLayout>
-                    )}
-                </QueryClientProvider>
-            </ThemeProvider>
-        </>
+                    </>
+                )}
+            </QueryClientProvider>
+        </ThemeProvider>
     );
 }
 
