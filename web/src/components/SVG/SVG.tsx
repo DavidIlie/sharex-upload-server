@@ -55,7 +55,7 @@ const GetColor = () => {
     const { theme } = useTheme();
 
     if (theme === "dark") {
-        return [`100`, `200`, `300`, `400`, `500`];
+        return [`200`, `300`, `400`, `500`, `600`];
     } else {
         return [`500`, `600`, `700`, `800`, `900`];
     }
@@ -64,7 +64,7 @@ const GetColor = () => {
 export const SVG = ({
     stroke = false,
     color = `${
-        [`red`, `indigo`, `blue`, `green`][Math.floor(Math.random() * 4)]
+        [`indigo`, `blue`, `green`, `purple`][Math.floor(Math.random() * 4)]
     }-${GetColor()[Math.floor(Math.random() * 5)]}`,
     zIndex = -500,
     width,
