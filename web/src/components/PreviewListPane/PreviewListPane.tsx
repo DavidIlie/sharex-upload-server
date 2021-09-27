@@ -16,10 +16,10 @@ const PreviewListPane = ({
     children,
 }: PreviewListPaneProps): JSX.Element => {
     return (
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto px-2 lg:px-8">
             <div className="overflow-hidden shadow-xl rounded-lg">
                 <div className="p-6 flex items-center justify-between bg-gray-200 dark:bg-gray-800">
-                    <div className="text-xl text-black dark:text-dark-gray-100">
+                    <div className="sm:text-xl text-black dark:text-dark-gray-100">
                         {title}
                     </div>
                     <Link href={link}>
@@ -44,7 +44,7 @@ const PreviewListPane = ({
                         </a>
                     </Link>
                 </div>
-                <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-70 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+                <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-70 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                     {children && children.length === 0 && (
                         <>
                             <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">

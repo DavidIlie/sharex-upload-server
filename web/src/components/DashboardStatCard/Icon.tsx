@@ -5,7 +5,7 @@ interface IconTypes {
 const Icon = ({ type }: IconTypes): JSX.Element => {
     return type === "total" ? (
         <svg
-            className="h-16 w-16 text-gray-700 dark:text-dark-gray-400"
+            className="sm:h-16 sm:w-16 h-12 w-12 text-gray-700 dark:text-dark-gray-400"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -20,7 +20,7 @@ const Icon = ({ type }: IconTypes): JSX.Element => {
         </svg>
     ) : type === "file" ? (
         <svg
-            className="h-16 w-16 text-gray-700 dark:text-dark-gray-400"
+            className="sm:h-16 sm:w-16 h-12 w-12 text-gray-700 dark:text-dark-gray-400"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -35,7 +35,7 @@ const Icon = ({ type }: IconTypes): JSX.Element => {
         </svg>
     ) : type === "image" ? (
         <svg
-            className="h-16 w-16 text-gray-700 dark:text-dark-gray-400"
+            className="sm:h-16 sm:w-16 h-12 w-12 text-gray-700 dark:text-dark-gray-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -50,7 +50,7 @@ const Icon = ({ type }: IconTypes): JSX.Element => {
         </svg>
     ) : type === "text" ? (
         <svg
-            className="h-16 w-16 text-gray-700 dark:text-dark-gray-400"
+            className="sm:h-16 sm:w-16 h-12 w-12 text-gray-700 dark:text-dark-gray-400"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

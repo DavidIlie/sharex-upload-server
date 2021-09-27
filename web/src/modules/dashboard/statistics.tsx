@@ -27,7 +27,7 @@ const StatisticsModule = ({ admin }: { admin: boolean }): JSX.Element => {
     );
 
     return (
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="max-w-7xl mx-auto px-2 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {!isLoading && (
                 <>
                     <DashboardStatCard

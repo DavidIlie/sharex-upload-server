@@ -58,7 +58,7 @@ const Footer = (): JSX.Element => {
                     target="_blank"
                     className="font-semibold hover:underline"
                 >
-                    Version 0.5.3{is_dev && "-DEV"}
+                    Version 0.5.4{is_dev && "-DEV"}
                 </a>
             </div>
         </footer>
