@@ -156,9 +156,14 @@ const Login = ({ stats }: Props): JSX.Element => {
                             )}
                         </Formik>
                     </div>
-                    <a className="mt-4 flex text-sm font-semibold text-black dark:text-gray-400 hover:underline cursor-pointer">
-                        {stats.totalFiles} upload{stats.totalFiles !== 1 && "s"}{" "}
-                        with a size of {stats.totalSize.value}{" "}
+                    <a className="mt-4 flex text-sm text-black dark:text-gray-400 hover:underline cursor-pointer">
+                        <span className="font-semibold mx-1">
+                            {stats.totalFiles}
+                        </span>
+                        upload{stats.totalFiles !== 1 && "s"} with a size of{" "}
+                        <span className="font-semibold mx-1">
+                            {stats.totalSize.value}
+                        </span>
                         {stats.totalSize.unit}
                     </a>
                 </Fade>
