@@ -9,20 +9,15 @@ import FileCard from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/iconUtils";
 
 import { FileType, SupportPreview } from "@sharex-server/common";
-import useSettings from "@hooks/useSettings";
-import useEnv from "@hooks/useEnv";
-
 interface Props {
     message?: string;
     file: FileType;
+    api_url: string;
 }
 
-const ViewFile = ({ message, file }: Props): JSX.Element => {
+const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
     const router = useRouter();
     const { slug } = router.query;
-
-    const settings = useSettings();
-    const env = useEnv();
 
     if (message) return <NotFound />;
 
@@ -32,13 +27,13 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
         <>
             <NextSeo
                 title={file.name}
-                canonical={`${env.app_url}/${router.asPath}`}
+                canonical={router.basePath}
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
-                    site_name: settings.name,
+                    site_name: "ShareX Media Server",
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
-                    url: `${env.app_url}/${router.asPath}`,
+                    url: router.basePath,
                     type: "website",
                     images: [
                         {
@@ -57,7 +52,7 @@ const ViewFile = ({ message, file }: Props): JSX.Element => {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <div className="pt-6 flex justify-center">
                                 <a
-                                    href={`${env.api_url}/dl/${slug}`}
+                                    href={`${api_url}/dl/${slug}`}
                                     className="px-4 py-2 text-lg bg-indigo-600 hover:bg-indigo-700 duration-150 rounded shadow"
                                 >
                                     Download
@@ -90,6 +85,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         return {
             props: {
                 file: response,
+                api_url: process.env.API_URL,
             },
         };
     }

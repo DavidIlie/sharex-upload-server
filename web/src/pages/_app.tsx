@@ -71,9 +71,13 @@ function App({ Component, pageProps, router, env }: Props) {
         <ThemeProvider attribute="class" defaultTheme={settings.default_theme}>
             <QueryClientProvider client={queryClient}>
                 <Toaster position="top-center" />
-                {!finishedSettingsCheck ||
-                (!finishedSettingsCheck && loading) ||
-                loading ? (
+                {router.asPath.includes("/f/") ? (
+                    <AppLayout>
+                        <Component {...pageProps} />
+                    </AppLayout>
+                ) : !finishedSettingsCheck ||
+                  (!finishedSettingsCheck && loading) ||
+                  loading ? (
                     <Loader />
                 ) : (
                     <>

@@ -77,8 +77,6 @@ export const SVG = ({
         query: "(max-device-width: 480px)",
     });
 
-    console.log(color);
-
     return (
         <svg
             fill={stroke ? `none` : `currentColor`}

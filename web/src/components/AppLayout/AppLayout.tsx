@@ -1,4 +1,5 @@
 import { useShortcut } from "litkey";
+import { useState, useEffect } from "react";
 
 import ToggleColorMode from "@hooks/ToggleColorMode";
 
@@ -14,7 +15,13 @@ interface LayoutProps {
 }
 
 const AppLayout = ({ children }: LayoutProps): JSX.Element => {
-    const dissmissDevAlert = localStorage.getItem("dismissDevelopmentAlert");
+    const [dissmissDevAlert, setDissmissDevAlert] = useState<any>(false);
+
+    useEffect(() => {
+        setDissmissDevAlert(
+            localStorage.getItem("dismissDevelopmentAlert") || false
+        );
+    }, []);
 
     const changeTheme = ToggleColorMode();
     useShortcut("ctrl+shift+e", () => changeTheme());
