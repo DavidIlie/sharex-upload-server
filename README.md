@@ -1,6 +1,6 @@
-# sharex-media-server
+# sharex-upload-server
 
-sharex media server with an Express API and a Next.js frontend. Everything is written with typescript :)
+sharex upload server with an Express API and a Next.js frontend. Everything is written with typescript :)
 
 ## TODO:
 
