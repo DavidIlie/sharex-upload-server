@@ -34,6 +34,24 @@ router.get("/", isAuth(), async (req, res, next) => {
     }
 });
 
+router.get("/basic", async (_req, res, next) => {
+    try {
+        const Allfiles = await Uploads.find();
+        const totalFiles = Allfiles.length;
+
+        const totalSize = await getTotalSize();
+
+        res.json({
+            data: {
+                totalFiles,
+                totalSize,
+            },
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get("/admin", isAuth(), async (req, res, next) => {
     try {
         if (req.user?.isAdmin) {
