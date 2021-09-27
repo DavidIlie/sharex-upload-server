@@ -4,7 +4,7 @@ services:
         image: mongo
         restart: always
         volumes:
-            - db-data:/data/db
+            - sharex-upload-server-db:/data/db
 
     server:
         image: ghcr.io/davidilie/sharex-upload-server/server
@@ -14,7 +14,7 @@ services:
         ports:
             - 4000:4000
         volumes:
-            - uploads:/usr/src/app/server/uploads
+            - sharex-upload-server-data:/usr/src/app/server/uploads
         environment:
             - PORT=4000
             - MONGO_URI=mongodb
