@@ -184,7 +184,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
         res.end();
     }
 
-    const r = await fetch(`${process.env.API_URL}/api/statistics/basic`);
+    const r = await fetch(`${process.env.SERVER_API_URL}/api/statistics/basic`);
     const response = await r.json();
 
     return {

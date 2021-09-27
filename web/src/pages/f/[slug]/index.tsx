@@ -79,7 +79,9 @@ const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const data = await fetch(`${process.env.API_URL}/api/file/${params?.slug}`);
+    const data = await fetch(
+        `${process.env.SERVER_API_URL}/api/file/${params?.slug}`
+    );
     const response = await data.json();
 
     if (response.message) {
@@ -88,7 +90,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         return {
             props: {
                 file: response,
-                api_url: process.env.API_URL,
+                api_url: process.env.SERVER_API_URL,
             },
         };
     }

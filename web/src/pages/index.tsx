@@ -17,7 +17,7 @@ const Home = (): JSX.Element => {
 export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
     const cookie = req.cookies.access;
 
-    const request = await fetch(`${process.env.API_URL}/api/auth`, {
+    const request = await fetch(`${process.env.SERVER_API_URL}/api/auth`, {
         credentials: "include",
         headers: {
             access_token: cookie,
