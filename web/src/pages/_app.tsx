@@ -10,15 +10,15 @@ import "tippy.js/animations/shift-away.css";
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
 
-import Loader from "@components/Loader";
-import AppLayout from "@components/AppLayout";
-
 import { queryClient } from "@lib/queryClient";
 import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { getSettingsData } from "@lib/settingsManager";
 import { useUserStore } from "@global-stores/useUserStore";
 import { getUserData } from "@lib/userManager";
 import { useEnvStore, ENV } from "@global-stores/useEnvStore";
+
+import Loader from "@components/Loader";
+import AppLayout from "@components/AppLayout";
 
 type Props = { env: ENV } & AppProps;
 
