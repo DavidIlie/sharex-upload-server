@@ -24,10 +24,10 @@ const PreviewListPane = ({
                     </div>
                     <Link href={link}>
                         <a>
-                            <div className="flex items-center text-sm font-semibold text-blue-400">
+                            <div className="flex items-center text-sm font-semibold text-blue-500 dark:text-blue-400">
                                 <div>{viewTitle}</div>
 
-                                <div className="ml-1 text-blue-500">
+                                <div className="ml-1 text-blue-600 dark:text-blue-500">
                                     <svg
                                         viewBox="0 0 20 20"
                                         fill="currentColor"
@@ -44,7 +44,7 @@ const PreviewListPane = ({
                         </a>
                     </Link>
                 </div>
-                <div className="bg-gray-200 dark:bg-gray-800 dark:bg-opacity-60 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+                <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-70 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
                     {children && children.length === 0 && (
                         <>
                             <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">
