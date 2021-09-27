@@ -5,6 +5,8 @@ import { QueryClientProvider } from "react-query";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/shift-away.css";
 import "tailwindcss/tailwind.css";
 import "../styles/global.css";
 

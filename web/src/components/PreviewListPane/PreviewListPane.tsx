@@ -16,18 +16,18 @@ const PreviewListPane = ({
     children,
 }: PreviewListPaneProps): JSX.Element => {
     return (
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
             <div className="overflow-hidden shadow-xl rounded-lg">
-                <div className="p-6 flex items-center justify-between bg-gray-200 dark:bg-gray-700 dark:bg-opacity-25 border-b border-gray-200 dark:border-dark-gray-500">
+                <div className="p-6 flex items-center justify-between bg-gray-200 dark:bg-gray-700 dark:bg-opacity-25">
                     <div className="text-xl text-black dark:text-dark-gray-100">
                         {title}
                     </div>
                     <Link href={link}>
                         <a>
-                            <div className="flex items-center text-sm font-semibold text-indigo-400">
+                            <div className="flex items-center text-sm font-semibold text-blue-400">
                                 <div>{viewTitle}</div>
 
-                                <div className="ml-1 text-indigo-500">
+                                <div className="ml-1 text-blue-500">
                                     <svg
                                         viewBox="0 0 20 20"
                                         fill="currentColor"
@@ -47,11 +47,11 @@ const PreviewListPane = ({
                 <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
                     {children && children.length === 0 && (
                         <>
-                            <p className="px-4 pt-8 mb-4 col-span-6 text-center text-black dark:text-dark-gray-300">
+                            <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">
                                 You don't have any {type} uploads right now,
                                 create an
                                 <a
-                                    className="text-indigo-700 dark:text-indigo-400"
+                                    className="text-blue-700 dark:text-blue-400"
                                     href="/user/api-keys"
                                 >
                                     {" "}
@@ -64,12 +64,12 @@ const PreviewListPane = ({
                                 You can find guides for how to setup ShareX to
                                 use your API keys on the
                                 <a
-                                    className="text-indigo-700 dark:text-indigo-400"
+                                    className="text-blue-700 dark:text-blue-400"
                                     target="blank"
-                                    href="https://github.com/DavidIlie/sharex-media-server"
+                                    href="https://github.com/DavidIlie/sharex-media-server/wiki"
                                 >
                                     {" "}
-                                    project page
+                                    project wiki
                                 </a>
                                 .
                             </p>

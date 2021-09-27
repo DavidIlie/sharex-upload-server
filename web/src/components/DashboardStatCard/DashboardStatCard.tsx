@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "./Icon";
 
 interface DashboardStatCardProps {
-    type: "total" | "file" | "image" | "text" | "metric";
+    type: "file" | "image" | "text" | "metric";
     value: number | string;
     unit?: string;
     title: string;
@@ -16,7 +16,7 @@ const DashboardStatCard = ({
 }: DashboardStatCardProps): JSX.Element => {
     return (
         <div className="p-6 bg-white dark:bg-gray-700 dark:bg-opacity-25 border-2 border-gray-200 dark:border-gray-800 rounded-lg hoverItem duration-200">
-            <div className="flex justify-center items-center space-x-8">
+            <div className="flex justify-evenly items-center space-x-8">
                 <div>
                     <div className="uppercase text-sm text-gray-800 dark:text-dark-gray-300">
                         {title}

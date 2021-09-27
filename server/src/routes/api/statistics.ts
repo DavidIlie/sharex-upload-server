@@ -37,9 +37,6 @@ router.get("/", isAuth(), async (req, res, next) => {
 router.get("/admin", isAuth(), async (req, res, next) => {
     try {
         if (req.user?.isAdmin) {
-            const Allfiles = await Uploads.find();
-            const totalFiles = Allfiles.length;
-
             const imageFiles = await Uploads.find({
                 type: "image",
             });
@@ -57,7 +54,6 @@ router.get("/admin", isAuth(), async (req, res, next) => {
 
             res.json({
                 data: {
-                    totalFiles,
                     imageCount,
                     fileCount,
                     textCount,

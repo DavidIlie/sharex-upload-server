@@ -1,54 +1,65 @@
 import { is_dev } from "@lib/constants";
+import useSettings from "@hooks/useSettings";
 
 const Footer = (): JSX.Element => {
+    const settings = useSettings();
     return (
-        <footer className="flex justify-center items-center shadow bg-white dark:bg-gray-800">
-            <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-dark-gray-200">
+        <footer className="shadow bg-white dark:bg-gray-800">
+            <div className="flex sm:justify-evenly justify-center items-center max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
+                <a className="font-semibold hover:underline cursor-pointer">
+                    {settings.name}
+                </a>
+                <div>
+                    <p className="text-sm">
+                        Created by{" "}
+                        <a
+                            className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 duration-150 font-semibold"
+                            href="https://davidilie.com"
+                            target="_blank"
+                        >
+                            David Ilie
+                        </a>
+                        .
+                    </p>
+                    <p className="text-sm">
+                        Powered by
+                        <a
+                            className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 font-semibold"
+                            href="https://nextjs.org/"
+                            target="_blank"
+                        >
+                            {" "}
+                            Next.js
+                        </a>
+                        ,
+                        <a
+                            className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 font-semibold"
+                            href="https://expressjs.com/"
+                            target="_blank"
+                        >
+                            {" "}
+                            Express.js
+                        </a>
+                        , and
+                        <a
+                            className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 font-semibold"
+                            href="https://tailwindcss.com/"
+                            target="_blank"
+                        >
+                            {" "}
+                            Tailwind CSS
+                        </a>
+                        .
+                    </p>
+                </div>
+
                 <a
                     href="https://github.com/DavidIlie/sharex-media-server"
                     target="_blank"
                     className="font-semibold hover:underline"
                 >
-                    sharex-media-server v0.5.1{is_dev && "-DEV"}
+                    Version 0.5.2{is_dev && "-DEV"}
                 </a>
-                <p className="text-sm">
-                    Created by{" "}
-                    <a
-                        className="text-indigo-400 hover:text-indigo-500 duration-150 font-semibold"
-                        href="https://davidilie.com"
-                        target="_blank"
-                    >
-                        David Ilie
-                    </a>
-                    , powered by
-                    <a
-                        className="text-indigo-400 hover:text-indigo-500 font-semibold"
-                        href="https://nextjs.org/"
-                        target="_blank"
-                    >
-                        {" "}
-                        Next.js
-                    </a>
-                    ,
-                    <a
-                        className="text-indigo-400 hover:text-indigo-500 font-semibold"
-                        href="https://expressjs.com/"
-                        target="_blank"
-                    >
-                        {" "}
-                        Express.js
-                    </a>
-                    , and
-                    <a
-                        className="text-indigo-400 hover:text-indigo-500 font-semibold"
-                        href="https://tailwindcss.com/"
-                        target="_blank"
-                    >
-                        {" "}
-                        Tailwind CSS
-                    </a>
-                    .
-                </p>
             </div>
         </footer>
     );

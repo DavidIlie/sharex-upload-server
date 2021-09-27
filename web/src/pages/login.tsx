@@ -11,7 +11,6 @@ import useEnv from "@hooks/useEnv";
 import { axios } from "@lib/axiosClient";
 import { getSettingsData } from "@lib/settingsManager";
 import { getUserData } from "@lib/userManager";
-
 import { useSettingsStore } from "@global-stores/useSettingsStore";
 import { useUserStore } from "@global-stores/useUserStore";
 
@@ -34,7 +33,7 @@ const Login = (): JSX.Element => {
             <div className="h-screen flex flex-col justify-center items-center">
                 <Fade direction="up" cascade>
                     <div className="text-3xl font-medium text-black dark:text-white">
-                        <a href="/login">{settings.name}</a>
+                        {settings.name}
                     </div>
                     <div className="w-full sm:max-w-md mt-3 px-6 py-4 border-2 bg-white dark:bg-dark-gray-800 border-gray-200 dark:border-gray-900 shadow-md overflow-hidden sm:rounded-lg">
                         <Formik

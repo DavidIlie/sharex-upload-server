@@ -38,11 +38,11 @@ const LargePreviewListPane = ({
             <div className="bg-gray-200 dark:bg-gray-700 dark:bg-opacity-25 overflow-hidden shadow-xl sm:rounded-lg">
                 {data?.length === 0 || data === undefined ? (
                     <>
-                        <p className="px-4 pt-8 mb-4 col-span-6 text-center text-black dark:text-dark-gray-300">
+                        <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">
                             You don't have any {type} uploads right now, create
                             an
                             <a
-                                className="text-indigo-700 dark:text-indigo-400"
+                                className="text-blue-700 dark:text-blue-400"
                                 href="/user/api-keys"
                             >
                                 {" "}
@@ -55,12 +55,12 @@ const LargePreviewListPane = ({
                             You can find guides for how to setup ShareX to use
                             your API keys on the
                             <a
-                                className="text-indigo-700 dark:text-indigo-400"
+                                className="text-blue-700 dark:text-blue-400"
                                 target="blank"
-                                href="https://github.com/DavidIlie/sharex-media-server"
+                                href="https://github.com/DavidIlie/sharex-media-server/wiki"
                             >
                                 {" "}
-                                project page
+                                project wiki
                             </a>
                             .
                         </p>

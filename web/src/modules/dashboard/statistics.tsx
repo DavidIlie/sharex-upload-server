@@ -6,7 +6,6 @@ import DashboardStatCard from "@components/DashboardStatCard";
 
 interface DataTypes {
     data: {
-        totalFiles: number;
         imageCount: number;
         fileCount: number;
         textCount: number;
@@ -28,14 +27,9 @@ const StatisticsModule = ({ admin }: { admin: boolean }): JSX.Element => {
     );
 
     return (
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {!isLoading && (
                 <>
-                    <DashboardStatCard
-                        type="total"
-                        value={response!.data.totalFiles}
-                        title="Total Items"
-                    />
                     <DashboardStatCard
                         type="image"
                         value={response!.data.imageCount}
