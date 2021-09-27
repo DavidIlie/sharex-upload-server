@@ -7,11 +7,11 @@ import chalk from "chalk";
 import cookieParser from "cookie-parser";
 import fs from "fs";
 
-import * as middlewares from "./middleware";
-import api from "./routes";
-
 import { uploadDir } from "./lib/filesystem";
 import { Uploads } from "./entities/Uploads";
+
+import * as middlewares from "./middleware";
+import api from "./routes";
 
 const main = async () => {
     const conn = await createConnection({
