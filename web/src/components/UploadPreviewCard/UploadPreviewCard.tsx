@@ -78,7 +78,7 @@ const UploadPreviewCard = ({
                                 )}
                             />
                         ) : (
-                            <div className="p-2 flex flex-col w-full text-center overflow-ellipsis bg-gray-100 dark:bg-gray-900 rounded shadow-md">
+                            <div className="p-2 flex flex-col w-full text-center overflow-ellipsis bg-gray-100 dark:bg-dark-gray-900 rounded shadow-md">
                                 <Image
                                     className="flex flex-1"
                                     width={1000}
