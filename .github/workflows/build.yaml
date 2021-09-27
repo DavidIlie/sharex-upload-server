@@ -24,7 +24,7 @@ jobs:
                   password: ${{ secrets.GHCR_PASSWORD }}
             - name: Build and publish Docker image
               run: |
-                  docker build -t ghcr.io/davidilie/sharex-upload-server/server:latest-f server/Dockerfile .
+                  docker build -t ghcr.io/davidilie/sharex-upload-server/server:latest -f server/Dockerfile .
                   docker push ghcr.io/davidilie/sharex-upload-server/server:latest
     web:
         name: "Build Web"
