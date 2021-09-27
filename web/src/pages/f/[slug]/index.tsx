@@ -7,6 +7,7 @@ import Link from "next/link";
 import NotFound from "@components/NotFound";
 import FileCard from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/iconUtils";
+import useSettings from "@hooks/useSettings";
 
 import { FileType, SupportPreview } from "@sharex-server/common";
 interface Props {
@@ -21,6 +22,8 @@ const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
 
     if (message) return <NotFound />;
 
+    const settings = useSettings();
+
     const icon = getFileIconFromExtension(file.stats.extension);
 
     return (
@@ -31,7 +34,7 @@ const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
-                    site_name: "ShareX Media Server",
+                    site_name: settings.name || "ShareX Upload Server",
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
                     url: router.basePath,
                     type: "website",

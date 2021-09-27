@@ -68,41 +68,41 @@ function App({ Component, pageProps, router, env }: Props) {
     });
 
     return (
-        <ThemeProvider attribute="class" defaultTheme={settings.default_theme}>
-            <QueryClientProvider client={queryClient}>
-                <Toaster position="top-center" />
-                {router.asPath.includes("/f/") ? (
-                    <AppLayout>
-                        <Component {...pageProps} />
-                    </AppLayout>
-                ) : !finishedSettingsCheck ||
-                  (!finishedSettingsCheck && loading) ||
-                  loading ? (
-                    <Loader />
-                ) : (
-                    <>
-                        <DefaultSeo
-                            defaultTitle={
-                                settings.name || "ShareX Media Server"
-                            }
-                            titleTemplate={`%s | ${
-                                settings.name || "ShareX Media Server"
-                            }`}
-                            openGraph={{
-                                title: settings.name || "ShareX Media Server",
-                                type: `website`,
-                                site_name:
-                                    settings.name || "ShareX Media Server",
-                            }}
-                            description="Advanced ShareX Media Server with support for most types of uploads and a web interface."
-                        />
+        <>
+            <DefaultSeo
+                defaultTitle={settings.name || "ShareX Upload Server"}
+                titleTemplate={`%s | ${
+                    settings.name || "ShareX Upload Server"
+                }`}
+                openGraph={{
+                    title: settings.name || "ShareX Upload Server",
+                    type: `website`,
+                    site_name: settings.name || "ShareX Upload Server",
+                }}
+                description="Advanced ShareX Upload Server with support for most types of uploads and a web interface."
+            />
+            <ThemeProvider
+                attribute="class"
+                defaultTheme={settings.default_theme}
+            >
+                <QueryClientProvider client={queryClient}>
+                    <Toaster position="top-center" />
+                    {router.asPath.includes("/f/") ? (
                         <AppLayout>
                             <Component {...pageProps} />
                         </AppLayout>
-                    </>
-                )}
-            </QueryClientProvider>
-        </ThemeProvider>
+                    ) : !finishedSettingsCheck ||
+                      (!finishedSettingsCheck && loading) ||
+                      loading ? (
+                        <Loader />
+                    ) : (
+                        <AppLayout>
+                            <Component {...pageProps} />
+                        </AppLayout>
+                    )}
+                </QueryClientProvider>
+            </ThemeProvider>
+        </>
     );
 }
 
