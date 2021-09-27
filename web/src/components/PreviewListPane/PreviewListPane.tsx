@@ -18,7 +18,7 @@ const PreviewListPane = ({
     return (
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
             <div className="overflow-hidden shadow-xl rounded-lg">
-                <div className="p-6 flex items-center justify-between bg-gray-200 dark:bg-gray-700 dark:bg-opacity-25">
+                <div className="p-6 flex items-center justify-between bg-gray-200 dark:bg-gray-800">
                     <div className="text-xl text-black dark:text-dark-gray-100">
                         {title}
                     </div>
@@ -44,7 +44,7 @@ const PreviewListPane = ({
                         </a>
                     </Link>
                 </div>
-                <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+                <div className="bg-gray-200 dark:bg-gray-800 dark:bg-opacity-60 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
                     {children && children.length === 0 && (
                         <>
                             <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">
@@ -60,7 +60,7 @@ const PreviewListPane = ({
                                 to start uploading some.
                             </p>
 
-                            <p className="px-4 pb-8 col-span-6 text-center text-black dark:text-dark-gray-300">
+                            <p className="px-4 pb-8 mb-2 col-span-6 text-center text-black dark:text-dark-gray-300">
                                 You can find guides for how to setup ShareX to
                                 use your API keys on the
                                 <a

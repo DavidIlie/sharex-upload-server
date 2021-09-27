@@ -5,7 +5,7 @@ const Footer = (): JSX.Element => {
     const settings = useSettings();
     return (
         <footer className="shadow bg-white dark:bg-gray-800">
-            <div className="flex sm:justify-evenly justify-center items-center max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
+            <div className="flex lg:justify-evenly justify-center items-center max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
                 <a className="font-semibold hover:underline cursor-pointer">
                     {settings.name}
                 </a>
@@ -58,7 +58,7 @@ const Footer = (): JSX.Element => {
                     target="_blank"
                     className="font-semibold hover:underline"
                 >
-                    Version 0.5.2{is_dev && "-DEV"}
+                    Version 0.5.3{is_dev && "-DEV"}
                 </a>
             </div>
         </footer>
