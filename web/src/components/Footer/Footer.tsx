@@ -5,11 +5,9 @@ const Footer = (): JSX.Element => {
     const settings = useSettings();
     return (
         <footer className="shadow bg-white dark:bg-gray-800">
-            <div className="flex lg:justify-evenly justify-center items-center max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
-                <a className="font-semibold hover:underline cursor-pointer">
-                    {settings.name}
-                </a>
-                <div>
+            <div className="sm:flex flex-wrap items-center justify-evenly max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
+                <a className="font-semibold">{settings.name}</a>
+                <div className="sm:py-0 py-3">
                     <p className="text-sm">
                         Created by{" "}
                         <a
