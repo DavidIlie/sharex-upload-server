@@ -21,22 +21,27 @@ const ManageKeysModule = (): JSX.Element => {
             subtitle="You may delete any of your existing tokens if they are no longer needed."
         >
             <TopPart noGrid noBottom>
-                {!isLoading &&
-                    (data?.length === 0 ? (
-                        <h1>You don't have any API Tokens right now.</h1>
+                <div className="mt-4">
+                    {!isLoading ? (
+                        data?.length === 0 ? (
+                            <h1>You don't have any API Tokens right now.</h1>
+                        ) : (
+                            data?.map((key, index) => {
+                                return (
+                                    <div
+                                        className={`${
+                                            index !== data?.length - 1 && "mb-6"
+                                        }`}
+                                    >
+                                        <APIKeyCard data={key} key={index} />
+                                    </div>
+                                );
+                            })
+                        )
                     ) : (
-                        data?.map((key, index) => {
-                            return (
-                                <div
-                                    className={`${
-                                        index !== data?.length - 1 && "mb-6"
-                                    }`}
-                                >
-                                    <APIKeyCard data={key} key={index} />
-                                </div>
-                            );
-                        })
-                    ))}
+                        <APIKeyCard skeleton={true} />
+                    )}
+                </div>
             </TopPart>
         </SettingSection>
     );
