@@ -1,0 +1,21 @@
+- name: Synchronize deployment directory.
+  ansible.posix.synchronize:
+      src: ../../deployment
+      dest: "{{ config_dir }}/"
+      delete: false
+      recursive: true
+      perms: false
+  become: false
+
+- name: Copy templated files into place.
+  ansible.builtin.template:
+      src: templates/{{ item.src }}
+      dest: "{{ config_dir }}/deployment/{{ item.dest }}"
+      mode: 0644
+  loop:
+      - src: docker-compose.yml.j2
+        dest: "docker-compose/docker-compose.yml"
+  become: false
+
+- name: Run docker-compose up
+  shell: "cd /home/{{ ansible_user }}/deployment/docker-compose && docker-compose up -d"

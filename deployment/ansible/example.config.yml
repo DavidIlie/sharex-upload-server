@@ -1,0 +1,10 @@
+---
+# Location where configuration files will be stored.
+config_dir: "~"
+
+# Make sure this points to your PRODUCTION url!
+frontend_url: "http://localhost"
+backend_url: "http://localhost"
+
+# Authorization - Make sure you change this!
+access_token_secret: "iansdibasdibasdibasidu"

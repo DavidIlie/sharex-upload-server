@@ -1,0 +1,59 @@
+# {{ ansible_managed }}
+---
+version: "3.3"
+services:
+    mongodb:
+        image: mongo
+        restart: always
+        volumes:
+            - sharex-upload-server-db:/data/db
+
+    server:
+        image: ghcr.io/davidilie/sharex-upload-server/server
+        restart: always
+        depends_on:
+            - mongodb
+        ports:
+            - 4000:4000
+        volumes:
+            - sharex-upload-server-data:/usr/src/app/server/uploads
+        environment:
+            - PORT=4000
+            - MONGO_URI=mongodb
+            - FRONTEND_URL={{ frontend_url }}
+            - ENV=PRODUCTION
+            - API_URL={{ backend_url }}
+            - ACCESS_TOKEN_SECRET=ioasbdiuabsdiuasduibasdo
+        links:
+            - mongodb
+
+    web:
+        image: ghcr.io/davidilie/sharex-upload-server/web
+        restart: always
+        depends_on:
+            - mongodb
+            - server
+        ports:
+            - 3000:3000
+        environment:
+            - APP_URL={{ frontend_url }}
+            - API_URL={{ backend_url }}
+            - SERVER_API_URL=http://server:4000
+        links:
+            - server
+
+    nginx:
+        image: nginx
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        links:
+            - server
+            - web
+
+volumes:
+    sharex-upload-server-db:
+        driver: local
+    sharex-upload-server-data:
+        driver: local
