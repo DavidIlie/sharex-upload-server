@@ -64,7 +64,7 @@ const AppLayout = ({ children }: LayoutProps): JSX.Element => {
                     color="gray.100"
                 />
             </UpDown>
-            <div className="flex flex-col justify-between min-h-screen text-black dark:text-white pageBackground">
+            <div className="flex flex-col justify-between min-h-screen text-black dark:text-white pageBackground backdrop-filter backdrop-blur-sm dark:backdrop-blur-lg">
                 <ThemeSwitcher />
                 {children}
                 <Footer />

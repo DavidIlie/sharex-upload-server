@@ -28,31 +28,31 @@ const StatisticsModule = ({ admin }: { admin: boolean }): JSX.Element => {
 
     return (
         <div className="max-w-7xl mx-auto px-2 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {!isLoading && (
-                <>
-                    <DashboardStatCard
-                        type="image"
-                        value={response!.data.imageCount}
-                        title="Images"
-                    />
-                    <DashboardStatCard
-                        type="file"
-                        value={response!.data.fileCount}
-                        title="Files"
-                    />
-                    <DashboardStatCard
-                        type="text"
-                        value={response!.data.textCount}
-                        title="Text Files"
-                    />
-                    <DashboardStatCard
-                        type="metric"
-                        value={response!.data.totalSize.value}
-                        title="Used Disk Space"
-                        unit={response!.data.totalSize.unit}
-                    />
-                </>
-            )}
+            <DashboardStatCard
+                type="image"
+                value={response?.data.imageCount}
+                isLoading={isLoading}
+                title="Images"
+            />
+            <DashboardStatCard
+                type="file"
+                value={response?.data.fileCount}
+                isLoading={isLoading}
+                title="Files"
+            />
+            <DashboardStatCard
+                type="text"
+                value={response?.data.textCount}
+                isLoading={isLoading}
+                title="Text Files"
+            />
+            <DashboardStatCard
+                type="metric"
+                value={response?.data.totalSize.value}
+                isLoading={isLoading}
+                title="Used Disk Space"
+                unit={response?.data.totalSize.unit}
+            />
         </div>
     );
 };

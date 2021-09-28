@@ -31,7 +31,10 @@ const ChangePasswordModule = (): JSX.Element => {
                     newPassword: "",
                     confirmNewPassword: "",
                 }}
-                onSubmit={async (data, { setSubmitting, setFieldError }) => {
+                onSubmit={async (
+                    data,
+                    { setSubmitting, setFieldError, resetForm }
+                ) => {
                     setSubmitting(true);
 
                     const r = await axios.post(
@@ -51,6 +54,7 @@ const ChangePasswordModule = (): JSX.Element => {
                         toast.error(response.message);
                     }
 
+                    resetForm();
                     setSubmitting(false);
                 }}
             >

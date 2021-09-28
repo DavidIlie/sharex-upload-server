@@ -23,6 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, req }) => {
             access_token: cookie,
         },
     });
+
     if (request.status === 200) {
         res.setHeader("location", "/dashboard");
         res.statusCode = 302;

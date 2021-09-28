@@ -2,14 +2,14 @@ import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 import { Fade } from "react-awesome-reveal";
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 import NotFound from "@components/NotFound";
 import FileCard from "@components/FileCard/FileCard";
 import { getFileIconFromExtension } from "@lib/iconUtils";
 import useSettings from "@hooks/useSettings";
 
-import { FileType, SupportPreview } from "@sharex-server/common";
+import { FileType } from "@sharex-server/common";
+
 interface Props {
     message?: string;
     file: FileType;
@@ -61,15 +61,6 @@ const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
                                     Download
                                 </a>
                             </div>
-                            {SupportPreview(file.stats.extension) && (
-                                <div className="sm:pt-6 flex justify-center">
-                                    <Link href={`/f/${slug}/preview`}>
-                                        <a className="px-4 py-2 text-lg bg-gray-600 hover:bg-gray-700 duration-150 rounded shadow">
-                                            Preview
-                                        </a>
-                                    </Link>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </Fade>

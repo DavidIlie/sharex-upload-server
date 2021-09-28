@@ -10,7 +10,7 @@ interface FileCardProps {
 
 const FileCard = ({ file, icon }: FileCardProps): JSX.Element => {
     return (
-        <div className="flex flex-col border-2 bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-900 rounded-md shadow-lg overflow-hidden duration-200 hoverItem">
+        <div className="flex flex-col border-2 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-900 rounded-md shadow-lg overflow-hidden duration-200 hoverItem">
             <div className="flex relative">
                 <div className="ResponsiveFileCard sm:block sm:p-4">
                     <Image
