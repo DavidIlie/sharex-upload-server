@@ -87,7 +87,8 @@ function App({ Component, pageProps, router, env }: Props) {
             >
                 <QueryClientProvider client={queryClient}>
                     <Toaster position="top-center" />
-                    {router.asPath.includes("/f/") ? (
+                    {router.asPath.includes("/f/") ||
+                    router.asPath.includes("/t/") ? (
                         <AppLayout>
                             <Component {...pageProps} />
                         </AppLayout>

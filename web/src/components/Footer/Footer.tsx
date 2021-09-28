@@ -4,7 +4,7 @@ import useSettings from "@hooks/useSettings";
 const Footer = (): JSX.Element => {
     const settings = useSettings();
     return (
-        <footer className="shadow bg-white dark:bg-gray-800">
+        <footer className="shadow bg-gray-100 dark:bg-gray-800">
             <div className="sm:flex flex-wrap items-center justify-evenly max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
                 <a className="font-semibold">
                     {settings.name || "ShareX Upload Server"}
@@ -58,7 +58,7 @@ const Footer = (): JSX.Element => {
                     target="_blank"
                     className="font-semibold hover:underline"
                 >
-                    Version 0.5.4{is_dev && "-DEV"}
+                    Version 0.5.5{is_dev && "-DEV"}
                 </a>
             </div>
         </footer>

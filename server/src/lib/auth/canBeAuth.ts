@@ -5,7 +5,7 @@ import { AccessTokenData } from "./createToken";
 
 export const canBeAuth: (st?: boolean) => RequestHandler<{}, any, any, {}> =
     () =>
-    async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
+    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         const accessToken = req.cookies.access || req.headers["access_token"];
 
         if (typeof accessToken == "string") {
@@ -20,7 +20,12 @@ export const canBeAuth: (st?: boolean) => RequestHandler<{}, any, any, {}> =
             } catch {}
 
             const user = await Users.findOne(data?.userId);
-            if (user) req.user = user;
+            if (user) {
+                req.user = user;
+            } else {
+                res.cookie("access", "", { expires: new Date(0) });
+                res.status(401).json({ message: "not authenticated" });
+            }
         }
 
         return next();

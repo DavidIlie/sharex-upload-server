@@ -100,3 +100,33 @@ export const uploadFileToDisk = async (
         });
     });
 };
+
+export const uploadTextToDisk = async (
+    name: string,
+    req: express.Request,
+    res: express.Response
+) => {
+    const upload = multer({
+        dest: "./uploads",
+        storage: imageStorage,
+    }).single(name);
+
+    return await new Promise((resolve, reject) => {
+        upload(req, res, (err) => {
+            try {
+                if (req.file) {
+                    if (err instanceof multer.MulterError) {
+                        return reject(`${name} file not specified`);
+                    } else if (err) {
+                        return reject("internal server error");
+                    }
+                    return resolve(true);
+                } else {
+                    throw new Error("file form must be text");
+                }
+            } catch (error) {
+                res.status(400).json({ message: error.message });
+            }
+        });
+    });
+};

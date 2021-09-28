@@ -1,6 +1,10 @@
 import { Uploads } from "../entities/Uploads";
 import { getFileByName, getFileBySlug, getFileStats } from "./filesystem";
-import { uploadFileToDisk, uploadImageToDisk } from "./multer";
+import {
+    uploadFileToDisk,
+    uploadImageToDisk,
+    uploadTextToDisk,
+} from "./multer";
 import * as express from "express";
 import { nanoid } from "nanoid";
 import path from "path";
@@ -56,4 +60,34 @@ export const uploadFile = async (
     }).save();
 
     return suffix;
+};
+
+export const uploadText = async (
+    name: string,
+    req: express.Request,
+    res: express.Response
+) => {
+    await uploadTextToDisk(name, req, res);
+
+    const MulterFile = req.file;
+
+    const file = await getFileBySlug(MulterFile.suffix);
+
+    const format = path.extname(MulterFile.path);
+
+    const stats = getFileStats(
+        file!,
+        MulterFile.path,
+        MulterFile.suffix + format
+    );
+
+    await Uploads.create({
+        type: MulterFile.fieldname,
+        uploaderId: req.user?.id,
+        name: MulterFile.originalname,
+        slug: MulterFile.suffix,
+        stats,
+    }).save();
+
+    return MulterFile.suffix;
 };

@@ -21,8 +21,11 @@ router.get("/", isAuth(), async (req, res, next) => {
         });
         const fileCount = files.length;
 
-        //static because feature not implemented yet :D
-        const textCount = 0;
+        const texts = await Uploads.find({
+            type: "text",
+            uploaderId: req.user?.id,
+        });
+        const textCount = texts.length;
 
         const totalSize = await getTotalSize();
 

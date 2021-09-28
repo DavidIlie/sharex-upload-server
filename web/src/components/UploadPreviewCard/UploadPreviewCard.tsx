@@ -30,6 +30,8 @@ const UploadPreviewCard = ({
     const href =
         file.type === "image"
             ? `${env.api_url}/image/${file.slug}`
+            : file.type === "text"
+            ? `/t/${file.slug}`
             : `/f/${file.slug}`;
 
     const deleteItem = async () => {

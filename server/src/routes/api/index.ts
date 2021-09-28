@@ -62,10 +62,32 @@ router.get("/file/:slug", async (req, res, next) => {
 
         if (!upload) return res.status(404).json({ message: "file not found" });
 
-        if (upload.type === "image")
+        if (upload.type !== "file")
             return res.status(404).json({ message: "file not found" });
 
         return res.json(upload!);
+    } catch (error) {
+        return next(error);
+    }
+});
+
+router.get("/text/:slug", async (req, res, next) => {
+    try {
+        const { slug } = req.params;
+
+        const upload = await Uploads.findOne({ slug });
+
+        if (!upload) return res.status(404).json({ message: "text not found" });
+
+        if (upload.type !== "text")
+            return res.status(404).json({ message: "text not found" });
+
+        const textFile = fs.readFileSync(
+            `${uploadDir}/${upload.stats.fileName}`
+        );
+        let text = textFile.toString();
+
+        return res.json({ file: upload, text });
     } catch (error) {
         return next(error);
     }

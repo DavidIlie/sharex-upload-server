@@ -18,7 +18,7 @@ const ThemeSwitcher = (): JSX.Element => {
         return <div className="hidden" />;
 
     return (
-        <div className="absolute right-0 top-0 p-5 mr-5 z-0">
+        <div className="absolute right-0 top-0 p-5 mr-5 z-10">
             {mounted && (
                 <DarkModeSwitch
                     checked={resolvedTheme === "dark"}

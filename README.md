@@ -6,8 +6,6 @@ sharex upload server with an Express API and a Next.js frontend. Everything is w
 
 backend:
 
--   add the remaining functions:
-    -   text
 -   implement deleting of accounts
 -   add support for other providers (s3)
 

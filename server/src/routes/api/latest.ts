@@ -52,12 +52,28 @@ router.get("/files/no-limit", isAuth(), async (req, res, next) => {
     }
 });
 
-router.get("/texts", isAuth(), async (_req, res) => {
-    res.json([]);
+router.get("/texts", isAuth(), async (req, res, next) => {
+    try {
+        const texts = await Uploads.find({
+            where: { type: "text", uploaderId: req.user?.id },
+            order: { id: "DESC" },
+        });
+        res.json(texts.reverse().slice(0, 6));
+    } catch (error) {
+        next(error);
+    }
 });
 
-router.get("/texts/no-limit", isAuth(), async (_req, res) => {
-    res.json([]);
+router.get("/texts/no-limit", isAuth(), async (req, res, next) => {
+    try {
+        const texts = await Uploads.find({
+            where: { type: "text", uploaderId: req.user?.id },
+            order: { id: "DESC" },
+        });
+        res.json(texts.reverse());
+    } catch (error) {
+        next(error);
+    }
 });
 
 export default router;
