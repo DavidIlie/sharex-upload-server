@@ -1,15 +1,14 @@
 export const dark = {
     'code[class*="language-"]': {
+        color: "#e3e9f2",
+        background: "none",
+        fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
         textAlign: "left",
         whiteSpace: "pre",
         wordSpacing: "normal",
         wordBreak: "normal",
         wordWrap: "normal",
-        color: "#eee",
-        background: "#2f2f2f",
-        fontFamily: "Roboto Mono, monospace",
-        fontSize: "1em",
-        lineHeight: "1.5em",
+        lineHeight: "1.5",
         MozTabSize: "4",
         OTabSize: "4",
         tabSize: "4",
@@ -19,16 +18,15 @@ export const dark = {
         hyphens: "none",
     },
     'pre[class*="language-"]': {
+        color: "#e3e9f2",
+        background: "#111b27",
+        fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
         textAlign: "left",
         whiteSpace: "pre",
         wordSpacing: "normal",
         wordBreak: "normal",
         wordWrap: "normal",
-        color: "#eee",
-        background: "#2f2f2f",
-        fontFamily: "Roboto Mono, monospace",
-        fontSize: "1em",
-        lineHeight: "1.5em",
+        lineHeight: "1.5",
         MozTabSize: "4",
         OTabSize: "4",
         tabSize: "4",
@@ -36,176 +34,354 @@ export const dark = {
         MozHyphens: "none",
         msHyphens: "none",
         hyphens: "none",
-        overflow: "auto",
-        position: "relative",
+        padding: "1em",
         margin: "0.5em 0",
-        padding: "1.25em 1em",
-    },
-    'code[class*="language-"]::-moz-selection': {
-        background: "#363636",
+        overflow: "auto",
     },
     'pre[class*="language-"]::-moz-selection': {
-        background: "#363636",
-    },
-    'code[class*="language-"] ::-moz-selection': {
-        background: "#363636",
+        background: "#304259",
     },
     'pre[class*="language-"] ::-moz-selection': {
-        background: "#363636",
+        background: "#304259",
     },
-    'code[class*="language-"]::selection': {
-        background: "#363636",
+    'code[class*="language-"]::-moz-selection': {
+        background: "#304259",
+    },
+    'code[class*="language-"] ::-moz-selection': {
+        background: "#304259",
     },
     'pre[class*="language-"]::selection': {
-        background: "#363636",
-    },
-    'code[class*="language-"] ::selection': {
-        background: "#363636",
+        background: "#304259",
     },
     'pre[class*="language-"] ::selection': {
-        background: "#363636",
+        background: "#304259",
+    },
+    'code[class*="language-"]::selection': {
+        background: "#304259",
+    },
+    'code[class*="language-"] ::selection': {
+        background: "#304259",
     },
     ':not(pre) > code[class*="language-"]': {
+        background: "#111b27",
+        padding: "0.1em 0.3em",
+        borderRadius: "0.3em",
         whiteSpace: "normal",
-        borderRadius: "0.2em",
-        padding: "0.1em",
-    },
-    ".language-css > code": {
-        color: "#fd9170",
-    },
-    ".language-sass > code": {
-        color: "#fd9170",
-    },
-    ".language-scss > code": {
-        color: "#fd9170",
-    },
-    '[class*="language-"] .namespace': {
-        Opacity: "0.7",
-    },
-    atrule: {
-        color: "#c792ea",
-    },
-    "attr-name": {
-        color: "#ffcb6b",
-    },
-    "attr-value": {
-        color: "#a5e844",
-    },
-    attribute: {
-        color: "#a5e844",
-    },
-    boolean: {
-        color: "#c792ea",
-    },
-    builtin: {
-        color: "#ffcb6b",
-    },
-    cdata: {
-        color: "#80cbc4",
-    },
-    char: {
-        color: "#80cbc4",
-    },
-    class: {
-        color: "#ffcb6b",
-    },
-    "class-name": {
-        color: "#f2ff00",
     },
     comment: {
-        color: "#616161",
-    },
-    constant: {
-        color: "#c792ea",
-    },
-    deleted: {
-        color: "#ff6666",
-    },
-    doctype: {
-        color: "#616161",
-    },
-    entity: {
-        color: "#ff6666",
-    },
-    function: {
-        color: "#c792ea",
-    },
-    hexcode: {
-        color: "#f2ff00",
-    },
-    id: {
-        color: "#c792ea",
-        fontWeight: "bold",
-    },
-    important: {
-        color: "#c792ea",
-        fontWeight: "bold",
-    },
-    inserted: {
-        color: "#80cbc4",
-    },
-    keyword: {
-        color: "#c792ea",
-    },
-    number: {
-        color: "#fd9170",
-    },
-    operator: {
-        color: "#89ddff",
+        color: "#ccd6e4",
+        fontStyle: "italic",
     },
     prolog: {
-        color: "#616161",
+        color: "#ccd6e4",
+        fontStyle: "italic",
     },
-    property: {
-        color: "#80cbc4",
+    doctype: {
+        color: "#ccd6e4",
+        fontStyle: "italic",
     },
-    "pseudo-class": {
-        color: "#a5e844",
-    },
-    "pseudo-element": {
-        color: "#a5e844",
+    cdata: {
+        color: "#ccd6e4",
+        fontStyle: "italic",
     },
     punctuation: {
-        color: "#89ddff",
-    },
-    regex: {
-        color: "#f2ff00",
+        color: "#e3e9f2",
     },
     selector: {
-        color: "#ff6666",
-    },
-    string: {
-        color: "#a5e844",
-    },
-    symbol: {
-        color: "#c792ea",
+        color: "#5dc2c2",
     },
     tag: {
-        color: "#ff6666",
+        color: "#5dc2c2",
     },
-    unit: {
-        color: "#fd9170",
+    "attr-name": {
+        color: "#cdb74a",
     },
-    url: {
-        color: "#ff6666",
+    boolean: {
+        color: "#cdb74a",
+    },
+    number: {
+        color: "#cdb74a",
+    },
+    constant: {
+        color: "#cdb74a",
+    },
+    "pseudo-class": {
+        color: "#cdb74a",
+    },
+    "pseudo-element": {
+        color: "#cdb74a",
+    },
+    "selector.attribute": {
+        color: "#cdb74a",
+    },
+    "class-name": {
+        color: "#6ab3e4",
+    },
+    key: {
+        color: "#6ab3e4",
+    },
+    parameter: {
+        color: "#6ab3e4",
+    },
+    property: {
+        color: "#6ab3e4",
+    },
+    "property-access": {
+        color: "#6ab3e4",
     },
     variable: {
-        color: "#ff6666",
+        color: "#6ab3e4",
+    },
+    "attr-value": {
+        color: "#82c366",
+    },
+    inserted: {
+        color: "#82c366",
+    },
+    color: {
+        color: "#82c366",
+    },
+    "selector.value": {
+        color: "#82c366",
+    },
+    string: {
+        color: "#82c366",
+    },
+    "string.url-link": {
+        color: "#82c366",
+    },
+    builtin: {
+        color: "#ea89ea",
+    },
+    "keyword-array": {
+        color: "#ea89ea",
+    },
+    package: {
+        color: "#ea89ea",
+    },
+    regex: {
+        color: "#ea89ea",
+    },
+    function: {
+        color: "#cf7ef6",
+    },
+    "selector.class": {
+        color: "#cf7ef6",
+    },
+    "selector.id": {
+        color: "#cf7ef6",
+    },
+    "atrule.rule": {
+        color: "#d88b4a",
+    },
+    combinator: {
+        color: "#d88b4a",
+    },
+    keyword: {
+        color: "#d88b4a",
+    },
+    operator: {
+        color: "#d88b4a",
+    },
+    "selector.token.operator": {
+        color: "#d88b4a",
+    },
+    unit: {
+        color: "#d88b4a",
+    },
+    deleted: {
+        color: "#f57a73",
+    },
+    important: {
+        color: "#f57a73",
+        fontWeight: "bold",
+    },
+    "keyword-this": {
+        color: "#6ab3e4",
+        fontWeight: "bold",
+    },
+    this: {
+        color: "#6ab3e4",
+        fontWeight: "bold",
+    },
+    bold: {
+        fontWeight: "bold",
+    },
+    italic: {
+        fontStyle: "italic",
+    },
+    entity: {
+        cursor: "help",
+    },
+    ".language-markdown .token.title": {
+        color: "#6ab3e4",
+        fontWeight: "bold",
+    },
+    ".language-markdown .token.title .token.punctuation": {
+        color: "#6ab3e4",
+        fontWeight: "bold",
+    },
+    ".language-markdown .token.code": {
+        color: "#5dc2c2",
+    },
+    ".language-markdown .token.url .token.content": {
+        color: "#82c366",
+    },
+    ".language-markdown .token.url-link": {
+        color: "#cdb74a",
+    },
+    ".language-markdown .token.list.punctuation": {
+        color: "#ea89ea",
+    },
+    ".language-markdown .token.table-header": {
+        color: "#e3e9f2",
+    },
+    ".language-json .token.operator": {
+        color: "#e3e9f2",
+    },
+    "tab:not(:empty):before": {
+        color: "#ccd6e4",
+    },
+    "cr:before": {
+        color: "#ccd6e4",
+    },
+    "lf:before": {
+        color: "#ccd6e4",
+    },
+    "space:before": {
+        color: "#ccd6e4",
+    },
+    "div.code-toolbar > .toolbar a": {
+        color: "#111b27",
+        background: "#6ab3e4",
+    },
+    "div.code-toolbar > .toolbar button": {
+        color: "#111b27",
+        background: "#6ab3e4",
+    },
+    "div.code-toolbar > .toolbar a:hover": {
+        color: "#111b27",
+        background: "#6ab3e4da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar a:focus": {
+        color: "#111b27",
+        background: "#6ab3e4da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar button:hover": {
+        color: "#111b27",
+        background: "#6ab3e4da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar button:focus": {
+        color: "#111b27",
+        background: "#6ab3e4da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar span": {
+        color: "#111b27",
+        background: "#ccd6e4",
+    },
+    "div.code-toolbar > .toolbar span:hover": {
+        color: "#111b27",
+        background: "#ccd6e4",
+    },
+    "div.code-toolbar > .toolbar span:focus": {
+        color: "#111b27",
+        background: "#ccd6e4",
+    },
+    ".line-highlight": {
+        background: "linear-gradient(to right, #ccd6e41f 70%, #ccd6e415)",
+    },
+    ".line-highlight:before": {
+        backgroundColor: "#ccd6e4",
+        color: "#111b27",
+        boxShadow: "0 1px #304259",
+    },
+    ".line-highlight[data-end]:after": {
+        backgroundColor: "#ccd6e4",
+        color: "#111b27",
+        boxShadow: "0 1px #304259",
+    },
+    "pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before":
+        {
+            backgroundColor: "#ccd6e418",
+        },
+    ".line-numbers .line-numbers-rows": {
+        borderRight: "1px solid #0b121b",
+        background: "#0b121b7a",
+    },
+    ".line-numbers-rows > span:before": {
+        color: "#e3e9f296",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-1": {
+        color: "#cdb74a",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-5": {
+        color: "#cdb74a",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-9": {
+        color: "#cdb74a",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-2": {
+        color: "#ea89ea",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-6": {
+        color: "#ea89ea",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-10": {
+        color: "#ea89ea",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-3": {
+        color: "#6ab3e4",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-7": {
+        color: "#6ab3e4",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-11": {
+        color: "#6ab3e4",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-4": {
+        color: "#cf7ef6",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-8": {
+        color: "#cf7ef6",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-12": {
+        color: "#cf7ef6",
+    },
+    "pre.diff-highlight > code .token.deleted:not(.prefix)": {
+        backgroundColor: "#f57a731f",
+    },
+    "pre > code.diff-highlight .token.deleted:not(.prefix)": {
+        backgroundColor: "#f57a731f",
+    },
+    "pre.diff-highlight > code .token.inserted:not(.prefix)": {
+        backgroundColor: "#82c3661f",
+    },
+    "pre > code.diff-highlight .token.inserted:not(.prefix)": {
+        backgroundColor: "#82c3661f",
+    },
+    ".command-line-prompt": {
+        borderRight: "1px solid #0b121b",
+    },
+    ".command-line-prompt > span:before": {
+        color: "#e3e9f296",
     },
 };
 
 export const light = {
     'code[class*="language-"]': {
+        color: "#111b27",
+        background: "none",
+        fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
         textAlign: "left",
         whiteSpace: "pre",
         wordSpacing: "normal",
         wordBreak: "normal",
         wordWrap: "normal",
-        color: "#90a4ae",
-        background: "#fafafa",
-        fontFamily: "Roboto Mono, monospace",
-        fontSize: "1em",
-        lineHeight: "1.5em",
+        lineHeight: "1.5",
         MozTabSize: "4",
         OTabSize: "4",
         tabSize: "4",
@@ -215,16 +391,15 @@ export const light = {
         hyphens: "none",
     },
     'pre[class*="language-"]': {
+        color: "#111b27",
+        background: "#e3e9f2",
+        fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
         textAlign: "left",
         whiteSpace: "pre",
         wordSpacing: "normal",
         wordBreak: "normal",
         wordWrap: "normal",
-        color: "#90a4ae",
-        background: "#fafafa",
-        fontFamily: "Roboto Mono, monospace",
-        fontSize: "1em",
-        lineHeight: "1.5em",
+        lineHeight: "1.5",
         MozTabSize: "4",
         OTabSize: "4",
         tabSize: "4",
@@ -232,168 +407,336 @@ export const light = {
         MozHyphens: "none",
         msHyphens: "none",
         hyphens: "none",
-        overflow: "auto",
-        position: "relative",
+        padding: "1em",
         margin: "0.5em 0",
-        padding: "1.25em 1em",
-    },
-    'code[class*="language-"]::-moz-selection': {
-        background: "#cceae7",
-        color: "#263238",
+        overflow: "auto",
     },
     'pre[class*="language-"]::-moz-selection': {
-        background: "#cceae7",
-        color: "#263238",
-    },
-    'code[class*="language-"] ::-moz-selection': {
-        background: "#cceae7",
-        color: "#263238",
+        background: "#ccd6e4",
     },
     'pre[class*="language-"] ::-moz-selection': {
-        background: "#cceae7",
-        color: "#263238",
+        background: "#ccd6e4",
     },
-    'code[class*="language-"]::selection': {
-        background: "#cceae7",
-        color: "#263238",
+    'code[class*="language-"]::-moz-selection': {
+        background: "#ccd6e4",
+    },
+    'code[class*="language-"] ::-moz-selection': {
+        background: "#ccd6e4",
     },
     'pre[class*="language-"]::selection': {
-        background: "#cceae7",
-        color: "#263238",
-    },
-    'code[class*="language-"] ::selection': {
-        background: "#cceae7",
-        color: "#263238",
+        background: "#ccd6e4",
     },
     'pre[class*="language-"] ::selection': {
-        background: "#cceae7",
-        color: "#263238",
+        background: "#ccd6e4",
+    },
+    'code[class*="language-"]::selection': {
+        background: "#ccd6e4",
+    },
+    'code[class*="language-"] ::selection': {
+        background: "#ccd6e4",
     },
     ':not(pre) > code[class*="language-"]': {
+        background: "#e3e9f2",
+        padding: "0.1em 0.3em",
+        borderRadius: "0.3em",
         whiteSpace: "normal",
-        borderRadius: "0.2em",
-        padding: "0.1em",
-    },
-    ".language-css > code": {
-        color: "#f76d47",
-    },
-    ".language-sass > code": {
-        color: "#f76d47",
-    },
-    ".language-scss > code": {
-        color: "#f76d47",
-    },
-    '[class*="language-"] .namespace': {
-        Opacity: "0.7",
-    },
-    atrule: {
-        color: "#7c4dff",
-    },
-    "attr-name": {
-        color: "#39adb5",
-    },
-    "attr-value": {
-        color: "#f6a434",
-    },
-    attribute: {
-        color: "#f6a434",
-    },
-    boolean: {
-        color: "#7c4dff",
-    },
-    builtin: {
-        color: "#39adb5",
-    },
-    cdata: {
-        color: "#39adb5",
-    },
-    char: {
-        color: "#39adb5",
-    },
-    class: {
-        color: "#39adb5",
-    },
-    "class-name": {
-        color: "#6182b8",
     },
     comment: {
-        color: "#aabfc9",
-    },
-    constant: {
-        color: "#7c4dff",
-    },
-    deleted: {
-        color: "#e53935",
-    },
-    doctype: {
-        color: "#aabfc9",
-    },
-    entity: {
-        color: "#e53935",
-    },
-    function: {
-        color: "#7c4dff",
-    },
-    hexcode: {
-        color: "#f76d47",
-    },
-    id: {
-        color: "#7c4dff",
-        fontWeight: "bold",
-    },
-    important: {
-        color: "#7c4dff",
-        fontWeight: "bold",
-    },
-    inserted: {
-        color: "#39adb5",
-    },
-    keyword: {
-        color: "#7c4dff",
-    },
-    number: {
-        color: "#f76d47",
-    },
-    operator: {
-        color: "#39adb5",
+        color: "#304259",
+        fontStyle: "italic",
     },
     prolog: {
-        color: "#aabfc9",
+        color: "#304259",
+        fontStyle: "italic",
     },
-    property: {
-        color: "#39adb5",
+    doctype: {
+        color: "#304259",
+        fontStyle: "italic",
     },
-    "pseudo-class": {
-        color: "#f6a434",
-    },
-    "pseudo-element": {
-        color: "#f6a434",
+    cdata: {
+        color: "#304259",
+        fontStyle: "italic",
     },
     punctuation: {
-        color: "#39adb5",
-    },
-    regex: {
-        color: "#6182b8",
+        color: "#111b27",
     },
     selector: {
-        color: "#e53935",
-    },
-    string: {
-        color: "#f6a434",
-    },
-    symbol: {
-        color: "#7c4dff",
+        color: "#007474",
     },
     tag: {
-        color: "#e53935",
+        color: "#007474",
     },
-    unit: {
-        color: "#f76d47",
+    "attr-name": {
+        color: "#7d6600",
     },
-    url: {
-        color: "#e53935",
+    boolean: {
+        color: "#7d6600",
+    },
+    number: {
+        color: "#7d6600",
+    },
+    constant: {
+        color: "#7d6600",
+    },
+    "pseudo-class": {
+        color: "#7d6600",
+    },
+    "pseudo-element": {
+        color: "#7d6600",
+    },
+    "selector.attribute": {
+        color: "#7d6600",
+    },
+    "class-name": {
+        color: "#005c99",
+    },
+    key: {
+        color: "#005c99",
+    },
+    parameter: {
+        color: "#005c99",
+    },
+    property: {
+        color: "#005c99",
+    },
+    "property-access": {
+        color: "#005c99",
     },
     variable: {
-        color: "#e53935",
+        color: "#005c99",
+    },
+    "attr-value": {
+        color: "#237800",
+    },
+    inserted: {
+        color: "#237800",
+    },
+    color: {
+        color: "#237800",
+    },
+    "selector.value": {
+        color: "#237800",
+    },
+    string: {
+        color: "#237800",
+    },
+    "string.url-link": {
+        color: "#237800",
+    },
+    builtin: {
+        color: "#b800b8",
+    },
+    "keyword-array": {
+        color: "#b800b8",
+    },
+    package: {
+        color: "#b800b8",
+    },
+    regex: {
+        color: "#b800b8",
+    },
+    function: {
+        color: "#8600c6",
+    },
+    "selector.class": {
+        color: "#8600c6",
+    },
+    "selector.id": {
+        color: "#8600c6",
+    },
+    "atrule.rule": {
+        color: "#aa4d00",
+    },
+    combinator: {
+        color: "#aa4d00",
+    },
+    keyword: {
+        color: "#aa4d00",
+    },
+    operator: {
+        color: "#aa4d00",
+    },
+    unit: {
+        color: "#aa4d00",
+    },
+    deleted: {
+        color: "#bf0100",
+    },
+    important: {
+        color: "#bf0100",
+        fontWeight: "bold",
+    },
+    "keyword-this": {
+        color: "#005c99",
+        fontWeight: "bold",
+    },
+    this: {
+        color: "#005c99",
+        fontWeight: "bold",
+    },
+    bold: {
+        fontWeight: "bold",
+    },
+    italic: {
+        fontStyle: "italic",
+    },
+    entity: {
+        cursor: "help",
+    },
+    ".language-markdown .token.title": {
+        color: "#005c99",
+        fontWeight: "bold",
+    },
+    ".language-markdown .token.title .token.punctuation": {
+        color: "#005c99",
+        fontWeight: "bold",
+    },
+    ".language-markdown .token.code": {
+        color: "#007474",
+    },
+    ".language-markdown .token.url > .token.content": {
+        color: "#237800",
+    },
+    ".language-markdown .token.url-link": {
+        color: "#7d6600",
+    },
+    ".language-markdown .token.list.punctuation": {
+        color: "#b800b8",
+    },
+    ".language-markdown .token.table-header": {
+        color: "#111b27",
+    },
+    ".language-json .token.operator": {
+        color: "#111b27",
+    },
+    "tab:not(:empty):before": {
+        color: "#304259",
+    },
+    "cr:before": {
+        color: "#304259",
+    },
+    "lf:before": {
+        color: "#304259",
+    },
+    "space:before": {
+        color: "#304259",
+    },
+    "div.code-toolbar > .toolbar a": {
+        color: "#e3e9f2",
+        background: "#005c99",
+    },
+    "div.code-toolbar > .toolbar button": {
+        color: "#e3e9f2",
+        background: "#005c99",
+    },
+    "div.code-toolbar > .toolbar a:hover": {
+        color: "#e3e9f2",
+        background: "#005c99da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar a:focus": {
+        color: "#e3e9f2",
+        background: "#005c99da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar button:hover": {
+        color: "#e3e9f2",
+        background: "#005c99da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar button:focus": {
+        color: "#e3e9f2",
+        background: "#005c99da",
+        textDecoration: "none",
+    },
+    "div.code-toolbar > .toolbar span": {
+        color: "#e3e9f2",
+        background: "#304259",
+    },
+    "div.code-toolbar > .toolbar span:hover": {
+        color: "#e3e9f2",
+        background: "#304259",
+    },
+    "div.code-toolbar > .toolbar span:focus": {
+        color: "#e3e9f2",
+        background: "#304259",
+    },
+    ".line-highlight": {
+        background: "linear-gradient(to right, #3042591f 70%, #30425915)",
+    },
+    ".line-highlight:before": {
+        backgroundColor: "#304259",
+        color: "#e3e9f2",
+        boxShadow: "0 1px #ccd6e4",
+    },
+    ".line-highlight[data-end]:after": {
+        backgroundColor: "#304259",
+        color: "#e3e9f2",
+        boxShadow: "0 1px #ccd6e4",
+    },
+    "pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before":
+        {
+            backgroundColor: "#3042591f",
+        },
+    ".line-numbers .line-numbers-rows": {
+        borderRight: "1px solid #111b271f",
+        background: "#d8e0ebda",
+    },
+    ".line-numbers-rows > span:before": {
+        color: "#111b2796",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-1": {
+        color: "#7d6600",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-5": {
+        color: "#7d6600",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-9": {
+        color: "#7d6600",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-2": {
+        color: "#b800b8",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-6": {
+        color: "#b800b8",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-10": {
+        color: "#b800b8",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-3": {
+        color: "#005c99",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-7": {
+        color: "#005c99",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-11": {
+        color: "#005c99",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-4": {
+        color: "#8600c6",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-8": {
+        color: "#8600c6",
+    },
+    ".rainbow-braces .token.punctuation.brace-level-12": {
+        color: "#8600c6",
+    },
+    "pre.diff-highlight > code .token.deleted:not(.prefix)": {
+        backgroundColor: "#bf01001f",
+    },
+    "pre > code.diff-highlight .token.deleted:not(.prefix)": {
+        backgroundColor: "#bf01001f",
+    },
+    "pre.diff-highlight > code .token.inserted:not(.prefix)": {
+        backgroundColor: "#2378001f",
+    },
+    "pre > code.diff-highlight .token.inserted:not(.prefix)": {
+        backgroundColor: "#2378001f",
+    },
+    ".command-line-prompt": {
+        borderRight: "1px solid #111b271f",
+    },
+    ".command-line-prompt > span:before": {
+        color: "#111b2796",
     },
 };
