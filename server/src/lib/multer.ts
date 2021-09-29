@@ -10,6 +10,7 @@ declare module "express-serve-static-core" {
         file: {
             fieldname: string;
             originalname: string;
+            mimetype: string;
             path: string;
             suffix: string;
         };
@@ -17,11 +18,11 @@ declare module "express-serve-static-core" {
     }
 }
 
-const imageStorage = multer.diskStorage({
-    destination: function (_req, _file, cb) {
+const storage = multer.diskStorage({
+    destination: async (_req, _file, cb) => {
         cb(null, __dirname + `../../../uploads`);
     },
-    filename: async function (_req, file, cb) {
+    filename: async (_req, file, cb) => {
         const originalName = file.originalname;
         const suffix = nanoid(5);
 
@@ -31,28 +32,18 @@ const imageStorage = multer.diskStorage({
     },
 });
 
-const fileStorage = multer.diskStorage({
-    destination: function (_req, _file, cb) {
-        cb(null, __dirname + `../../../uploads`);
-    },
-    filename: async function (_req, file, cb) {
-        const originalName = file.originalname;
-        cb(null, originalName);
-    },
-});
-
-export const uploadImageToDisk = async (
+export const updateItemToDisk = async (
     name: string,
     req: express.Request,
     res: express.Response
 ) => {
     const upload = multer({
         dest: "./uploads",
-        storage: imageStorage,
+        storage: storage,
     }).single(name);
 
     return await new Promise((resolve, reject) => {
-        upload(req, res, (err) => {
+        upload(req, res, async (err) => {
             try {
                 if (req.file) {
                     if (err instanceof multer.MulterError) {
@@ -60,69 +51,34 @@ export const uploadImageToDisk = async (
                     } else if (err) {
                         return reject("internal server error");
                     }
-                    return resolve(true);
-                } else {
-                    throw new Error("file form name must be image");
-                }
-            } catch (error) {
-                res.status(400).json({ message: error.message });
-            }
-        });
-    });
-};
 
-export const uploadFileToDisk = async (
-    name: string,
-    req: express.Request,
-    res: express.Response
-) => {
-    const upload = multer({
-        dest: "./uploads",
-        storage: fileStorage,
-    }).single(name);
+                    const fileType = req.file.mimetype;
 
-    return await new Promise((resolve, reject) => {
-        upload(req, res, (err) => {
-            try {
-                if (req.file) {
-                    if (err instanceof multer.MulterError) {
-                        return reject(`${name} file not specified`);
-                    } else if (err) {
-                        return reject("internal server error");
+                    if (fileType.includes("image")) {
+                        //@ts-ignore
+                        req.type = "image";
+                    } else if (
+                        fileType.includes("octet-stream") ||
+                        fileType.includes("plain") ||
+                        fileType.includes("json") ||
+                        fileType.includes("vnd.dlna.mpeg-tts")
+                    ) {
+                        //@ts-ignore
+                        req.type = "text";
+                    } else {
+                        //@ts-ignore
+                        req.type = "file";
                     }
+
                     return resolve(true);
                 } else {
-                    throw new Error("file form must be file");
-                }
-            } catch (error) {
-                res.status(400).json({ message: error.message });
-            }
-        });
-    });
-};
-
-export const uploadTextToDisk = async (
-    name: string,
-    req: express.Request,
-    res: express.Response
-) => {
-    const upload = multer({
-        dest: "./uploads",
-        storage: imageStorage,
-    }).single(name);
-
-    return await new Promise((resolve, reject) => {
-        upload(req, res, (err) => {
-            try {
-                if (req.file) {
-                    if (err instanceof multer.MulterError) {
-                        return reject(`${name} file not specified`);
-                    } else if (err) {
-                        return reject("internal server error");
+                    if ((req as any).type === "image") {
+                        throw new Error("file form name must be image");
+                    } else if ((req as any).type === "text") {
+                        throw new Error("file form name must be text");
+                    } else {
+                        throw new Error("file form name must be file");
                     }
-                    return resolve(true);
-                } else {
-                    throw new Error("file form must be text");
                 }
             } catch (error) {
                 res.status(400).json({ message: error.message });
