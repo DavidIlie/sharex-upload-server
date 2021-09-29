@@ -3,7 +3,7 @@ const fileExtensoins = {
     markdown: ["md", "mdx"],
     sass: ["scss"],
     yaml: ["yml"],
-    docker: ["dockerfile"],
+    docker: ["dockerfile", "Dockerfile"],
     javascript: ["js"],
     typescript: ["ts", "d.ts"],
     react: ["jsx"],

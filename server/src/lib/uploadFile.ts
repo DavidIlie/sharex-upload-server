@@ -58,7 +58,7 @@ export const uploadItem = async (
         const stats = getFileStats(
             file!,
             MulterFile.path,
-            MulterFile.originalname
+            MulterFile.suffix + format
         );
 
         await Uploads.create({

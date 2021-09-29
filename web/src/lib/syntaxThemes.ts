@@ -34,14 +34,9 @@ export const dark = {
         MozHyphens: "none",
         msHyphens: "none",
         hyphens: "none",
-        paddingTop: "1em",
-        paddingBottom: "1em",
+        padding: "1em",
         margin: "0.5em 0",
         overflow: "auto",
-    },
-    'code[class*="language-txt"]': {
-        paddingLeft: "1.5em",
-        paddingRight: "1.5em",
     },
     'pre[class*="language-"]::-moz-selection': {
         background: "#304259",
@@ -390,13 +385,10 @@ export const light = {
         OTabSize: "4",
         tabSize: "4",
         WebkitHyphens: "none",
+        padding: "1em",
         MozHyphens: "none",
         msHyphens: "none",
         hyphens: "none",
-    },
-    'code[class*="language-txt"]': {
-        paddingLeft: "1.5em",
-        paddingRight: "1.5em",
     },
     'pre[class*="language-"]': {
         color: "#111b27",

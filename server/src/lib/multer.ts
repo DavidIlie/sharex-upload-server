@@ -13,6 +13,7 @@ declare module "express-serve-static-core" {
             mimetype: string;
             path: string;
             suffix: string;
+            filename: string;
         };
         user?: Users;
     }
@@ -62,12 +63,33 @@ export const updateItemToDisk = async (
 
                     const fileType = req.file.mimetype;
 
+                    let filename = req.file.originalname;
+                    let pathExtension = path.extname(filename);
+                    const extension = pathExtension.substring(
+                        pathExtension.indexOf(".") + 1
+                    );
+
                     if (fileType.includes("image")) {
                         //@ts-ignore
                         req.type = "image";
                     } else if (
+                        isEquals(extension, [
+                            "ts",
+                            "js",
+                            "jsx",
+                            "tsx",
+                            "json",
+                            "yaml",
+                            "yml",
+                            "xml",
+                            "py",
+                            "txt",
+                            "java",
+                            "class",
+                            "ini",
+                            "md",
+                        ]) ||
                         isEquals(fileType, [
-                            "octet-stream",
                             "plain",
                             "json",
                             "vnd.dlna.mpeg-tts",
@@ -75,7 +97,9 @@ export const updateItemToDisk = async (
                             "application/xml",
                             "text",
                             "x-java-source",
-                        ])
+                        ]) ||
+                        isEquals(filename, [".env"]) ||
+                        filename === "Dockerfile"
                     ) {
                         //@ts-ignore
                         req.type = "text";
