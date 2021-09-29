@@ -8,7 +8,7 @@ The goal of ShareX Upload Server as opposed to other alternatives is to allow an
 
 ## Features
 
--   Written with a modern stack ensuring best performance in production
+-   Written with a [modern stack](https://www.mongodb.com/mern-stack) ensuring best performance in production
 -   Written with typescript :)
 -   Express.js backend with support for Image, File, Text uploads and much more
 -   Next.js frontend with
