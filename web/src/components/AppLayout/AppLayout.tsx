@@ -1,5 +1,6 @@
 import { useShortcut } from "litkey";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import ToggleColorMode from "@hooks/ToggleColorMode";
 
@@ -25,6 +26,8 @@ const AppLayout = ({ children }: LayoutProps): JSX.Element => {
 
     const changeTheme = ToggleColorMode();
     useShortcut("ctrl+shift+e", () => changeTheme());
+
+    const router = useRouter();
 
     return (
         <>
@@ -67,7 +70,7 @@ const AppLayout = ({ children }: LayoutProps): JSX.Element => {
             <div className="flex flex-col justify-between min-h-screen text-black dark:text-white pageBackground backdrop-filter backdrop-blur-sm dark:backdrop-blur-lg">
                 <ThemeSwitcher />
                 {children}
-                <Footer />
+                {!router.asPath.includes("/t/") && <Footer />}
             </div>
         </>
     );

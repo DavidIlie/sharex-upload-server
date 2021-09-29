@@ -39,6 +39,10 @@ export const dark = {
         margin: "0.5em 0",
         overflow: "auto",
     },
+    'code[class*="language-txt"]': {
+        paddingLeft: "1.5em",
+        paddingRight: "1.5em",
+    },
     'pre[class*="language-"]::-moz-selection': {
         background: "#304259",
     },
@@ -389,6 +393,10 @@ export const light = {
         MozHyphens: "none",
         msHyphens: "none",
         hyphens: "none",
+    },
+    'code[class*="language-txt"]': {
+        paddingLeft: "1.5em",
+        paddingRight: "1.5em",
     },
     'pre[class*="language-"]': {
         color: "#111b27",

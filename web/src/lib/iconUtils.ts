@@ -13,6 +13,7 @@ const fileExtensoins = {
     git: ["git-commit", "git-rebase", "ignore"],
     zip: ["zip", "ear", "war", "rar", "7z"],
     image: ["png", "jpg", "jpeg"],
+    document: ["txt"],
     video: [
         "mp4",
         "webm",

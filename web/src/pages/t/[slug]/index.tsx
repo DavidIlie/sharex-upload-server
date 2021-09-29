@@ -49,13 +49,13 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
             />
             <div className="absolute bottom-5 right-12" style={{ zIndex: 500 }}>
                 {isOpen && (
-                    <div className="absolute bottom-14 -right-2 p-4 w-64 bg-gray-900 text-white text-sm rounded shadow-md">
+                    <div className="absolute bottom-14 -right-2 p-4 w-64 bg-gray-100 dark:bg-gray-900 text-black dark:text-white text-sm rounded shadow-md">
                         <p className="pb-2 text-base font-bold text-center">
                             File Information
                         </p>
-                        <div className="divide-y divide-gray-800">
+                        <div className="divide-y divide-gray-500 dark:divide-gray-800">
                             <div className="flex justify-between">
-                                <span className="text-blue-400 font-semibold pr-2">
+                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
                                     ID
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -64,7 +64,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-400 font-semibold pr-2">
+                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
                                     Name
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -73,7 +73,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-400 font-semibold pr-2">
+                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
                                     Extension
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -82,7 +82,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-400 font-semibold pr-2">
+                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
                                     Lines
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -91,7 +91,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-400 font-semibold pr-2">
+                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
                                     Words
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -104,7 +104,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
 
                 <svg
                     onClick={() => setIsOpen(!isOpen)}
-                    className="absolute bottom-3 right-3 w-8 h-8 text-blue-400 cursor-pointer"
+                    className="absolute bottom-3 right-3 w-8 h-8 text-blue-600 dark:text-blue-400 cursor-pointer"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -118,11 +118,11 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                     ></path>
                 </svg>
             </div>
-            <div className="font-sans antialiased -my-2">
+            <div className="font-sans antialiased -mt-2 -mb-4 h-screen">
                 <SyntaxHighlighter
                     style={theme === "light" ? light : dark}
                     language={file.stats.extension}
-                    className="min-h-screen"
+                    className="h-screen"
                     showLineNumbers={true}
                 >
                     {text}
