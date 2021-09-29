@@ -70,7 +70,6 @@ export const dark = {
     },
     comment: {
         color: "#ccd6e4",
-        fontStyle: "italic",
     },
     prolog: {
         color: "#ccd6e4",
@@ -443,7 +442,6 @@ export const light = {
     },
     comment: {
         color: "#304259",
-        fontStyle: "italic",
     },
     prolog: {
         color: "#304259",
