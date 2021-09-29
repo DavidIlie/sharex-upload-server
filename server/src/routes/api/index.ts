@@ -41,7 +41,11 @@ router.post("/delete/:id", isAuth(), async (req, res, next) => {
         });
 
         if (upload) {
-            fs.unlinkSync(`${uploadDir}/${(upload as any).name}`);
+            if ((upload as any).type === "text") {
+                fs.unlinkSync(`${uploadDir}/${(upload as any).stats.fileName}`);
+            } else {
+                fs.unlinkSync(`${uploadDir}/${(upload as any).name}`);
+            }
             await Uploads.delete(upload);
             res.sendStatus(200);
         } else {
