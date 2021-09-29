@@ -72,7 +72,7 @@ export const updateItemToDisk = async (
                             "json",
                             "vnd.dlna.mpeg-tts",
                             "javascript",
-                            "xml",
+                            "application/xml",
                             "text",
                             "x-java-source",
                         ])
