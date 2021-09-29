@@ -1,5 +1,5 @@
 import { Uploads } from "../entities/Uploads";
-import { getFileByName, getFileBySlug, getFileStats } from "./filesystem";
+import { getFileBySlug, getFileStats } from "./filesystem";
 import { updateItemToDisk } from "./multer";
 import * as express from "express";
 import path from "path";
@@ -53,7 +53,7 @@ export const uploadItem = async (
 
         return `${process.env.FRONTEND_URL}/t/${MulterFile.suffix}`;
     } else {
-        const file = await getFileByName(req.file.originalname);
+        const file = await getFileBySlug(MulterFile.suffix);
 
         const stats = getFileStats(
             file!,

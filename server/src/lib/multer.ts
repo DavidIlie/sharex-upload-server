@@ -32,6 +32,14 @@ const storage = multer.diskStorage({
     },
 });
 
+const isEquals = (fileType: string, items: Array<string>) => {
+    let match = false;
+    items.forEach((item) => {
+        if (fileType.includes(item.toLowerCase())) match = true;
+    });
+    return match;
+};
+
 export const updateItemToDisk = async (
     name: string,
     req: express.Request,
@@ -58,10 +66,16 @@ export const updateItemToDisk = async (
                         //@ts-ignore
                         req.type = "image";
                     } else if (
-                        fileType.includes("octet-stream") ||
-                        fileType.includes("plain") ||
-                        fileType.includes("json") ||
-                        fileType.includes("vnd.dlna.mpeg-tts")
+                        isEquals(fileType, [
+                            "octet-stream",
+                            "plain",
+                            "json",
+                            "vnd.dlna.mpeg-tts",
+                            "javascript",
+                            "xml",
+                            "text",
+                            "x-java-source",
+                        ])
                     ) {
                         //@ts-ignore
                         req.type = "text";
