@@ -26,7 +26,7 @@ const NavLink = ({ name, link, ...rest }: NavLinkProps): JSX.Element => {
         link === path ? (
             <Link href={link} passHref={true}>
                 <a
-                    className="inline-flex items-center px-1 pt-1 border-b-2 border-blue-600 dark:border-blue-400 text-sm font-medium leading-5 text-gray-800 dark:text-gray-200 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out"
+                    className="inline-flex items-center px-1 pt-1 border-b-2 border-blue-600 dark:border-blue-400 text-sm font-medium leading-5 text-gray-900 dark:text-gray-200 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out"
                     {...rest}
                 >
                     {name}
