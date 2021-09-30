@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Link from "next/link";
-import { HiMoon, HiSun } from "react-icons/hi";
 import { useTheme } from "next-themes";
 
 import ToggleColorMode from "@hooks/ToggleColorMode";
@@ -107,11 +106,6 @@ const NavBar = (): JSX.Element => {
                         onClick={() => changeTheme()}
                         className="cursor-pointer flex pl-3 pr-3 py-2 gap-1 border-l-4 border-transparent text-base font-medium text-gray-600 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-900 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out"
                     >
-                        {theme === "dark" ? (
-                            <HiSun className="text-2xl" />
-                        ) : (
-                            <HiMoon className="text-2xl" />
-                        )}
                         {theme === "dark" ? "Light Mode" : "Dark Mode"}
                     </a>
                     <NavLink

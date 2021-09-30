@@ -44,7 +44,7 @@ const PreviewListPane = ({
                         </a>
                     </Link>
                 </div>
-                <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-70 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                     {children && children.length === 0 && (
                         <>
                             <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">
