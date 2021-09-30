@@ -6,7 +6,7 @@ const SubmitButton = ({ text, ...rest }: SubmitButtonProps): JSX.Element => {
     return (
         <button
             type="submit"
-            className="items-center px-4 py-3 bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-900 rounded-md font-semibold text-xs text-black dark:text-white uppercase tracking-widest hover:bg-gray-300 dark:hover:bg-dark-gray-900 focus:outline-none focus:border-gray-800 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 group relative w-full flex justify-center"
+            className="items-center px-4 py-3 bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md font-semibold text-xs text-black dark:text-white uppercase tracking-widest hover:bg-gray-300 dark:hover:bg-dark-gray-900 focus:outline-none focus:border-gray-800 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 group relative w-full flex justify-center"
             {...rest}
         >
             <span className="absolute left-0 inset-y-0 flex items-center pl-3">
