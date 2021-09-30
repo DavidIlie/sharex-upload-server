@@ -45,9 +45,9 @@ const UploadPreviewCard = ({
                 );
                 const response = r.data;
                 if (r.status === 200) {
-                    if (router.asPath.includes("dashboard/files")) {
+                    if (router.asPath.includes("/dashboard/")) {
                         queryClient.refetchQueries(
-                            `${env.api_url}/api/latest/files/no-limit`
+                            `${env.api_url}/api/latest/${type}s/no-limit`
                         );
                     } else {
                         queryClient.refetchQueries(
