@@ -1,6 +1,6 @@
 # sharex-upload-server
 
-> **Warning**: This project is still a work-in-progress (you can see the TODOs below). Because of this, I am not responsible for any damages that are caused to your infastructure/system. You can report bugs [here](https://github.com/davidilie/sharex-upload-server).
+> **Warning**: This project is still a work-in-progress (you can see the TODOs below). Because of this, I am not responsible for any damages that are caused to your infastructure/system. You can report bugs [here](https://github.com/davidilie/sharex-upload-server/issues).
 
 ShareX Upload Server is an app made to support sharing images, files and text snippets using [ShareX](https://getsharex.com/) or from the website directly, built using [NextJS](https://nextjs.org), [TailwindCSS](https://tailwindcss.com), and [Express.js](https://expressjs.com) for the backend.
 

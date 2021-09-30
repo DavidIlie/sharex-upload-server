@@ -116,7 +116,7 @@ const NavBar = (): JSX.Element => {
                     </a>
                     <NavLink
                         name="Report a bug"
-                        link="https://github.com/DavidIlie/sharex-media-server/issues"
+                        link="https://github.com/DavidIlie/sharex-upload-server/issues"
                     />
                 </div>
                 <div className="pt-2 pb-1 border-t border-gray-200">

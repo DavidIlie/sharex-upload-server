@@ -40,7 +40,7 @@ const UserDropdown = (): JSX.Element => {
                         <div className="border-1 rounded-t-md border-gray-300 dark:border-gray-900">
                             <Menu.Item>
                                 <Link
-                                    href="https://github.com/DavidIlie/sharex-media-server/issues"
+                                    href="https://github.com/DavidIlie/sharex-upload-server/issues"
                                     passHref={true}
                                 >
                                     <a
