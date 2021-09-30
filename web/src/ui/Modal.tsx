@@ -13,6 +13,7 @@ const Modal = ({
     updateModalState,
     title,
     children,
+    ...rest
 }: ModalProps): JSX.Element => {
     let refDiv = useRef(null);
 
@@ -23,6 +24,7 @@ const Modal = ({
                 className="fixed inset-0 z-10 overflow-y-auto"
                 onClose={updateModalState}
                 initialFocus={refDiv}
+                {...rest}
             >
                 <div className="min-h-screen px-4 text-center" ref={refDiv}>
                     <Transition.Child

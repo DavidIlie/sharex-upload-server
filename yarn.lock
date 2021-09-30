@@ -3816,6 +3816,11 @@ react-toggle-dark-mode@^1.0.4:
   dependencies:
     react-spring "^9.0.0-rc.3"
 
+react-use-file-upload@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/react-use-file-upload/-/react-use-file-upload-0.9.1.tgz#8d1a3114c1c796719ce6db00553f7722d2056e4c"
+  integrity sha512-2VaMrF+2OJ8TriyPKv9EnCpcWrON9uvEkfol72erFCsE8W2sp79UaqVuJrxzKSncbR21Y2oybLcsZAi6g3iMwQ==
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"

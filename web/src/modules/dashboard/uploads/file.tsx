@@ -1,4 +1,9 @@
 import toast from "react-hot-toast";
+import { useState, useRef, useEffect } from "react";
+import useFileUpload from "react-use-file-upload";
+import { axios } from "@lib/axiosClient";
+import useEnv from "@hooks/useEnv";
+import { queryClient } from "@lib/queryClient";
 
 import Modal from "@ui/Modal";
 
@@ -11,10 +16,78 @@ const FileUploadModule = ({
     isOpen,
     updateModalState,
 }: FileUploadModuleProps): JSX.Element => {
+    let finalUpdateModalState = () => {
+        HandleCancel();
+    };
+
+    const env = useEnv();
+
+    const { files, setFiles, clearAllFiles } = useFileUpload();
+    const inputRef = useRef<any>();
+
+    const [uploadFileState, setUploadFileState] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [uploaded, setUploaded] = useState<string | boolean>(false);
+
+    useEffect(() => {
+        try {
+            if (files.length >= 1) {
+                if (inputRef.current.files.length !== 0) {
+                    setUploadFileState(true);
+                }
+            }
+        } catch (_err) {}
+    });
+
+    const HandleUpload = async (e: any) => {
+        e.preventDefault();
+        setIsLoading(true);
+
+        const formData = new FormData();
+        formData.append("file", files[0]);
+
+        try {
+            const r = await axios.post(`${env.api_url}/api/files`, formData, {
+                headers: { "content-type": "multipart/form-data" },
+            });
+            const response = await r.data;
+
+            if (r.status !== 200) {
+                toast.error(response.message || "unknown error");
+            }
+
+            clearAllFiles();
+            setUploadFileState(false);
+
+            setUploaded(response.message);
+
+            queryClient.refetchQueries(
+                `${env.api_url}/api/latest/files/no-limit`
+            );
+
+            toast.success("Upload successfully!");
+        } catch (error) {
+            toast.error((error as any).message || "unknown error");
+        }
+
+        setIsLoading(false);
+    };
+
+    const HandleCancel = () => {
+        try {
+            inputRef.current.files = [];
+        } catch (_err) {}
+        clearAllFiles();
+        setUploadFileState(false);
+        setUploaded(false);
+
+        updateModalState();
+    };
+
     return (
         <Modal
             isOpen={isOpen}
-            updateModalState={updateModalState}
+            updateModalState={finalUpdateModalState}
             title="Upload File"
         >
             <>
@@ -22,22 +95,61 @@ const FileUploadModule = ({
                     <p className="text-sm text-gray-500">
                         Select the file you want to upload.
                     </p>
+                    {typeof uploaded === "string" && (
+                        <div className="my-4">
+                            <p className="pb-2 text-gray-500">
+                                The file has been uploaded successfully, you can
+                                copy the link below to share the file with other
+                                people.
+                            </p>
+                            <input
+                                className="w-full py-2 px-3 text-base border rounded-lg bg-gray-100 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-dark-gray-700 focus:ring-opacity-50"
+                                type="text"
+                                value={uploaded as never}
+                                //@ts-ignore
+                                onClick={(e) => e.target.select()}
+                            />
+                        </div>
+                    )}
+                    <div className="col-span-6 sm:col-span-4">
+                        <div className="flex items-center">
+                            <input
+                                ref={inputRef}
+                                type="file"
+                                className="hidden"
+                                onChange={(e) => setFiles(e as any)}
+                            />
+                            <button
+                                type="button"
+                                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-dark-gray-800 rounded-md font-semibold text-xs text-gray-700 dark:text-dark-gray-100 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 mr-2"
+                                onClick={() => inputRef.current.click()}
+                            >
+                                Select a file to upload
+                            </button>
+                        </div>
+                        {files.length !== 0 && (
+                            <p className="px-2 pt-2">
+                                {(files as any)[0].name}
+                            </p>
+                        )}
+                    </div>
                 </div>
 
                 <div className="mt-4 flex justify-end gap-2">
                     <button
                         type="button"
                         className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 dark:text-gray-100 bg-blue-100 dark:bg-dark-gray-900 border border-transparent rounded-md hover:bg-blue-200 dark:hover:bg-dark-gray-800 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                        onClick={updateModalState}
+                        onClick={() => HandleCancel()}
                     >
                         Cancel
                     </button>
                     <button
                         type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 dark:text-gray-100 bg-blue-100 dark:bg-gray-900 border border-transparent rounded-md hover:bg-blue-200 dark:hover:bg-dark-gray-800 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                        onClick={() => toast("coming soon!", { icon: "💻" })}
+                        disabled={!uploadFileState}
+                        className="disabled:opacity-25 inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 dark:text-gray-100 bg-blue-100 dark:bg-gray-900 border border-transparent rounded-md hover:bg-blue-200 dark:hover:bg-dark-gray-800 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                        onClick={(e) => HandleUpload(e)}
                     >
-                        Upload
+                        {isLoading ? "Uploading" : "Upload"}
                     </button>
                 </div>
             </>

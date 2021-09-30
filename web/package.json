@@ -31,6 +31,7 @@
         "react-responsive": "^9.0.0-beta.4",
         "react-syntax-highlighter": "^15.4.4",
         "react-toggle-dark-mode": "^1.0.4",
+        "react-use-file-upload": "^0.9.1",
         "use-sound": "^4.0.1",
         "zustand": "^3.5.10"
     },

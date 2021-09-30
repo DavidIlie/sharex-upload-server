@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import { getFileIconFromExtension } from "@lib/iconUtils";
 import { shimmer } from "@lib/shimmer";
@@ -20,6 +21,8 @@ const UploadPreviewCard = ({
     file: FileType;
     type: "image" | "file" | "text";
 }): JSX.Element => {
+    const router = useRouter();
+
     const icon = getFileIconFromExtension(file.stats.extension);
 
     const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
@@ -42,10 +45,18 @@ const UploadPreviewCard = ({
                 );
                 const response = r.data;
                 if (r.status === 200) {
-                    queryClient.refetchQueries(
-                        `${env.api_url}/api/latest/${type}s`
-                    );
-                    queryClient.refetchQueries(`${env.api_url}/api/statistics`);
+                    if (router.asPath.includes("dashboard/files")) {
+                        queryClient.refetchQueries(
+                            `${env.api_url}/api/latest/files/no-limit`
+                        );
+                    } else {
+                        queryClient.refetchQueries(
+                            `${env.api_url}/api/latest/${type}s`
+                        );
+                        queryClient.refetchQueries(
+                            `${env.api_url}/api/statistics`
+                        );
+                    }
                     resolve(response.message);
                 } else {
                     reject(response.message);
