@@ -9,15 +9,15 @@ import { queryClient } from "@lib/queryClient";
 
 import Modal from "@ui/Modal";
 
-interface ImageUploadModuleProps {
+interface TextUploadModuleProps {
     isOpen: boolean;
     updateModalState: () => void;
 }
 
-const ImageUploadModule = ({
+const TextUploadModule = ({
     isOpen,
     updateModalState,
-}: ImageUploadModuleProps): JSX.Element => {
+}: TextUploadModuleProps): JSX.Element => {
     const env = useEnv();
 
     const { files, setFiles, clearAllFiles } = useFileUpload();
@@ -42,10 +42,10 @@ const ImageUploadModule = ({
         setIsLoading(true);
 
         const formData = new FormData();
-        formData.append("image", files[0]);
+        formData.append("text", files[0]);
 
         try {
-            const r = await axios.post(`${env.api_url}/api/images`, formData, {
+            const r = await axios.post(`${env.api_url}/api/texts`, formData, {
                 headers: { "content-type": "multipart/form-data" },
             });
             const response = await r.data;
@@ -58,7 +58,7 @@ const ImageUploadModule = ({
                 setUploaded(response.message);
 
                 queryClient.refetchQueries(
-                    `${env.api_url}/api/latest/images/no-limit`
+                    `${env.api_url}/api/latest/texts/no-limit`
                 );
 
                 toast.success("Upload successfully!");
@@ -86,19 +86,19 @@ const ImageUploadModule = ({
         <Modal
             isOpen={isOpen}
             updateModalState={HandleCancel}
-            title="Upload Image"
+            title="Upload Text"
         >
             <>
                 <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                        Select the image you want to upload.
+                        Select the text file you want to upload.
                     </p>
                     {typeof uploaded === "string" && (
                         <div className="my-4">
                             <p className="pb-2 text-gray-500">
-                                The image has been uploaded successfully, you
-                                can copy the link below to share the image with
-                                other people.
+                                The text file has been uploaded successfully,
+                                you can copy the link below to share the file
+                                with other people.
                             </p>
                             <input
                                 className="w-full py-2 px-3 text-base border rounded-lg bg-gray-100 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-dark-gray-700 focus:ring-opacity-50"
@@ -123,7 +123,7 @@ const ImageUploadModule = ({
                                 className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-dark-gray-800 rounded-md font-semibold text-xs text-gray-700 dark:text-dark-gray-100 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 mr-2"
                                 onClick={() => inputRef.current?.click()}
                             >
-                                Select a image to upload
+                                Select a text file to upload
                             </button>
                         </div>
                         {files.length !== 0 && (
@@ -156,4 +156,4 @@ const ImageUploadModule = ({
     );
 };
 
-export default ImageUploadModule;
+export default TextUploadModule;
