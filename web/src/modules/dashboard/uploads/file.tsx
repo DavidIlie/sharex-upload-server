@@ -16,10 +16,6 @@ const FileUploadModule = ({
     isOpen,
     updateModalState,
 }: FileUploadModuleProps): JSX.Element => {
-    let finalUpdateModalState = () => {
-        HandleCancel();
-    };
-
     const env = useEnv();
 
     const { files, setFiles, clearAllFiles } = useFileUpload();
@@ -87,7 +83,7 @@ const FileUploadModule = ({
     return (
         <Modal
             isOpen={isOpen}
-            updateModalState={finalUpdateModalState}
+            updateModalState={HandleCancel}
             title="Upload File"
         >
             <>

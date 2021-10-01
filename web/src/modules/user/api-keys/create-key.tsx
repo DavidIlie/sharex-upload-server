@@ -144,6 +144,8 @@ const CreateKeyModule = (): JSX.Element => {
                         <textarea
                             value={apiKey}
                             className="dark:bg-gray-900 w-full mt-2 rounded"
+                            //@ts-ignore
+                            onClick={(e) => e.target.select()}
                         />
                     </div>
                     <div className="mt-4 flex justify-end gap-2">
