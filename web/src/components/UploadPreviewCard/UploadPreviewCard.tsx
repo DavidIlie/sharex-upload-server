@@ -86,8 +86,8 @@ const UploadPreviewCard = ({
                                 objectFit="cover"
                                 placeholder="blur"
                                 blurDataURL={shimmer(
-                                    file.stats.resolution!.width,
-                                    file.stats.resolution!.height
+                                    file.stats.resolution?.width || 1920,
+                                    file.stats.resolution?.height || 1080
                                 )}
                             />
                         ) : (
