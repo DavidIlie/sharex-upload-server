@@ -1,6 +1,8 @@
 import toast from "react-hot-toast";
 import { useState, useRef, useEffect } from "react";
 import useFileUpload from "react-use-file-upload";
+import { MouseEvent } from "react";
+
 import { axios } from "@lib/axiosClient";
 import useEnv from "@hooks/useEnv";
 import { queryClient } from "@lib/queryClient";
@@ -19,7 +21,7 @@ const FileUploadModule = ({
     const env = useEnv();
 
     const { files, setFiles, clearAllFiles } = useFileUpload();
-    const inputRef = useRef<any>();
+    const inputRef = useRef<HTMLInputElement>();
 
     const [uploadFileState, setUploadFileState] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,14 +30,14 @@ const FileUploadModule = ({
     useEffect(() => {
         try {
             if (files.length >= 1) {
-                if (inputRef.current.files.length !== 0) {
+                if (inputRef.current?.files?.length !== 0) {
                     setUploadFileState(true);
                 }
             }
         } catch (_err) {}
     });
 
-    const HandleUpload = async (e: any) => {
+    const HandleUpload = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setIsLoading(true);
 
@@ -71,6 +73,7 @@ const FileUploadModule = ({
 
     const HandleCancel = () => {
         try {
+            //@ts-ignore
             inputRef.current.files = [];
         } catch (_err) {}
         clearAllFiles();
@@ -110,7 +113,7 @@ const FileUploadModule = ({
                     <div className="col-span-6 sm:col-span-4">
                         <div className="flex items-center">
                             <input
-                                ref={inputRef}
+                                ref={inputRef as any}
                                 type="file"
                                 className="hidden"
                                 onChange={(e) => setFiles(e as any)}
@@ -118,7 +121,7 @@ const FileUploadModule = ({
                             <button
                                 type="button"
                                 className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-dark-gray-800 rounded-md font-semibold text-xs text-gray-700 dark:text-dark-gray-100 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 mr-2"
-                                onClick={() => inputRef.current.click()}
+                                onClick={() => inputRef.current?.click()}
                             >
                                 Select a file to upload
                             </button>
