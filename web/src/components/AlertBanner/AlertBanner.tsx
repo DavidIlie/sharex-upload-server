@@ -22,14 +22,18 @@ const AlertBanner = ({
     };
     return alreadyChecked !== "true" ? (
         <div
-            className={`bg-gray-900 flex justify-center items-center p-2 text-${color}-400 gap-1`}
+            className={`bg-gray-200 dark:bg-gray-900 flex justify-center items-center p-2 text-${color}-600 dark:text-${color}-400 gap-1`}
         >
             <h1>
-                <span className={`font-bold text-${color}-500`}>{title}</span>{" "}
+                <span
+                    className={`font-bold text-${color}-600 dark:text-${color}-500`}
+                >
+                    {title}
+                </span>{" "}
                 {message}
             </h1>
             <div
-                className="hover:bg-dark-gray-900 duration-150 p-2 rounded cursor-pointer"
+                className="hover:bg-dark-gray-100 dark:hover:bg-dark-gray-900 duration-150 p-2 rounded cursor-pointer"
                 onClick={HandleClick}
             >
                 <AiOutlineClose />
