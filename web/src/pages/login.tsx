@@ -49,6 +49,7 @@ const Login = ({ stats }: Props): JSX.Element => {
                             className="text-3xl font-medium text-black dark:text-white"
                             href="https://github.com/DavidIlie/sharex-upload-server"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             {settings.name}
                         </a>
@@ -160,7 +161,7 @@ const Login = ({ stats }: Props): JSX.Element => {
                             )}
                         </Formik>
                     </div>
-                    <a className="mt-4 flex text-sm text-black dark:text-gray-400 hover:underline cursor-pointer">
+                    <p className="mt-4 flex text-sm text-black dark:text-gray-400 hover:underline cursor-pointer">
                         <span className="font-semibold mx-1">
                             {stats.totalFiles}
                         </span>
@@ -169,7 +170,7 @@ const Login = ({ stats }: Props): JSX.Element => {
                             {stats.totalSize.value}
                         </span>
                         {stats.totalSize.unit}
-                    </a>
+                    </p>
                 </Fade>
             </div>
         </>

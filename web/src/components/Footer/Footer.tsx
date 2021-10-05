@@ -16,6 +16,7 @@ const Footer = (): JSX.Element => {
                             className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 duration-150 font-semibold"
                             href="https://davidilie.com"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             David Ilie
                         </a>
@@ -27,6 +28,7 @@ const Footer = (): JSX.Element => {
                             className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 font-semibold"
                             href="https://nextjs.org/"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             {" "}
                             Next.js
@@ -36,6 +38,7 @@ const Footer = (): JSX.Element => {
                             className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 font-semibold"
                             href="https://expressjs.com/"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             {" "}
                             Express.js
@@ -45,6 +48,7 @@ const Footer = (): JSX.Element => {
                             className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 font-semibold"
                             href="https://tailwindcss.com/"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             {" "}
                             Tailwind CSS
@@ -57,6 +61,7 @@ const Footer = (): JSX.Element => {
                     href="https://github.com/DavidIlie/sharex-upload-server"
                     target="_blank"
                     className="font-semibold hover:underline"
+                    rel="noreferrer"
                 >
                     Version 0.7.5{is_dev && "-DEV"}
                 </a>
