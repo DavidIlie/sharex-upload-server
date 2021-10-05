@@ -63,7 +63,7 @@ const Footer = (): JSX.Element => {
                     className="font-semibold hover:underline"
                     rel="noreferrer"
                 >
-                    Version 0.7.5{is_dev && "-DEV"}
+                    Version 0.8{is_dev && "-DEV"}
                 </a>
             </div>
         </footer>

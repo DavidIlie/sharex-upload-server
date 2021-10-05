@@ -41,9 +41,13 @@ function App({ Component, pageProps, router, env }: Props) {
         }
         const getData = async () => {
             const settings = await getSettingsData(env);
-            const user = await getUserData(env);
             updateSettings(settings);
-            updateUser(user);
+
+            if (router.asPath !== "/login" && router.asPath !== "/logout") {
+                const user = await getUserData(env);
+                updateUser(user);
+            }
+
             setFinishedSettingsCheck(true);
         };
         getData();
