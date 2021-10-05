@@ -16,13 +16,12 @@ The goal of ShareX Upload Server as opposed to other alternatives is to allow an
     -   Intuitive interface (works both on desktop and mobile)
     -   Dark/Light mode support
 -   `docker-compose` or `ansible` configurations available in [deployment](/deployment)
-    - Or if you need help, follow [the wiki](https://github.com/davidilie/sharex-upload-server/wiki)
+    -   Or if you need help, follow [the wiki](https://github.com/davidilie/sharex-upload-server/wiki)
 
 ## TODO:
 
 general:
 
--   wiki
 -   implement adding new users
 -   implement deleting of accounts
 
@@ -32,4 +31,4 @@ backend:
 
 frontend:
 
-nothing atm :)
+-   make lighthouse score higher, see [issue](https://github.com/DavidIlie/sharex-upload-server/issues/9)
