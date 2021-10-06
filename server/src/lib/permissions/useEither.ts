@@ -42,6 +42,10 @@ export const useEither: (
                 const user = await Users.findOne(key.creator);
 
                 if (user) {
+                    const date = new Date();
+                    key.lastUsed = date;
+                    await key.save();
+
                     req.user = user;
                     return next();
                 } else {
