@@ -59,9 +59,9 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
         </div>
     ) : (
         <>
-            <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex justify-between">
-                <h1 className="w-72">{data!.name}</h1>
-                <div className="flex flex-wrap items-center sm:gap-4 gap-1">
+            <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex sm:flex-row flex-col justify-between">
+                <h1>{data!.name}</h1>
+                <div className="flex justify-between items-center gap-4">
                     {(data!.lastUsed as any) !== "1970-01-01T00:00:00.000Z" && (
                         <h1 className="text-sm text-gray-400">
                             Last used{" "}
@@ -75,7 +75,7 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
                         </h1>
                     )}
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex gap-4 items-center">
                         <h1
                             className="cursor-pointer"
                             onClick={() => updateModalState()}
