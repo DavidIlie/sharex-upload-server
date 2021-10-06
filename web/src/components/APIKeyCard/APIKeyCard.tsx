@@ -47,6 +47,8 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
         });
     };
 
+    const hasDate = (data!.lastUsed as any) !== "1970-01-01T00:00:00.000Z";
+
     return skeleton ? (
         <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex justify-between">
             <div className="animate-pulse flex-1 space-y-4 py-1">
@@ -59,10 +61,14 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
         </div>
     ) : (
         <>
-            <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex sm:flex-row flex-col justify-between">
+            <div
+                className={`bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex sm:flex-row ${
+                    hasDate && "flex-col"
+                } justify-between`}
+            >
                 <h1>{data!.name}</h1>
                 <div className="flex justify-between items-center gap-4">
-                    {(data!.lastUsed as any) !== "1970-01-01T00:00:00.000Z" && (
+                    {hasDate && (
                         <h1 className="text-sm text-gray-400">
                             Last used{" "}
                             {formatDistance(
