@@ -60,8 +60,8 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
     ) : (
         <>
             <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex justify-between">
-                <h1>{data!.name}</h1>
-                <div className="flex items-center gap-4">
+                <h1 className="w-72">{data!.name}</h1>
+                <div className="flex flex-wrap items-center sm:gap-4 gap-1">
                     {(data!.lastUsed as any) !== "1970-01-01T00:00:00.000Z" && (
                         <h1 className="text-sm text-gray-400">
                             Last used{" "}
