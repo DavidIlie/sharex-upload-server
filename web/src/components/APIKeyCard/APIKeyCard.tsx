@@ -47,7 +47,7 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
         });
     };
 
-    const hasDate = (data!.lastUsed as any) !== "1970-01-01T00:00:00.000Z";
+    const hasDate = (data?.lastUsed as any) !== "1970-01-01T00:00:00.000Z";
 
     return skeleton ? (
         <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex justify-between">
