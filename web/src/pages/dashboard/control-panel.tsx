@@ -1,9 +1,9 @@
-import React from "react";
 import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Tab } from "@headlessui/react";
+import { Fade } from "react-awesome-reveal";
 
 import { isLoggedIn } from "@lib/isLoggedIn";
 import useUser from "@hooks/useUser";
@@ -37,48 +37,52 @@ const ControlPanel: React.FC = () => {
                 <NextSeo title="Control Panel" />
                 <div className="mb-12">
                     <NavBar />
-                    <div className="pt-12" />
-                    <StatisticsModule admin={true}/>
-                    <div className="pt-12" />
-                    <GeneralSettingsModule />
-                    <div className="pt-12 pb-12">
-                        <div className="text-center font-semibold text-gray-100">
-                            <h4 className="text-lg font-medium text-gray-900 dark:text-dark-gray-100">
-                                Media Settings Type
-                            </h4>
-                            <p className="pb-4 text-sm text-gray-600 dark:text-dark-gray-400">
-                                Select the type of media resource you want the
-                                change the settings for.
-                            </p>
+                    <Fade triggerOnce direction="up">
+                        <div className="pt-12">
+                            <StatisticsModule admin={true} />
                         </div>
-                        <Tab.Group>
-                            <Tab.List className="flex justify-center">
-                                {/* prettier-ignore */}
-                                <Tab className={({ selected }) => cms(selected)}>
+                        <div className="pt-12">
+                            <GeneralSettingsModule />
+                        </div>
+                        <div className="pt-12 pb-12">
+                            <div className="text-center font-semibold text-gray-100">
+                                <h4 className="text-lg font-medium text-gray-900 dark:text-dark-gray-100">
+                                    Media Settings Type
+                                </h4>
+                                <p className="pb-4 text-sm text-gray-600 dark:text-dark-gray-400">
+                                    Select the type of media resource you want
+                                    the change the settings for.
+                                </p>
+                            </div>
+                            <Tab.Group>
+                                <Tab.List className="flex justify-center">
+                                    {/* prettier-ignore */}
+                                    <Tab className={({ selected }) => cms(selected)}>
                                     Images
                                 </Tab>
-                                {/* prettier-ignore */}
-                                <Tab className={({ selected }) => cms(selected)}>
+                                    {/* prettier-ignore */}
+                                    <Tab className={({ selected }) => cms(selected)}>
                                     Files
                                 </Tab>
-                                {/* prettier-ignore */}
-                                <Tab className={({ selected }) => cms(selected)}>
+                                    {/* prettier-ignore */}
+                                    <Tab className={({ selected }) => cms(selected)}>
                                     Texts
                                 </Tab>
-                            </Tab.List>
-                            <Tab.Panels className="px-2 mt-5">
-                                <Tab.Panel>
-                                    <ImagesSettingsModule />
-                                </Tab.Panel>
-                                <Tab.Panel>
-                                    <FilesSettingsModule />
-                                </Tab.Panel>
-                                <Tab.Panel>
-                                    <TextsSettingsModule />
-                                </Tab.Panel>
-                            </Tab.Panels>
-                        </Tab.Group>
-                    </div>
+                                </Tab.List>
+                                <Tab.Panels className="px-2 mt-5">
+                                    <Tab.Panel>
+                                        <ImagesSettingsModule />
+                                    </Tab.Panel>
+                                    <Tab.Panel>
+                                        <FilesSettingsModule />
+                                    </Tab.Panel>
+                                    <Tab.Panel>
+                                        <TextsSettingsModule />
+                                    </Tab.Panel>
+                                </Tab.Panels>
+                            </Tab.Group>
+                        </div>
+                    </Fade>
                 </div>
             </>
         );

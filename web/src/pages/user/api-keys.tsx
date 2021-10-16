@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
+import { Fade } from "react-awesome-reveal";
 
 import { isLoggedIn } from "@lib/isLoggedIn";
 
@@ -14,10 +15,14 @@ const APIKeysPage = (): JSX.Element => {
             <NextSeo title="API Keys" />
             <div className="mb-12">
                 <NavBar />
-                <div className="pt-12" />
-                <CreateTokenModule />
-                <div className="pt-12" />
-                <ManageKeysModule />
+                <Fade triggerOnce direction="up">
+                    <div className="pt-12">
+                        <CreateTokenModule />
+                    </div>
+                    <div className="pt-12">
+                        <ManageKeysModule />
+                    </div>
+                </Fade>
             </div>
         </>
     );

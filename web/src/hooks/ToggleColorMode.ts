@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 import { useSound } from "use-sound";
 
 export default function ToggleColorMode() {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
 
     const [play] = useSound("/lightswitch.mp3", {
         volume: 0.05,
@@ -13,8 +13,8 @@ export default function ToggleColorMode() {
     });
 
     const updateTheme = () => {
-        theme === "dark" ? setTheme("light") : setTheme("dark");
-        theme === "dark" ? play({ id: "on" }) : play({ id: "off" });
+        resolvedTheme === "dark" ? setTheme("light") : setTheme("dark");
+        resolvedTheme === "dark" ? play({ id: "on" }) : play({ id: "off" });
     };
 
     return updateTheme;

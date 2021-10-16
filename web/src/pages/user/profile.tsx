@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
+import { Fade } from "react-awesome-reveal";
 
 import { isLoggedIn } from "@lib/isLoggedIn";
 
@@ -16,14 +17,20 @@ const ProfilePage = (): JSX.Element => {
             <NextSeo title="Profile" />
             <div className="mb-12">
                 <NavBar />
-                <div className="pt-12" />
-                <ProfileInformationModule />
-                <div className="pt-12" />
-                <ChangePasswordModule />
-                <div className="pt-12" />
-                <SiteThemeModule />
-                <div className="pt-12" />
-                <DeleteAccountModule />
+                <Fade triggerOnce direction="up">
+                    <div className="pt-12">
+                        <ProfileInformationModule />
+                    </div>
+                    <div className="pt-12">
+                        <ChangePasswordModule />
+                    </div>
+                    <div className="pt-12">
+                        <SiteThemeModule />
+                    </div>
+                    <div className="pt-12">
+                        <DeleteAccountModule />
+                    </div>
+                </Fade>
             </div>
         </>
     );
