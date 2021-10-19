@@ -6,9 +6,9 @@ const Footer = (): JSX.Element => {
     return (
         <footer className="shadow bg-gray-100 dark:bg-gray-800">
             <div className="sm:flex flex-wrap items-center justify-evenly max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
-                <a className="font-semibold">
+                <span className="font-semibold">
                     {settings.name || "ShareX Upload Server"}
-                </a>
+                </span>
                 <div className="sm:py-0 py-3">
                     <p className="text-sm">
                         Created by{" "}

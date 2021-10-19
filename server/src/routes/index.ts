@@ -20,13 +20,10 @@ router.get("/image/:slug", async (req, res, next) => {
 
         const file = await getFileBySlug(slug);
 
-        if (
-            upload!.stats.extension === "png" ||
-            upload!.stats.extension === "jpg"
-        ) {
+        if (upload!.type === "image") {
             return res.end(file);
         } else {
-            return res.redirect(`http://localhost:3000/f/${slug}`);
+            return res.redirect(`${process.env.FRONTEND_URL}/f/${slug}`);
         }
     } catch (error) {
         return next(error);
@@ -45,7 +42,7 @@ router.get("/dl/:slug", async (req, res, next) => {
                 message: "images can't be downloaded from this route",
             });
 
-        res.download(`${uploadDir}/${upload.name}`, upload.name);
+        return res.download(`${uploadDir}/${upload.name}`, upload.name);
     } catch (error) {
         return next(error);
     }

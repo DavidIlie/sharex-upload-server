@@ -13,7 +13,11 @@ import { Uploads } from "./entities/Uploads";
 import * as middlewares from "./middleware";
 import api from "./routes";
 
+import consoleWelcome from "./lib/consoleWelcome";
+
 const main = async () => {
+    consoleWelcome();
+
     const conn = await createConnection({
         type: "mongodb",
         host: process.env.MONGO_URI,

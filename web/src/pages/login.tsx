@@ -45,9 +45,13 @@ const Login = ({ stats }: Props): JSX.Element => {
             <div className="h-screen flex flex-col justify-center items-center">
                 <Fade direction="up" cascade>
                     <Tooltip content="View project on GitHub">
-                        <h1 className="text-3xl font-medium text-black dark:text-white">
+                        <a
+                            href="https://github.com/davidilie/sharex-upload-server"
+                            rel="noreferrer"
+                            className="text-3xl font-medium text-black dark:text-white"
+                        >
                             {settings.name}
-                        </h1>
+                        </a>
                     </Tooltip>
                     <div className="w-full sm:max-w-md mt-3 px-6 py-4 border-2 bg-white dark:bg-dark-gray-800 border-gray-200 dark:border-gray-900 shadow-md overflow-hidden sm:rounded-lg">
                         <Formik
