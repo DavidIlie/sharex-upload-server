@@ -10,4 +10,4 @@ backend_url: "http://localhost"
 access_token_secret: "iansdibasdibasdibasidu"
 
 # Path for where the uploads are stored
-upload_dir: "~/uploads"
+upload_dir: "/home/uploads"
