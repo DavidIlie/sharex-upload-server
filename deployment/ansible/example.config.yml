@@ -8,3 +8,6 @@ backend_url: "http://localhost"
 
 # Authorization - Make sure you change this!
 access_token_secret: "iansdibasdibasdibasidu"
+
+# Path for where the uploads are stored
+upload_dir: "~/uploads"

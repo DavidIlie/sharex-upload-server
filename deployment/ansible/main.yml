@@ -26,5 +26,5 @@
       - name: Setup Docker.
         ansible.builtin.import_tasks: tasks/docker.yml
 
-      - name: Set up Internet Monitoring.
+      - name: Set up sharex-upload-server.
         ansible.builtin.import_tasks: tasks/install.yml

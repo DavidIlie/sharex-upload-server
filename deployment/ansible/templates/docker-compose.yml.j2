@@ -16,7 +16,7 @@ services:
         ports:
             - 4000:4000
         volumes:
-            - sharex-upload-server-data:/usr/src/app/server/uploads
+            - {{ upload_dir }}:/usr/src/app/server/uploads
         environment:
             - PORT=4000
             - MONGO_URI=mongodb
@@ -54,6 +54,4 @@ services:
 
 volumes:
     sharex-upload-server-db:
-        driver: local
-    sharex-upload-server-data:
         driver: local
