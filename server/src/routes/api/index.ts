@@ -6,6 +6,8 @@ const router = express.Router();
 import { isAuth } from "../../lib/auth/isAuth";
 import { uploadDir } from "../../lib/filesystem";
 
+import { appVersion } from "@sharex-server/common";
+
 import user from "./user";
 router.use("/user", user);
 
@@ -90,6 +92,19 @@ router.get("/text/:slug", async (req, res, next) => {
         return res.json({ file: upload, text });
     } catch (error) {
         return next(error);
+    }
+});
+
+router.get("/check-version", async (_req, res, next) => {
+    try {
+        const version = appVersion;
+
+        res.json({
+            version,
+            state: "You are running on the latest version!",
+        });
+    } catch (error) {
+        next(error);
     }
 });
 
