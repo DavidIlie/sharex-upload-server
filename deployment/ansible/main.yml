@@ -1,5 +1,5 @@
 ---
-- hosts: sharex_upload_server
+- hosts: sharex-upload-server
   become: true
 
   pre_tasks:
