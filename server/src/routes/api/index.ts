@@ -1,5 +1,6 @@
 import { Uploads } from "../../entities/Uploads";
 import fs from "fs";
+import axios from "axios";
 import * as express from "express";
 const router = express.Router();
 
@@ -99,10 +100,27 @@ router.get("/check-version", async (_req, res, next) => {
     try {
         const version = appVersion;
 
-        res.json({
-            version,
-            state: "You are running on the latest version!",
-        });
+        const r = await axios.get<any>(
+            "https://raw.githubusercontent.com/davidilie/sharex-upload-server/master/common/src/version.ts"
+        );
+        const response = r.data;
+
+        const latestVersion = parseFloat(
+            response.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "")
+        );
+
+        if (latestVersion > version) {
+            res.json({
+                latestVersion,
+                version,
+                state: "update",
+            });
+        } else {
+            res.json({
+                version,
+                state: "latest",
+            });
+        }
     } catch (error) {
         next(error);
     }

@@ -1,8 +1,26 @@
+import { useQuery } from "react-query";
+
 import { is_dev } from "@lib/constants";
 import useSettings from "@hooks/useSettings";
+import useEnv from "@hooks/useEnv";
+import { appVersion } from "@sharex-server/common";
+import Tooltip from "@ui/Tooltip";
+
+interface Response {
+    latestVersion?: number;
+    version: number;
+    state: "update" | "latest";
+}
 
 const Footer = (): JSX.Element => {
     const settings = useSettings();
+    const env = useEnv();
+
+    const { isLoading, data, error } = useQuery<Response>(
+        `${env.api_url}/api/check-version`,
+        { refetchOnWindowFocus: false, refetchOnReconnect: false, retry: false }
+    );
+
     return (
         <footer className="shadow bg-gray-100 dark:bg-gray-800">
             <div className="sm:flex flex-wrap items-center justify-evenly max-w-7xl mx-auto py-6 text-center text-gray-600 dark:text-dark-gray-100">
@@ -57,14 +75,43 @@ const Footer = (): JSX.Element => {
                     </p>
                 </div>
 
-                <a
-                    href="https://github.com/DavidIlie/sharex-upload-server"
-                    target="_blank"
-                    className="font-semibold hover:underline"
-                    rel="noreferrer"
-                >
-                    Version 0.8{is_dev && "-DEV"}
-                </a>
+                {isLoading || error ? (
+                    <Tooltip content="Cannot check version, please check console!">
+                        <a
+                            href="https://github.com/DavidIlie/sharex-upload-server"
+                            target="_blank"
+                            className="font-semibold hover:underline"
+                            rel="noreferrer"
+                        >
+                            Version {appVersion}
+                            {is_dev && "-DEV"}
+                        </a>
+                    </Tooltip>
+                ) : data?.state === "latest" ? (
+                    <a
+                        href="https://github.com/DavidIlie/sharex-upload-server"
+                        target="_blank"
+                        className="font-semibold hover:underline"
+                        rel="noreferrer"
+                    >
+                        Version {data?.version}
+                        {is_dev && "-DEV"}
+                    </a>
+                ) : (
+                    <Tooltip
+                        content={`You are currently out of date, the latest is v${data?.latestVersion}!`}
+                    >
+                        <a
+                            href="https://github.com/DavidIlie/sharex-upload-server/wiki/Upgrading"
+                            target="_blank"
+                            className="font-semibold hover:underline"
+                            rel="noreferrer"
+                        >
+                            Version {data?.version}
+                            {is_dev && "-DEV"} (Outdated)
+                        </a>
+                    </Tooltip>
+                )}
             </div>
         </footer>
     );
