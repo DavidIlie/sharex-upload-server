@@ -101,7 +101,14 @@ router.get("/check-version", async (_req, res, next) => {
         const version = appVersion;
 
         const r = await axios.get<any>(
-            "https://raw.githubusercontent.com/davidilie/sharex-upload-server/master/common/src/version.ts"
+            "https://raw.githubusercontent.com/davidilie/sharex-upload-server/master/common/src/version.ts",
+            {
+                headers: {
+                    "Cache-Control": "no-cache",
+                    Pragma: "no-cache",
+                    Expires: "0",
+                },
+            }
         );
         const response = r.data;
 
