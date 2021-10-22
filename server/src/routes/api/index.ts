@@ -105,9 +105,10 @@ router.get("/check-version", async (_req, res, next) => {
         );
         const response = r.data;
 
-        const latestVersion = parseFloat(
-            response.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "")
-        );
+        let latestVersion = response;
+        latestVersion = latestVersion.split("= ");
+        latestVersion = latestVersion[1].split(";\n");
+        latestVersion = parseFloat(latestVersion[0]);
 
         if (latestVersion > version) {
             res.json({
