@@ -8,6 +8,7 @@
         "yup": "^0.32.9"
     },
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "dev": "nodemon --watch 'src/**' --ext 'ts,json' --exec yarn build"
     }
 }

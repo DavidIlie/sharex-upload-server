@@ -7,5 +7,16 @@
     ],
     "nohoist": [
         "**"
-    ]
+    ],
+    "dependencies": {
+        "concurrently": "^6.3.0",
+        "nodemon": "^2.0.14"
+    },
+    "scripts": {
+        "dev:common": "cd common && yarn dev",
+        "dev:server": "cd server && yarn dev",
+        "dev:web": "cd web && yarn dev",
+        "dev:bundle": "concurrently --kill-others \"yarn dev:common\" \"yarn dev:server\" \"yarn dev:web\"",
+        "version:bump": "node scripts/updateVersion.js && cd common && yarn build"
+    }
 }
