@@ -52,6 +52,8 @@ const main = async () => {
         }
     }
 
+    console.log(chalk`{bold.gray loading express app}`);
+
     const app = express();
 
     app.use(express.json());
@@ -69,6 +71,7 @@ const main = async () => {
     const port = process.env.PORT || 4001;
     app.listen(port, () => {
         console.log(`app running on http://localhost:${port}`);
+        console.log(chalk`{bold.gray express app has been loaded!}`);
     });
 
     app.use("/", api);

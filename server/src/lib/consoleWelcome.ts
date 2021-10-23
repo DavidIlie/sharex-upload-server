@@ -39,11 +39,11 @@ const consoleWelcome = () => {
         ░░░░░░░░░░▒▓▓▓▓▓▓▒▒▒░░░░░░░░░░▒▒▒▓▓▓▓▓▓▒░░░░░░░░░░
         ░░░░░░░░░░░░░▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░░░░░░░░░░
       sharex-upload-server (backend) | ${yellow(
-          `Pre-relase (${
+          `v${
               commit !== null
                   ? commit.slice(0, 7)
                   : "Unknown (Git cannot be found)"
-          })`
+          }`
       )}
 Current commit: ${
             commit !== null
