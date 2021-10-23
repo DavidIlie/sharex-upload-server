@@ -80,7 +80,7 @@ const PermissionsModal = ({
                         <Form>
                             <div className="mt-4">
                                 <div className="col-span-6 sm:col-span-4">
-                                    <div className="ml-3 mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="ml-3 mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                                         <FieldArray
                                             name="permissions"
                                             render={(arrayHelpers) =>

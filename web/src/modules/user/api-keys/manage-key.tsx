@@ -26,17 +26,36 @@ const ManageKeysModule = (): JSX.Element => {
                         data?.length === 0 ? (
                             <h1>You don't have any API Tokens right now.</h1>
                         ) : (
-                            data?.map((key, index) => {
-                                return (
-                                    <div
-                                        className={`${
-                                            index !== data?.length - 1 && "mb-6"
-                                        }`}
-                                    >
-                                        <APIKeyCard data={key} key={index} />
-                                    </div>
-                                );
-                            })
+                            data
+                                ?.sort(
+                                    (a, b) =>
+                                        new Date(
+                                            data.filter(
+                                                (x) => x.id === a.id
+                                            )[0]?.lastUsed
+                                        ).getTime() -
+                                        new Date(
+                                            data.filter(
+                                                (y) => y.id === b.id
+                                            )[0]?.lastUsed
+                                        ).getTime()
+                                )
+                                .reverse()
+                                .map((key, index) => {
+                                    return (
+                                        <div
+                                            className={`${
+                                                index !== data?.length - 1 &&
+                                                "mb-6"
+                                            }`}
+                                        >
+                                            <APIKeyCard
+                                                data={key}
+                                                key={index}
+                                            />
+                                        </div>
+                                    );
+                                })
                         )
                     ) : (
                         <APIKeyCard skeleton={true} />
