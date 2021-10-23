@@ -28,7 +28,8 @@ general:
 backend:
 
 -   add support for other providers (s3)
+-   rate limiting
 
 frontend:
 
--   make lighthouse score higher, see [issue](https://github.com/DavidIlie/sharex-upload-server/issues/9)
+none
