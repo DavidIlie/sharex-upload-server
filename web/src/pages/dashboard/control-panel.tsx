@@ -44,12 +44,12 @@ const ControlPanel: React.FC = () => {
                         <div className="pt-12">
                             <GeneralSettingsModule />
                         </div>
-                        <div className="pt-12 pb-12">
+                        <div className="py-12">
                             <div className="text-center font-semibold text-gray-100">
-                                <h4 className="text-lg font-medium text-gray-900 dark:text-dark-gray-100">
+                                <h4 className="text-xl font-medium text-gray-900 dark:text-dark-gray-100">
                                     Media Settings Type
                                 </h4>
-                                <p className="pb-4 text-sm text-gray-600 dark:text-dark-gray-400">
+                                <p className="pb-4 mt-1 text-gray-600 dark:text-dark-gray-400">
                                     Select the type of media resource you want
                                     the change the settings for.
                                 </p>

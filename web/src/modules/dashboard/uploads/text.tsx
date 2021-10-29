@@ -116,7 +116,6 @@ const TextUploadModule = ({
                                 type="file"
                                 className="hidden"
                                 onChange={(e) => setFiles(e as any)}
-                                accept="image/*"
                             />
                             <button
                                 type="button"
