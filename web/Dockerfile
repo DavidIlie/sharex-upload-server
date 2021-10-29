@@ -1,4 +1,4 @@
-FROM node:alpine as build
+FROM node:15.4.0-alpine as build
 
 WORKDIR /usr/src/app
 
@@ -15,7 +15,7 @@ RUN yarn build
 WORKDIR /usr/src/app/web
 RUN yarn build
 
-FROM node:alpine
+FROM node:15.4.0-alpine
 
 WORKDIR /usr/src/app
 
