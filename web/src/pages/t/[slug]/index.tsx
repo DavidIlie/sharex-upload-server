@@ -30,19 +30,13 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
     if (message) return <NotFound />;
 
     const settings = useSettings();
-
     const { theme } = useTheme();
-
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
     const words = text.split(/\s+/gu).length;
     const lines = text.split(/\r\n|\r|\n/).length;
-
     const user = useUser();
     const env = useEnv();
-
     const ref = useRef<HTMLDivElement>();
-
     const [openModal, setOpenModal] = useState<boolean>(false);
     const toggleModal = () => setOpenModal(!openModal);
 
