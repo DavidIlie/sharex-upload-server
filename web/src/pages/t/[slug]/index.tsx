@@ -1,17 +1,22 @@
 import { GetServerSideProps } from "next";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
+import toast from "react-hot-toast";
 
 //@ts-ignore
 import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark, light } from "@lib/syntaxThemes";
 
-import NotFound from "@components/NotFound";
 import useSettings from "@hooks/useSettings";
+import useUser from "@hooks/useUser";
+import type { FileType } from "@sharex-server/common";
+import { axios } from "@lib/axiosClient";
+import useEnv from "@hooks/useEnv";
 
-import { FileType } from "@sharex-server/common";
+import NotFound from "@components/NotFound";
+import ConfirmModal from "@modules/misc/ConfirmModal";
 
 interface Props {
     message?: string;
@@ -33,6 +38,50 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
     const words = text.split(/\s+/gu).length;
     const lines = text.split(/\r\n|\r|\n/).length;
 
+    const user = useUser();
+    const env = useEnv();
+
+    const ref = useRef<HTMLDivElement>();
+
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    const toggleModal = () => setOpenModal(!openModal);
+
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside, false);
+        return () => {
+            document.removeEventListener("click", handleClickOutside, false);
+        };
+    }, []);
+
+    const handleClickOutside = (event: any) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setIsOpen(false);
+        }
+    };
+
+    const deleteText = async () => {
+        const deleteTokenPromise = new Promise<string>(
+            async (resolve, reject) => {
+                const r = await axios.post(
+                    `${env.api_url}/api/delete/${file.id}`
+                );
+                const response = r.data;
+                if (r.status === 200) {
+                    router.push("/dashboard");
+                    resolve(response.message);
+                } else {
+                    reject(response.message);
+                }
+            }
+        );
+
+        toast.promise(deleteTokenPromise, {
+            loading: "Loading",
+            success: "Deleted successfully!",
+            error: "Error when fetching!",
+        });
+    };
+
     return (
         <>
             <NextSeo
@@ -47,7 +96,11 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                     type: "website",
                 }}
             />
-            <div className="absolute bottom-5 right-12" style={{ zIndex: 500 }}>
+            <div
+                className="absolute bottom-5 right-12"
+                style={{ zIndex: 500 }}
+                ref={ref as any}
+            >
                 {isOpen && (
                     <div className="absolute bottom-14 -right-2 p-4 w-64 bg-gray-100 dark:bg-gray-900 text-black dark:text-white text-sm rounded shadow-md">
                         <p className="pb-2 text-base font-bold text-center">
@@ -98,6 +151,15 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                                     {words}
                                 </span>
                             </div>
+
+                            {user.name && (
+                                <button
+                                    onClick={toggleModal}
+                                    className="mt-2 flex justify-center w-full bg-red-600 py-2 px-6 rounded font-semibold text-red-100"
+                                >
+                                    Delete
+                                </button>
+                            )}
                         </div>
                     </div>
                 )}
@@ -128,6 +190,11 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                     {text}
                 </SyntaxHighlighter>
             </div>
+            <ConfirmModal
+                isOpen={openModal}
+                updateModalState={toggleModal}
+                successFunction={deleteText}
+            />
         </>
     );
 };
