@@ -83,7 +83,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                 canonical={router.basePath}
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
-                    title: `${text.split(/\s+/gu)[0]}...`,
+                    title: `${text.split(/\r\n|\r|\n/)[0]}...`,
                     site_name: settings.name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
                     url: router.basePath,
