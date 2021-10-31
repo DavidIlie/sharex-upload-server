@@ -9,5 +9,8 @@ backend_url: "http://localhost"
 # Authorization - Make sure you change this!
 access_token_secret: "iansdibasdibasdibasidu"
 
+# App Name - This will be the default name displayed in meta tags
+default_app_name: "ShareX Upload Server"
+
 # Path for where the uploads are stored
 upload_dir: "/home/uploads"

@@ -3,6 +3,7 @@ import create from "zustand";
 export type ENV = {
     api_url: string;
     app_url: string;
+    default_app_name: string;
 };
 
 type Store = {

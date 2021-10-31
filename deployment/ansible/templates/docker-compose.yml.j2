@@ -39,6 +39,7 @@ services:
             - APP_URL={{ frontend_url }}
             - API_URL={{ backend_url }}
             - SERVER_API_URL=http://server:4000
+            - DEFAULT_APP_NAME={{ default_app_name }}
         links:
             - server
 

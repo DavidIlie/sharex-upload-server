@@ -74,14 +74,12 @@ function App({ Component, pageProps, router, env }: Props) {
     return (
         <>
             <DefaultSeo
-                defaultTitle={settings.name || "ShareX Upload Server"}
-                titleTemplate={`%s | ${
-                    settings.name || "ShareX Upload Server"
-                }`}
+                defaultTitle={settings.name || env.default_app_name}
+                titleTemplate={`%s | ${settings.name || env.default_app_name}`}
                 openGraph={{
-                    title: settings.name || "ShareX Upload Server",
+                    title: settings.name || env.default_app_name,
                     type: `website`,
-                    site_name: settings.name || "ShareX Upload Server",
+                    site_name: settings.name || env.default_app_name,
                 }}
                 description="Advanced ShareX Upload Server with support for most types of uploads and a web interface."
             />
@@ -115,6 +113,8 @@ App.getInitialProps = async () => {
     const env = {
         api_url: process.env.API_URL,
         app_url: process.env.APP_URL,
+        default_app_name:
+            process.env.DEFAULT_APP_NAME || "ShareX Upload Server",
     };
 
     return { env };

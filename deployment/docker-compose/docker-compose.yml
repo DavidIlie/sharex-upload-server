@@ -37,6 +37,7 @@ services:
             - APP_URL=http://localhost
             - API_URL=http://localhost
             - SERVER_API_URL=http://server:4000
+            - DEFAULT_APP_NAME="ShareX Upload Server"
         links:
             - server
 

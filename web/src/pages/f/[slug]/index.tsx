@@ -9,6 +9,7 @@ import { getFileIconFromExtension } from "@lib/iconUtils";
 import useSettings from "@hooks/useSettings";
 
 import { FileType } from "@sharex-server/common";
+import useEnv from "@hooks/useEnv";
 
 interface Props {
     message?: string;
@@ -22,6 +23,8 @@ const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
 
     if (message) return <NotFound />;
 
+    const env = useEnv();
+
     const settings = useSettings();
 
     const icon = getFileIconFromExtension(file.stats.extension);
@@ -34,7 +37,7 @@ const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
                 description={`${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`}
                 openGraph={{
                     title: file.name,
-                    site_name: settings.name || "ShareX Upload Server",
+                    site_name: settings.name || env.default_app_name,
                     description: `${file.name} - ${file.stats.size} - MD5: ${file.stats.md5}`,
                     url: router.basePath,
                     type: "website",
