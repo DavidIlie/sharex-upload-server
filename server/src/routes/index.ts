@@ -42,7 +42,10 @@ router.get("/dl/:slug", async (req, res, next) => {
                 message: "images can't be downloaded from this route",
             });
 
-        return res.download(`${uploadDir}/${upload.name}`, upload.name);
+        return res.download(
+            `${uploadDir}/${upload.stats.fileName}`,
+            upload.name
+        );
     } catch (error) {
         return next(error);
     }

@@ -57,7 +57,7 @@ const LargePreviewListPane = ({
                             <a
                                 className="text-blue-700 dark:text-blue-400"
                                 target="blank"
-                                href="https://github.com/DavidIlie/sharex-media-server/wiki"
+                                href="https://github.com/DavidIlie/sharex-upload-server/wiki"
                             >
                                 {" "}
                                 project wiki
