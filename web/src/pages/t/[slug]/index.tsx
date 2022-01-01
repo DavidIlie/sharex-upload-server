@@ -96,13 +96,13 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                 ref={ref as any}
             >
                 {isOpen && (
-                    <div className="absolute bottom-14 -right-2 p-4 w-64 bg-gray-100 dark:bg-gray-900 text-black dark:text-white text-sm rounded shadow-md">
+                    <div className="absolute w-64 p-4 text-sm text-black bg-gray-100 rounded shadow-md bottom-14 -right-2 dark:bg-gray-900 dark:text-white">
                         <p className="pb-2 text-base font-bold text-center">
                             File Information
                         </p>
                         <div className="divide-y divide-gray-500 dark:divide-gray-800">
                             <div className="flex justify-between">
-                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
+                                <span className="pr-2 font-semibold text-blue-600 dark:text-blue-400">
                                     ID
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -111,7 +111,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
+                                <span className="pr-2 font-semibold text-blue-600 dark:text-blue-400">
                                     Name
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -120,7 +120,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
+                                <span className="pr-2 font-semibold text-blue-600 dark:text-blue-400">
                                     Extension
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -129,7 +129,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
+                                <span className="pr-2 font-semibold text-blue-600 dark:text-blue-400">
                                     Lines
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -138,7 +138,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             </div>
 
                             <div className="flex justify-between">
-                                <span className="text-blue-600 dark:text-blue-400 font-semibold pr-2">
+                                <span className="pr-2 font-semibold text-blue-600 dark:text-blue-400">
                                     Words
                                 </span>
                                 <span className="overflow-hidden overflow-ellipsis">
@@ -149,7 +149,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                             {user.name && (
                                 <button
                                     onClick={toggleModal}
-                                    className="mt-2 flex justify-center w-full bg-red-600 py-2 px-6 rounded font-semibold text-red-100"
+                                    className="flex justify-center w-full px-6 py-2 mt-2 font-semibold text-red-100 bg-red-600 rounded"
                                 >
                                     Delete
                                 </button>
@@ -160,7 +160,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
 
                 <svg
                     onClick={() => setIsOpen(!isOpen)}
-                    className="absolute bottom-3 right-3 w-8 h-8 text-blue-600 dark:text-blue-400 cursor-pointer"
+                    className="absolute w-8 h-8 text-blue-600 cursor-pointer bottom-3 right-3 dark:text-blue-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -174,7 +174,7 @@ const ViewFile = ({ message, file, text }: Props): JSX.Element => {
                     ></path>
                 </svg>
             </div>
-            <div className="font-sans antialiased -mt-2 -mb-4 h-screen">
+            <div className="h-screen -mt-2 -mb-4 font-sans antialiased">
                 <SyntaxHighlighter
                     style={theme === "light" ? light : dark}
                     language={file.stats.extension}

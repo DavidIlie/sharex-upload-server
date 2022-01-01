@@ -73,9 +73,9 @@ const UploadPreviewCard = ({
 
     return (
         <>
-            <div className="m-5 flex flex-col bg-gray-200 dark:bg-gray-800 duration-200 hoverItem border-2 border-gray-300 dark:border-gray-700">
+            <div className="flex flex-col m-5 duration-200 bg-gray-200 border-2 border-gray-300 dark:bg-gray-800 hoverItem dark:border-gray-700">
                 <Link href={href} passHref>
-                    <a className="flex-1 flex items-center" target="_blank">
+                    <a className="flex items-center flex-1" target="_blank">
                         {file.type === "image" ? (
                             <Image
                                 className="rounded-sm shadow-md"
@@ -91,7 +91,7 @@ const UploadPreviewCard = ({
                                 )}
                             />
                         ) : (
-                            <div className="p-2 flex flex-col w-full text-center overflow-ellipsis bg-gray-100 dark:bg-dark-gray-900 rounded shadow-md">
+                            <div className="flex flex-col w-full p-2 text-center bg-gray-100 rounded shadow-md overflow-ellipsis dark:bg-dark-gray-900">
                                 <Image
                                     className="flex flex-1"
                                     width={1000}
@@ -103,7 +103,7 @@ const UploadPreviewCard = ({
                                     blurDataURL={shimmer(1920, 1080)}
                                 />
 
-                                <p className="pt-1 text-xs text-black dark:text-dark-gray-200 overflow-hidden overflow-ellipsis">
+                                <p className="pt-1 overflow-hidden text-xs text-black dark:text-dark-gray-200 overflow-ellipsis">
                                     {file.name}
                                 </p>
                             </div>
@@ -111,7 +111,7 @@ const UploadPreviewCard = ({
                     </a>
                 </Link>
 
-                <div className="p-2 grid grid-cols-2 text-center bg-white dark:bg-dark-gray-800 shadow-md divide-x dark:divide-dark-gray-500">
+                <div className="grid grid-cols-2 p-2 text-center bg-white divide-x shadow-md dark:bg-dark-gray-800 dark:divide-dark-gray-500">
                     <Link href={href} passHref>
                         <a
                             className="text-gray-800 dark:text-gray-300 hover:text-dark-gray-400"
@@ -121,7 +121,7 @@ const UploadPreviewCard = ({
                         </a>
                     </Link>
                     <a
-                        className="text-red-500 hover:text-red-400 cursor-pointer"
+                        className="text-red-500 cursor-pointer hover:text-red-400"
                         onClick={() => updateConfirmDeleteState()}
                     >
                         Delete

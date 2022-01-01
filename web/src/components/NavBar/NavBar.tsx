@@ -20,11 +20,11 @@ const NavBar = (): JSX.Element => {
     const changeTheme = ToggleColorMode();
 
     return (
-        <nav className="bg-white dark:bg-gray-800 border-b border-gray-300 dark:border-gray-900 shadow">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="bg-white border-b border-gray-300 shadow dark:bg-gray-800 dark:border-gray-900">
+            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
-                        <div className="flex-shrink-0 flex items-center">
+                        <div className="flex items-center flex-shrink-0">
                             <Link href="/dashboard">
                                 <a className="font-medium text-black dark:text-gray-100">
                                     {settings.name}
@@ -43,17 +43,17 @@ const NavBar = (): JSX.Element => {
                         </div>
                     </div>
                     <UserDropdown />
-                    <div className="-mr-2 flex items-center sm:hidden">
+                    <div className="flex items-center -mr-2 sm:hidden">
                         <button
                             type="button"
-                            className="bg-gray-200 dark:bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700 duration-200"
+                            className="inline-flex items-center justify-center p-2 text-gray-500 duration-200 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
                             onClick={() => {
                                 setClickMobileMenu(!clickMobileMenu);
                             }}
                         >
                             {clickMobileMenu ? (
                                 <svg
-                                    className="block h-6 w-6"
+                                    className="block w-6 h-6"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -69,7 +69,7 @@ const NavBar = (): JSX.Element => {
                                 </svg>
                             ) : (
                                 <svg
-                                    className="block h-6 w-6"
+                                    className="block w-6 h-6"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -104,7 +104,7 @@ const NavBar = (): JSX.Element => {
                     />
                     <a
                         onClick={() => changeTheme()}
-                        className="cursor-pointer flex pl-3 pr-3 py-2 gap-1 border-l-4 border-transparent text-base font-medium text-gray-600 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-900 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out"
+                        className="flex gap-1 py-2 pl-3 pr-3 text-base font-medium text-gray-600 transition duration-150 ease-in-out border-l-4 border-transparent cursor-pointer dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-900 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300"
                     >
                         {theme === "dark" ? "Light Mode" : "Dark Mode"}
                     </a>
@@ -116,10 +116,10 @@ const NavBar = (): JSX.Element => {
                 <div className="pt-2 pb-1 border-t border-gray-200">
                     <div className="flex items-center px-4">
                         <div>
-                            <div className="font-medium text-base text-gray-800 dark:text-gray-300">
+                            <div className="text-base font-medium text-gray-800 dark:text-gray-300">
                                 {user.name}
                             </div>
-                            <div className="font-medium text-sm text-gray-400">
+                            <div className="text-sm font-medium text-gray-400">
                                 {user.email}
                             </div>
                         </div>

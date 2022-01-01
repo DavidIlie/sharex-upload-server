@@ -42,7 +42,7 @@ const Login = ({ stats }: Props): JSX.Element => {
     return (
         <>
             <NextSeo title="Login" />
-            <div className="h-screen flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center justify-center h-screen">
                 <Fade direction="up" cascade>
                     <Tooltip content="View project on GitHub">
                         <a
@@ -53,7 +53,7 @@ const Login = ({ stats }: Props): JSX.Element => {
                             {settings.name}
                         </a>
                     </Tooltip>
-                    <div className="w-full sm:max-w-md mt-3 px-6 py-4 border-2 bg-white dark:bg-dark-gray-800 border-gray-200 dark:border-gray-900 shadow-md overflow-hidden sm:rounded-lg">
+                    <div className="w-full px-6 py-4 mt-3 overflow-hidden bg-white border-2 border-gray-200 shadow-md sm:max-w-md dark:bg-dark-gray-800 dark:border-gray-900 sm:rounded-lg">
                         <Formik
                             validateOnChange={false}
                             validateOnBlur={false}
@@ -95,7 +95,7 @@ const Login = ({ stats }: Props): JSX.Element => {
                                                 Whoops! Something went wrong.
                                             </div>
 
-                                            <ul className="mt-3 list-disc list-inside text-sm text-red-400">
+                                            <ul className="mt-3 text-sm text-red-400 list-disc list-inside">
                                                 <li>{errorMessage}</li>
                                             </ul>
                                         </div>
@@ -108,7 +108,7 @@ const Login = ({ stats }: Props): JSX.Element => {
                                                     wrong.
                                                 </div>
 
-                                                <ul className="mt-3 list-disc list-inside text-sm text-red-400">
+                                                <ul className="mt-3 text-sm text-red-400 list-disc list-inside">
                                                     {errors.email && (
                                                         <li>{errors.email}</li>
                                                     )}
@@ -160,12 +160,12 @@ const Login = ({ stats }: Props): JSX.Element => {
                             )}
                         </Formik>
                     </div>
-                    <p className="mt-4 flex text-sm text-black dark:text-gray-400 hover:underline cursor-pointer">
-                        <span className="font-semibold mx-1">
+                    <p className="flex mt-4 text-sm text-black cursor-pointer dark:text-gray-400 hover:underline">
+                        <span className="mx-1 font-semibold">
                             {stats.totalFiles}
                         </span>
                         upload{stats.totalFiles !== 1 && "s"} with a size of{" "}
-                        <span className="font-semibold mx-1">
+                        <span className="mx-1 font-semibold">
                             {stats.totalSize.value}
                         </span>
                         {stats.totalSize.unit}

@@ -15,7 +15,7 @@ const SiteThemeModule = (): JSX.Element => {
             subtitle="Change the look of the site when you're logged in."
         >
             <TopPart noGrid noBottom>
-                <div className="mt-3 max-w-xl text-sm text-gray-600 dark:text-dark-gray-100">
+                <div className="max-w-xl mt-3 text-sm text-gray-600 dark:text-dark-gray-100">
                     <p>
                         You're currently viewing the site in {theme} mode, you
                         can use the button below to change your prefered site
@@ -24,7 +24,7 @@ const SiteThemeModule = (): JSX.Element => {
                     </p>
 
                     <button
-                        className="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-dark-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 mt-4"
+                        className="inline-flex items-center px-4 py-2 mt-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-dark-gray-600 hover:bg-gray-700 dark:hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25"
                         onClick={() => updateTheme()}
                     >
                         Change to {theme} theme

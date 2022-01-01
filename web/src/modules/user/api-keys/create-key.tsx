@@ -93,7 +93,7 @@ const CreateKeyModule = (): JSX.Element => {
                                 </div>
                                 <div className="col-span-6 sm:col-span-4">
                                     <Label>Permissions:</Label>
-                                    <div className="ml-3 mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                    <div className="grid grid-cols-1 gap-4 mt-2 ml-3 sm:grid-cols-2 md:grid-cols-3">
                                         <FieldArray
                                             name="permissions"
                                             render={(arrayHelpers) =>
@@ -143,15 +143,15 @@ const CreateKeyModule = (): JSX.Element => {
                         </h1>
                         <textarea
                             value={apiKey}
-                            className="dark:bg-gray-900 w-full mt-2 rounded"
+                            className="w-full mt-2 rounded dark:bg-gray-900"
                             //@ts-ignore
                             onClick={(e) => e.target.select()}
                         />
                     </div>
-                    <div className="mt-4 flex justify-end gap-2">
+                    <div className="flex justify-end gap-2 mt-4">
                         <button
                             type="button"
-                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 dark:text-green-900 bg-green-100 dark:bg-green-500 border border-transparent rounded-md hover:bg-green-200 dark:hover:bg-green-600 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 duration-150 bg-green-100 border border-transparent rounded-md dark:text-green-900 dark:bg-green-500 hover:bg-green-200 dark:hover:bg-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                             onClick={handleOpenKeyModal}
                         >
                             Done

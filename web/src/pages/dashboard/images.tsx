@@ -34,9 +34,9 @@ const Images = (): JSX.Element => {
                 <NavBar />
                 <div className="pt-12" />
                 <Fade direction="up" triggerOnce>
-                    <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-end mb-3">
+                    <div className="flex justify-end px-6 mx-auto mb-3 max-w-7xl lg:px-8">
                         <button
-                            className="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-dark-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 mt-4"
+                            className="inline-flex items-center px-4 py-2 mt-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-dark-gray-600 hover:bg-gray-700 dark:hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25"
                             onClick={updateModalState}
                         >
                             Upload Image

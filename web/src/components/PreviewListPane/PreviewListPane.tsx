@@ -16,10 +16,10 @@ const PreviewListPane = ({
     children,
 }: PreviewListPaneProps): JSX.Element => {
     return (
-        <div className="max-w-7xl mx-auto px-2 lg:px-8">
-            <div className="overflow-hidden shadow-xl rounded-lg">
-                <div className="p-6 flex items-center justify-between bg-gray-200 dark:bg-gray-800">
-                    <div className="sm:text-xl text-black dark:text-dark-gray-100">
+        <div className="px-2 mx-auto max-w-7xl lg:px-8">
+            <div className="overflow-hidden rounded-lg shadow-xl">
+                <div className="flex items-center justify-between p-6 bg-gray-200 dark:bg-gray-800">
+                    <div className="text-black sm:text-xl dark:text-dark-gray-100">
                         {title}
                     </div>
                     <Link href={link}>
@@ -44,10 +44,10 @@ const PreviewListPane = ({
                         </a>
                     </Link>
                 </div>
-                <div className="bg-gray-200 dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                <div className="grid grid-cols-2 bg-gray-200 dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                     {children && children.length === 0 && (
                         <>
-                            <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">
+                            <p className="col-span-6 px-4 pt-8 mb-1 text-center text-black dark:text-dark-gray-300">
                                 You don't have any {type} uploads right now,
                                 create an
                                 <a
@@ -60,7 +60,7 @@ const PreviewListPane = ({
                                 to start uploading some.
                             </p>
 
-                            <p className="px-4 pb-8 mb-2 col-span-6 text-center text-black dark:text-dark-gray-300">
+                            <p className="col-span-6 px-4 pb-8 mb-2 text-center text-black dark:text-dark-gray-300">
                                 You can find guides for how to setup ShareX to
                                 use your API keys on the
                                 <a

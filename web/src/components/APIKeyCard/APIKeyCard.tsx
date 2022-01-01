@@ -50,12 +50,12 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
     const hasDate = (data?.lastUsed as any) !== "1970-01-01T00:00:00.000Z";
 
     return skeleton ? (
-        <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl flex justify-between">
-            <div className="animate-pulse flex-1 space-y-4 py-1">
+        <div className="flex justify-between p-4 bg-gray-200 dark:bg-gray-800 rounded-xl">
+            <div className="flex-1 py-1 space-y-4 animate-pulse">
                 <div className="flex items-center gap-4">
-                    <div className="h-4 bg-dark-gray-900 rounded w-1/3" />
-                    <div className="h-4 bg-dark-gray-900 rounded w-1/3" />
-                    <div className="h-4 bg-dark-gray-900 rounded w-1/3" />
+                    <div className="w-1/3 h-4 rounded bg-dark-gray-900" />
+                    <div className="w-1/3 h-4 rounded bg-dark-gray-900" />
+                    <div className="w-1/3 h-4 rounded bg-dark-gray-900" />
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
                 } justify-between`}
             >
                 <h1>{data!.name}</h1>
-                <div className="flex justify-between items-center gap-4">
+                <div className="flex items-center justify-between gap-4">
                     {hasDate && (
                         <h1 className="text-sm text-gray-400">
                             Last used{" "}
@@ -81,7 +81,7 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
                         </h1>
                     )}
 
-                    <div className="flex gap-4 items-center">
+                    <div className="flex items-center gap-4">
                         <h1
                             className="cursor-pointer"
                             onClick={() => updateModalState()}
@@ -89,7 +89,7 @@ const APIKeyCard = ({ data, skeleton }: APIKeyCardProps): JSX.Element => {
                             Permissions
                         </h1>
                         <h1
-                            className="text-red-500 font-semibold cursor-pointer"
+                            className="font-semibold text-red-500 cursor-pointer"
                             onClick={() => updateConfirmDeleteState()}
                         >
                             Delete

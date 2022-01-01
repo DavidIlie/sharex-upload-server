@@ -6,7 +6,7 @@ const Icon = ({ type }: IconTypes): JSX.Element => {
     return type === "file" ? (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="sm:h-16 sm:w-16 h-12 w-12 text-gray-700 dark:text-dark-gray-400"
+            className="w-12 h-12 text-gray-700 sm:h-16 sm:w-16 dark:text-dark-gray-400"
             viewBox="0 0 20 20"
             fill="currentColor"
         >
@@ -16,7 +16,7 @@ const Icon = ({ type }: IconTypes): JSX.Element => {
     ) : type === "image" ? (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="sm:h-16 sm:w-16 h-12 w-12 text-gray-700 dark:text-dark-gray-400"
+            className="w-12 h-12 text-gray-700 sm:h-16 sm:w-16 dark:text-dark-gray-400"
             viewBox="0 0 20 20"
             fill="currentColor"
         >
@@ -29,7 +29,7 @@ const Icon = ({ type }: IconTypes): JSX.Element => {
     ) : type === "text" ? (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="sm:h-16 sm:w-16 h-12 w-12 text-gray-700 dark:text-dark-gray-400"
+            className="w-12 h-12 text-gray-700 sm:h-16 sm:w-16 dark:text-dark-gray-400"
             viewBox="0 0 20 20"
             fill="currentColor"
         >

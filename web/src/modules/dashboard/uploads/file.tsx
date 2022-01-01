@@ -101,7 +101,7 @@ const FileUploadModule = ({
                                 people.
                             </p>
                             <input
-                                className="w-full py-2 px-3 text-base border rounded-lg bg-gray-100 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-dark-gray-700 focus:ring-opacity-50"
+                                className="w-full px-3 py-2 text-base text-gray-600 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 focus:outline-none focus:border-gray-400 dark:focus:border-dark-gray-700 focus:ring-opacity-50"
                                 type="text"
                                 value={uploaded as never}
                                 //@ts-ignore
@@ -119,7 +119,7 @@ const FileUploadModule = ({
                             />
                             <button
                                 type="button"
-                                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-dark-gray-800 rounded-md font-semibold text-xs text-gray-700 dark:text-dark-gray-100 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 mr-2"
+                                className="inline-flex items-center px-4 py-2 mt-2 mr-2 text-xs font-semibold tracking-widest text-gray-700 uppercase transition duration-150 ease-in-out bg-gray-100 border border-gray-300 rounded-md shadow-sm dark:bg-gray-900 dark:border-dark-gray-800 dark:text-dark-gray-100 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50"
                                 onClick={() => inputRef.current?.click()}
                             >
                                 Select a file to upload
@@ -133,10 +133,10 @@ const FileUploadModule = ({
                     </div>
                 </div>
 
-                <div className="mt-4 flex justify-end gap-2">
+                <div className="flex justify-end gap-2 mt-4">
                     <button
                         type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 dark:text-gray-100 bg-blue-100 dark:bg-dark-gray-900 border border-transparent rounded-md hover:bg-blue-200 dark:hover:bg-dark-gray-800 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 duration-150 bg-blue-100 border border-transparent rounded-md dark:text-gray-100 dark:bg-dark-gray-900 hover:bg-blue-200 dark:hover:bg-dark-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                         onClick={() => HandleCancel()}
                     >
                         Cancel
@@ -144,7 +144,7 @@ const FileUploadModule = ({
                     <button
                         type="button"
                         disabled={!uploadFileState}
-                        className="disabled:opacity-25 inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 dark:text-gray-100 bg-blue-100 dark:bg-gray-900 border border-transparent rounded-md hover:bg-blue-200 dark:hover:bg-dark-gray-800 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 duration-150 bg-blue-100 border border-transparent rounded-md disabled:opacity-25 dark:text-gray-100 dark:bg-gray-900 hover:bg-blue-200 dark:hover:bg-dark-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                         onClick={(e) => HandleUpload(e)}
                     >
                         {isLoading ? "Uploading" : "Upload"}

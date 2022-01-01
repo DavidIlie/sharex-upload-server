@@ -45,7 +45,7 @@ const ControlPanel: React.FC = () => {
                             <GeneralSettingsModule />
                         </div>
                         <div className="py-12">
-                            <div className="text-center font-semibold text-gray-100">
+                            <div className="font-semibold text-center text-gray-100">
                                 <h4 className="text-xl font-medium text-gray-900 dark:text-dark-gray-100">
                                     Media Settings Type
                                 </h4>

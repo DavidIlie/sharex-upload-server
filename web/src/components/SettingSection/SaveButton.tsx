@@ -7,7 +7,7 @@ const SaveButton = ({
     return (
         <button
             type="submit"
-            className="inline-flex items-center px-4 py-2 bg-dark-gray-600 dark:bg-dark-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-dark-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
+            className="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out border border-transparent rounded-md bg-dark-gray-600 dark:bg-dark-gray-600 hover:bg-dark-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25"
             {...rest}
         >
             {isSubmitting ? "Saving" : "Save"}

@@ -8,7 +8,7 @@ const ThemeToggle = (): JSX.Element => {
 
     return (
         <button
-            className="group flex gap-1 rounded-b-md items-center w-full"
+            className="flex items-center w-full gap-1 group rounded-b-md"
             aria-label={
                 theme === "dark"
                     ? "Toggle Light Mode (ctrl+shift+e)"

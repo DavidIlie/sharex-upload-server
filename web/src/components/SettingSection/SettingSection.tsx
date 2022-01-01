@@ -10,7 +10,7 @@ const SettingSection = ({
     children,
 }: SettingSectionProps): JSX.Element => {
     return (
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="max-w-5xl px-6 mx-auto lg:px-8">
             <div className="md:grid md:grid-cols-2 md:gap-6">
                 <div className="md:col-span-2">
                     <div className="px-4">

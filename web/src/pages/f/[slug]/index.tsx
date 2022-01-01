@@ -48,18 +48,18 @@ const ViewFile = ({ message, file, api_url }: Props): JSX.Element => {
                     ],
                 }}
             />
-            <div className="h-screen flex items-center justify-center text-gray-50">
+            <div className="flex items-center justify-center h-screen text-gray-50">
                 <Fade direction="down">
                     <div>
                         <FileCard
                             file={file}
                             icon={`/file-icons/${icon}.svg`}
                         />
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <div className="pt-6 flex justify-center">
+                        <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+                            <div className="flex justify-center pt-6">
                                 <a
                                     href={`${api_url}/dl/${slug}`}
-                                    className="px-4 py-2 text-lg bg-indigo-600 hover:bg-indigo-700 duration-150 rounded shadow"
+                                    className="px-4 py-2 text-lg duration-150 bg-indigo-600 rounded shadow hover:bg-indigo-700"
                                 >
                                     Download
                                 </a>

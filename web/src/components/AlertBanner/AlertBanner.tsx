@@ -33,7 +33,7 @@ const AlertBanner = ({
                 {message}
             </h1>
             <div
-                className="hover:bg-dark-gray-100 dark:hover:bg-dark-gray-900 duration-150 p-2 rounded cursor-pointer"
+                className="p-2 duration-150 rounded cursor-pointer hover:bg-dark-gray-100 dark:hover:bg-dark-gray-900"
                 onClick={HandleClick}
             >
                 <AiOutlineClose />

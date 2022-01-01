@@ -15,7 +15,7 @@ const UserDropdown = (): JSX.Element => {
                 <Menu.Button className="inline-flex items-center text-black dark:text-white">
                     {user.name}
                     <svg
-                        className="ml-1 h-4 w-4"
+                        className="w-4 h-4 ml-1"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -36,8 +36,8 @@ const UserDropdown = (): JSX.Element => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="z-10 absolute right-0 mt-2 w-36 bg-gray-100 dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-200 dark:border-gray-900">
-                        <div className="border-1 rounded-t-md border-gray-300 dark:border-gray-900">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 bg-gray-100 border border-gray-200 rounded-md shadow-lg w-36 dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none dark:border-gray-900">
+                        <div className="border-gray-300 border-1 rounded-t-md dark:border-gray-900">
                             <Menu.Item>
                                 <Link
                                     href="https://github.com/DavidIlie/sharex-upload-server/issues"
@@ -82,7 +82,7 @@ const UserDropdown = (): JSX.Element => {
                         </div>
                         <Menu.Item>
                             <Link href="/logout">
-                                <a className="text-white font-semibold cursor-pointer bg-blue-600 dark:bg-blue-800 text-center group flex justify-center rounded-b-md items-center w-full py-2 text-sm">
+                                <a className="flex items-center justify-center w-full py-2 text-sm font-semibold text-center text-white bg-blue-600 cursor-pointer dark:bg-blue-800 group rounded-b-md">
                                     Log Out
                                 </a>
                             </Link>
@@ -100,7 +100,7 @@ export const DropdownElement = ({
     children: React.ReactNode;
 }) => {
     return (
-        <div className="group flex gap-1 items-center w-full px-2 py-2 text-sm duration-200 hover:bg-gray-200 dark:hover:bg-dark-gray-700 text-black dark:text-white">
+        <div className="flex items-center w-full gap-1 px-2 py-2 text-sm text-black duration-200 group hover:bg-gray-200 dark:hover:bg-dark-gray-700 dark:text-white">
             {children}
         </div>
     );

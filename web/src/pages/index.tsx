@@ -6,7 +6,7 @@ const Home = (): JSX.Element => {
     const settings = useSettings();
 
     return (
-        <div className="h-screen flex items-center justify-center">
+        <div className="flex items-center justify-center h-screen">
             <h1 className="text-5xl text-white text-semibold">
                 {settings.name}
             </h1>

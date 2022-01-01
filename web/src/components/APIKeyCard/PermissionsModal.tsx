@@ -80,7 +80,7 @@ const PermissionsModal = ({
                         <Form>
                             <div className="mt-4">
                                 <div className="col-span-6 sm:col-span-4">
-                                    <div className="ml-3 mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                    <div className="grid grid-cols-1 gap-4 mt-2 ml-3 sm:grid-cols-2 md:grid-cols-3">
                                         <FieldArray
                                             name="permissions"
                                             render={(arrayHelpers) =>
@@ -110,17 +110,17 @@ const PermissionsModal = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-4 flex justify-end gap-2">
+                            <div className="flex justify-end gap-2 mt-4">
                                 <button
                                     type="button"
-                                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 dark:text-gray-100 bg-blue-100 dark:bg-dark-gray-900 border border-transparent rounded-md hover:bg-blue-200 dark:hover:bg-dark-gray-800 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 duration-150 bg-blue-100 border border-transparent rounded-md dark:text-gray-100 dark:bg-dark-gray-900 hover:bg-blue-200 dark:hover:bg-dark-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                                     onClick={updateModalState}
                                 >
                                     Nevermind
                                 </button>
                                 <button
                                     type="submit"
-                                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 dark:text-gray-100 bg-blue-100 dark:bg-gray-900 border border-transparent rounded-md hover:bg-blue-200 dark:hover:bg-dark-gray-800 duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 duration-150 bg-blue-100 border border-transparent rounded-md dark:text-gray-100 dark:bg-gray-900 hover:bg-blue-200 dark:hover:bg-dark-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                                 >
                                     {isSubmitting ? "Updating" : "Update"}
                                 </button>

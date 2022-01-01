@@ -34,11 +34,11 @@ const LargePreviewListPane = ({
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="bg-gray-200 dark:bg-gray-700 dark:bg-opacity-25 overflow-hidden shadow-xl sm:rounded-lg">
+        <div className="px-6 mx-auto max-w-7xl lg:px-8">
+            <div className="overflow-hidden bg-gray-200 shadow-xl dark:bg-gray-700 dark:bg-opacity-25 sm:rounded-lg">
                 {data?.length === 0 || data === undefined ? (
                     <>
-                        <p className="px-4 pt-8 mb-1 col-span-6 text-center text-black dark:text-dark-gray-300">
+                        <p className="col-span-6 px-4 pt-8 mb-1 text-center text-black dark:text-dark-gray-300">
                             You don't have any {type} uploads right now, create
                             an
                             <a
@@ -51,7 +51,7 @@ const LargePreviewListPane = ({
                             to start uploading some.
                         </p>
 
-                        <p className="px-4 pb-8 col-span-6 text-center text-black dark:text-dark-gray-300">
+                        <p className="col-span-6 px-4 pb-8 text-center text-black dark:text-dark-gray-300">
                             You can find guides for how to setup ShareX to use
                             your API keys on the
                             <a
@@ -77,7 +77,7 @@ const LargePreviewListPane = ({
                             ))}
                         </div>
                         {data.length > 24 && (
-                            <div className="p-4 bg-gray-200 dark:bg-gray-800 border-t border-gray-400 dark:border-dark-gray-900">
+                            <div className="p-4 bg-gray-200 border-t border-gray-400 dark:bg-gray-800 dark:border-dark-gray-900">
                                 <nav className="flex items-center justify-between">
                                     <div className="flex justify-between flex-1 sm:hidden">
                                         <span>
@@ -121,7 +121,7 @@ const LargePreviewListPane = ({
                                         </span>
                                     </div>
                                     <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                                        <p className="text-sm text-black dark:text-dark-gray-400 leading-5">
+                                        <p className="text-sm leading-5 text-black dark:text-dark-gray-400">
                                             Showing {indexOfFirstPost + 1} to{" "}
                                             {indexOfFirstPost +
                                                 currentPosts!.length}{" "}
@@ -137,7 +137,7 @@ const LargePreviewListPane = ({
                                                 }
                                             >
                                                 <span
-                                                    className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500  dark:text-dark-gray-400 bg-white dark:bg-dark-gray-500 border border-gray-300 dark:border-dark-gray-900 cursor-default rounded-l-md leading-5"
+                                                    className="relative inline-flex items-center px-2 py-2 text-sm font-medium leading-5 text-gray-500 bg-white border border-gray-300 cursor-default dark:text-dark-gray-400 dark:bg-dark-gray-500 dark:border-dark-gray-900 rounded-l-md"
                                                     aria-hidden="true"
                                                 >
                                                     <svg
@@ -159,7 +159,7 @@ const LargePreviewListPane = ({
                                                         <span>
                                                             {pageNum ===
                                                             currentPage ? (
-                                                                <span className="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 dark:text-dark-gray-400 bg-white dark:bg-dark-gray-500 border border-gray-300 dark:border-dark-gray-900 cursor-default leading-5">
+                                                                <span className="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 text-gray-500 bg-white border border-gray-300 cursor-default dark:text-dark-gray-400 dark:bg-dark-gray-500 dark:border-dark-gray-900">
                                                                     {pageNum}
                                                                 </span>
                                                             ) : (
@@ -169,7 +169,7 @@ const LargePreviewListPane = ({
                                                                             pageNum
                                                                         )
                                                                     }
-                                                                    className="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 dark:text-white bg-white dark:bg-dark-gray-500 border border-gray-300 dark:border-dark-gray-900 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                                                    className="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 dark:text-white dark:bg-dark-gray-500 dark:border-dark-gray-900 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700"
                                                                 >
                                                                     {pageNum}
                                                                 </button>
@@ -179,7 +179,7 @@ const LargePreviewListPane = ({
                                                 )
                                             )}
                                             <button
-                                                className="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 dark:text-dark-gray-400 bg-white dark:bg-dark-gray-500 border border-gray-300 dark:border-dark-gray-900 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                                                className="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-white border border-gray-300 dark:text-dark-gray-400 dark:bg-dark-gray-500 dark:border-dark-gray-900 rounded-r-md hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500"
                                                 disabled={
                                                     currentPage ===
                                                     lastPageNumber
