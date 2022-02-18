@@ -116,3 +116,13 @@ html[class="dark"] .pageBackground {
 .hoverItem:hover {
     transform: translateY(-4px);
 }
+
+input:checked ~ .dot {
+    transform: translateX(140%);
+    background-color: #48bb78;
+}
+
+.blurImage {
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+}

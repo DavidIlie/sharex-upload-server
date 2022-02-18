@@ -8,8 +8,8 @@ import { getFileIconFromExtension } from "@lib/iconUtils";
 import { shimmer } from "@lib/shimmer";
 import { axios } from "@lib/axiosClient";
 import { queryClient } from "@lib/queryClient";
-
 import useEnv from "@hooks/useEnv";
+import usePrivacyMode from "@hooks/usePrivacyMode";
 import type { FileType } from "@sharex-server/common";
 
 import ConfirmModal from "@modules/misc/ConfirmModal";
@@ -29,6 +29,8 @@ const UploadPreviewCard = ({
     const updateConfirmDeleteState = () => setConfirmDelete(!confirmDelete);
 
     const env = useEnv();
+
+    const { isPrivacyModeEnabled } = usePrivacyMode();
 
     const href =
         file.type === "image"
@@ -77,19 +79,24 @@ const UploadPreviewCard = ({
                 <Link href={href} passHref>
                     <a className="flex items-center flex-1" target="_blank">
                         {file.type === "image" ? (
-                            <Image
-                                className="rounded-sm shadow-md"
-                                width={1000}
-                                height={1000}
-                                src={`/utils/imageproxy?url=${env.api_url}/image/${file.slug}`}
-                                alt={`${file.name}`}
-                                objectFit="cover"
-                                placeholder="blur"
-                                blurDataURL={shimmer(
-                                    file.stats.resolution?.width || 1920,
-                                    file.stats.resolution?.height || 1080
+                            <div className="relative">
+                                {isPrivacyModeEnabled && (
+                                    <div className="absolute inset-0 z-50 bg-gray-800 bg-opacity-50 backdrop-blur-md" />
                                 )}
-                            />
+                                <Image
+                                    className={`rounded-sm shadow-md duration-200`}
+                                    width={1000}
+                                    height={1000}
+                                    src={`/utils/imageproxy?url=${env.api_url}/image/${file.slug}`}
+                                    alt={`${file.name}`}
+                                    objectFit="cover"
+                                    placeholder="blur"
+                                    blurDataURL={shimmer(
+                                        file.stats.resolution?.width || 1920,
+                                        file.stats.resolution?.height || 1080
+                                    )}
+                                />
+                            </div>
                         ) : (
                             <div className="flex flex-col w-full p-2 text-center bg-gray-100 rounded shadow-md overflow-ellipsis dark:bg-dark-gray-900">
                                 <Image
@@ -121,7 +128,7 @@ const UploadPreviewCard = ({
                         </a>
                     </Link>
                     <a
-                        className="text-red-500 cursor-pointer hover:text-red-400"
+                        className="text-red-500 cursor-pointer"
                         onClick={() => updateConfirmDeleteState()}
                     >
                         Delete
