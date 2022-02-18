@@ -9,10 +9,10 @@ import { shimmer } from "@lib/shimmer";
 import { axios } from "@lib/axiosClient";
 import { queryClient } from "@lib/queryClient";
 import useEnv from "@hooks/useEnv";
-import usePrivacyMode from "@hooks/usePrivacyMode";
 import type { FileType } from "@sharex-server/common";
 
 import ConfirmModal from "@modules/misc/ConfirmModal";
+import { usePrivacyStore } from "@global-stores/usePrivacyStore";
 
 const UploadPreviewCard = ({
     file,
@@ -30,7 +30,7 @@ const UploadPreviewCard = ({
 
     const env = useEnv();
 
-    const { isPrivacyModeEnabled } = usePrivacyMode();
+    const { isPrivacyEnabled: isPrivacyModeEnabled } = usePrivacyStore();
 
     const href =
         file.type === "image"

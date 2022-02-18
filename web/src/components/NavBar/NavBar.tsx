@@ -46,7 +46,7 @@ const NavBar = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-center">
-                        {/* <label
+                        <label
                             className="flex items-center cursor-pointer"
                             aria-label="Hide content"
                             title="Hide content"
@@ -62,7 +62,7 @@ const NavBar = () => {
                                 <div className="absolute w-4 h-4 transition bg-gray-400 rounded-full dark:bg-white dot left-1 top-1"></div>
                             </div>
                             <div className="ml-3">Privacy Mode</div>
-                        </label> */}
+                        </label>
                         <UserDropdown />
                     </div>
                     <div className="flex items-center -mr-2 sm:hidden">

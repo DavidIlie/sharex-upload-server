@@ -1,10 +1,10 @@
-import PreviewListPane from "@components/PreviewListPane";
 import { useQuery } from "react-query";
 
 import useEnv from "@hooks/useEnv";
-
 import type { FileType } from "@sharex-server/common";
 import UploadPreviewCard from "@components/UploadPreviewCard";
+
+import PreviewListPane from "@components/PreviewListPane";
 
 const LatestImagesModule = (): JSX.Element => {
     const env = useEnv();
