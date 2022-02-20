@@ -34,7 +34,7 @@ const NavBar = () => {
                                 </a>
                             </Link>
                         </div>
-                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 lg:flex">
                             <NavLink name="Dashboard" link="/dashboard" />
                             <NavLink name="Images" link="/dashboard/images" />
                             <NavLink name="Files" link="/dashboard/files" />
@@ -47,7 +47,7 @@ const NavBar = () => {
                     </div>
                     <div className="flex items-center justify-center">
                         <label
-                            className="items-center hidden cursor-pointer sm:flex"
+                            className="items-center hidden cursor-pointer lg:flex"
                             aria-label="Hide content"
                             title="Hide content"
                         >
@@ -65,7 +65,7 @@ const NavBar = () => {
                         </label>
                         <UserDropdown />
                     </div>
-                    <div className="flex items-center -mr-2 sm:hidden">
+                    <div className="flex items-center -mr-2 lg:hidden">
                         <button
                             type="button"
                             className="inline-flex items-center justify-center p-2 text-gray-500 duration-200 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-300 dark:hover:bg-gray-700"

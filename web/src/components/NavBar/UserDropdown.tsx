@@ -10,7 +10,7 @@ import useUser from "@hooks/useUser";
 const UserDropdown = (): JSX.Element => {
     const user = useUser();
     return (
-        <div className="hidden sm:flex sm:items-center sm:ml-6">
+        <div className="hidden lg:flex sm:items-center sm:ml-6">
             <Menu as="div" className="relative inline-block text-right">
                 <Menu.Button className="inline-flex items-center font-medium text-black dark:text-white">
                     {user.name}
