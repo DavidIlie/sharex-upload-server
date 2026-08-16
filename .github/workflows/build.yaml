@@ -12,7 +12,7 @@ on:
 jobs:
     server:
         name: "Build Server"
-        runs-on: ubuntu-latest
+        runs-on: davidapps-linux-x64
         steps:
             - name: "Build:checkout"
               uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
                   docker push ghcr.io/davidilie/sharex-upload-server/server:latest
     web:
         name: "Build Web"
-        runs-on: ubuntu-latest
+        runs-on: davidapps-linux-x64
         steps:
             - name: "Build:checkout"
               uses: actions/checkout@v2
@@ -44,9 +44,11 @@ jobs:
                   docker push ghcr.io/davidilie/sharex-upload-server/web:latest
     deploy_self:
         name: "Deploy"
-        runs-on: ubuntu-latest
+        runs-on: davidapps-linux-x64
         needs: [server, web]
         steps:
+            - name: "Set up kubectl"
+              uses: azure/setup-kubectl@v4
             - name: "Set Kubernetes Context"
               uses: Azure/k8s-set-context@v1
               with:
