@@ -25,7 +25,7 @@ jobs:
               with:
                   registry: ghcr.io
                   username: DavidIlie
-                  password: ${{ secrets.GITHUB_TOKEN }}
+                  password: ${{ secrets.GHCR_PASSWORD }}
             - name: Build and publish Docker image
               run: |
                   docker build -t ghcr.io/davidilie/sharex-upload-server/server:latest -f server/Dockerfile .
@@ -41,7 +41,7 @@ jobs:
               with:
                   registry: ghcr.io
                   username: DavidIlie
-                  password: ${{ secrets.GITHUB_TOKEN }}
+                  password: ${{ secrets.GHCR_PASSWORD }}
             - name: Build and publish Docker image
               run: |
                   docker build -t ghcr.io/davidilie/sharex-upload-server/web:latest -f web/Dockerfile .
