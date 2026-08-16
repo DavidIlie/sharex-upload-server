@@ -1,6 +1,7 @@
 name: "build_deploy_app"
 
 on:
+    workflow_dispatch:
     push:
         branches:
             - master
