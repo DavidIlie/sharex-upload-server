@@ -9,6 +9,10 @@ on:
             - "server/**"
             - "web/**"
 
+permissions:
+    contents: read
+    packages: write
+
 jobs:
     server:
         name: "Build Server"
@@ -21,7 +25,7 @@ jobs:
               with:
                   registry: ghcr.io
                   username: DavidIlie
-                  password: ${{ secrets.GHCR_PASSWORD }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
             - name: Build and publish Docker image
               run: |
                   docker build -t ghcr.io/davidilie/sharex-upload-server/server:latest -f server/Dockerfile .
@@ -37,7 +41,7 @@ jobs:
               with:
                   registry: ghcr.io
                   username: DavidIlie
-                  password: ${{ secrets.GHCR_PASSWORD }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
             - name: Build and publish Docker image
               run: |
                   docker build -t ghcr.io/davidilie/sharex-upload-server/web:latest -f web/Dockerfile .
